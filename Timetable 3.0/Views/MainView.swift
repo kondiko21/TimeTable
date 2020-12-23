@@ -27,9 +27,9 @@ struct MainView: View {
     var body: some View {
         
         NavigationView {
-        ScrollView{
-            if #available(iOS 14.0, *) {
-                ScrollViewReader { value in
+        if #available(iOS 14.0, *) {
+                ScrollView {
+                    ScrollViewReader { value in
                         ForEach(days, id:\.self) { day in
                             VStack(alignment: .leading,spacing: 0) {
                                 ZStack {
@@ -48,19 +48,22 @@ struct MainView: View {
                                                 .foregroundColor(Color(UIColor.systemGray))
                                         }.padding(10)
                                         
-                                    }.frame(width: UIScreen.main.bounds.width)
-                                }.padding(.top, 10)
+                                    }
+                                    .frame(width: UIScreen.main.bounds.width)
+                                    .id(getNumberOfWeekDayOfName(day.name))
+                                }
+                                .padding(.top, 10)
                                 ForEach(day.lessonArray, id: \.self) { lesson in
                                     LessonPlanElement(lesson: lesson)
                                 }
-                            }.listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0))
-                            .id(getNumberOfWeekDayOfName(day.name))
+                            }
+                            .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0))
                         }
                         .onAppear {
                             let myDate = Date()
                             let currentWeekDay = Calendar.current.component(.weekday, from: myDate)
-                            if !(2...6).contains(currentWeekDay) {
-                                value.scrollTo(currentWeekDay)
+                            if (2...6).contains(currentWeekDay) {
+                                value.scrollTo(currentWeekDay, anchor: .top)
                             } else {
                                 value.scrollTo(2)
                             }

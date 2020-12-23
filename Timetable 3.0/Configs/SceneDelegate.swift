@@ -37,11 +37,11 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             }
             
             //Define if display onboarding view
-//            if !hasLaunchedBefore{
+            if !hasLaunchedBefore{
                 window.rootViewController = UIHostingController(rootView: onboardView)
-//            } else {
-//                window.rootViewController = UIHostingController(rootView: contentView)
-//            }
+            } else {
+                window.rootViewController = UIHostingController(rootView: contentView)
+            }
 
             self.window = window
             if !hasLaunchedBefore{
