@@ -1,0 +1,483 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		711A78D724EE655000A41A48 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 711A78D624EE655000A41A48 /* AppDelegate.swift */; };
+		711A78D924EE655000A41A48 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 711A78D824EE655000A41A48 /* SceneDelegate.swift */; };
+		711A78DE24EE655000A41A48 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 711A78DD24EE655000A41A48 /* MainView.swift */; };
+		711A78E024EE655100A41A48 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 711A78DF24EE655100A41A48 /* Assets.xcassets */; };
+		711A78E324EE655100A41A48 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 711A78E224EE655100A41A48 /* Preview Assets.xcassets */; };
+		711A78E624EE655100A41A48 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 711A78E424EE655100A41A48 /* LaunchScreen.storyboard */; };
+		711A78F024F2809100A41A48 /* EditModeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 711A78EF24F2809100A41A48 /* EditModeView.swift */; };
+		713AEF9D2537241A0000AB93 /* Days+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 713AEF9B2537241A0000AB93 /* Days+CoreDataClass.swift */; };
+		713AEF9E2537241A0000AB93 /* Days+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 713AEF9C2537241A0000AB93 /* Days+CoreDataProperties.swift */; };
+		71539B802592075300A56508 /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71539B7F2592075300A56508 /* OnboardingView.swift */; };
+		71C2CA9E25618BF5003D6278 /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71C2CA9D25618BF5003D6278 /* NotificationManager.swift */; };
+		71C2CAAA2563EFAD003D6278 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 71C2CAAC2563EFAD003D6278 /* Localizable.strings */; };
+		71C2CAB1256D2F03003D6278 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71C2CAB0256D2F03003D6278 /* SettingsView.swift */; };
+		71C2CAB42574E123003D6278 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71C2CAB32574E123003D6278 /* Settings.swift */; };
+		71C4EA7D255C035700277DCC /* Timetable_3_0.xcdatamodel in Sources */ = {isa = PBXBuildFile; fileRef = 71C4EA7C255C035700277DCC /* Timetable_3_0.xcdatamodel */; };
+		71C4EA82255C037D00277DCC /* Lesson+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71C4EA80255C037D00277DCC /* Lesson+CoreDataClass.swift */; };
+		71C4EA83255C037D00277DCC /* Lesson+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71C4EA81255C037D00277DCC /* Lesson+CoreDataProperties.swift */; };
+		71DC31AA2559AD7A00B1F52A /* AddLessonModalForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71DC31A92559AD7A00B1F52A /* AddLessonModalForm.swift */; };
+		71DC31AE255AA1C800B1F52A /* EditLessonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71DC31AD255AA1C800B1F52A /* EditLessonView.swift */; };
+		71EA51C9253F0A7D00008165 /* LessonModel+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71EA51C7253F0A7D00008165 /* LessonModel+CoreDataClass.swift */; };
+		71EA51CA253F0A7D00008165 /* LessonModel+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71EA51C8253F0A7D00008165 /* LessonModel+CoreDataProperties.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		71C4EAB2255D536D00277DCC /* Embed Watch Content */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "$(CONTENTS_FOLDER_PATH)/Watch";
+			dstSubfolderSpec = 16;
+			files = (
+			);
+			name = "Embed Watch Content";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		711A78D324EE655000A41A48 /* Timetable 3.0.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Timetable 3.0.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		711A78D624EE655000A41A48 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		711A78D824EE655000A41A48 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		711A78DD24EE655000A41A48 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MainView.swift; path = "Timetable 3.0/Views/MainView.swift"; sourceTree = SOURCE_ROOT; };
+		711A78DF24EE655100A41A48 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		711A78E224EE655100A41A48 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		711A78E524EE655100A41A48 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		711A78E724EE655100A41A48 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		711A78EF24F2809100A41A48 /* EditModeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditModeView.swift; sourceTree = "<group>"; };
+		713AEF9B2537241A0000AB93 /* Days+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "Days+CoreDataClass.swift"; path = "Timetable 3.0/Database Models/Days+CoreDataClass.swift"; sourceTree = SOURCE_ROOT; };
+		713AEF9C2537241A0000AB93 /* Days+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "Days+CoreDataProperties.swift"; path = "Timetable 3.0/Database Models/Days+CoreDataProperties.swift"; sourceTree = SOURCE_ROOT; };
+		71539B7F2592075300A56508 /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
+		71C2CA9D25618BF5003D6278 /* NotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationManager.swift; sourceTree = "<group>"; };
+		71C2CAA82563EF7F003D6278 /* pl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pl; path = pl.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
+		71C2CAAB2563EFAD003D6278 /* pl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pl; path = pl.lproj/Localizable.strings; sourceTree = "<group>"; };
+		71C2CAAE2563EFCB003D6278 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		71C2CAB0256D2F03003D6278 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		71C2CAB32574E123003D6278 /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
+		71C4EA7C255C035700277DCC /* Timetable_3_0.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; name = Timetable_3_0.xcdatamodel; path = "Timetable 3.0/Configs/Timetable_3_0.xcdatamodel"; sourceTree = SOURCE_ROOT; };
+		71C4EA80255C037D00277DCC /* Lesson+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Lesson+CoreDataClass.swift"; sourceTree = "<group>"; };
+		71C4EA81255C037D00277DCC /* Lesson+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Lesson+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		71C4EA8B255D536B00277DCC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		71C4EA8D255D536B00277DCC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		71DC31A92559AD7A00B1F52A /* AddLessonModalForm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddLessonModalForm.swift; sourceTree = "<group>"; };
+		71DC31AD255AA1C800B1F52A /* EditLessonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditLessonView.swift; sourceTree = "<group>"; };
+		71EA51C7253F0A7D00008165 /* LessonModel+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "LessonModel+CoreDataClass.swift"; path = "Timetable 3.0/Database Models/LessonModel+CoreDataClass.swift"; sourceTree = SOURCE_ROOT; };
+		71EA51C8253F0A7D00008165 /* LessonModel+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "LessonModel+CoreDataProperties.swift"; path = "Timetable 3.0/Database Models/LessonModel+CoreDataProperties.swift"; sourceTree = SOURCE_ROOT; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		711A78D024EE655000A41A48 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		711A78CA24EE655000A41A48 = {
+			isa = PBXGroup;
+			children = (
+				711A78D524EE655000A41A48 /* Timetable 3.0 */,
+				71C4EA8A255D536900277DCC /* TimeTable */,
+				711A78D424EE655000A41A48 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		711A78D424EE655000A41A48 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				711A78D324EE655000A41A48 /* Timetable 3.0.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		711A78D524EE655000A41A48 /* Timetable 3.0 */ = {
+			isa = PBXGroup;
+			children = (
+				71C2CAA32563EEBA003D6278 /* Languages */,
+				711A78E724EE655100A41A48 /* Info.plist */,
+				71EA51CC2556D14C00008165 /* Database Models */,
+				71EA51CD2556D17600008165 /* Views */,
+				71EA51CE2556D1A000008165 /* Configs */,
+				711A78E124EE655100A41A48 /* Preview Content */,
+			);
+			path = "Timetable 3.0";
+			sourceTree = "<group>";
+		};
+		711A78E124EE655100A41A48 /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				711A78E224EE655100A41A48 /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		71C2CAA32563EEBA003D6278 /* Languages */ = {
+			isa = PBXGroup;
+			children = (
+				71C2CAAC2563EFAD003D6278 /* Localizable.strings */,
+			);
+			path = Languages;
+			sourceTree = "<group>";
+		};
+		71C4EA8A255D536900277DCC /* TimeTable */ = {
+			isa = PBXGroup;
+			children = (
+				71C4EA8B255D536B00277DCC /* Assets.xcassets */,
+				71C4EA8D255D536B00277DCC /* Info.plist */,
+			);
+			path = TimeTable;
+			sourceTree = "<group>";
+		};
+		71EA51CC2556D14C00008165 /* Database Models */ = {
+			isa = PBXGroup;
+			children = (
+				71EA51C7253F0A7D00008165 /* LessonModel+CoreDataClass.swift */,
+				71EA51C8253F0A7D00008165 /* LessonModel+CoreDataProperties.swift */,
+				71C4EA80255C037D00277DCC /* Lesson+CoreDataClass.swift */,
+				71C4EA81255C037D00277DCC /* Lesson+CoreDataProperties.swift */,
+				713AEF9B2537241A0000AB93 /* Days+CoreDataClass.swift */,
+				713AEF9C2537241A0000AB93 /* Days+CoreDataProperties.swift */,
+				71C2CAB32574E123003D6278 /* Settings.swift */,
+			);
+			path = "Database Models";
+			sourceTree = "<group>";
+		};
+		71EA51CD2556D17600008165 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				711A78DD24EE655000A41A48 /* MainView.swift */,
+				71539B7F2592075300A56508 /* OnboardingView.swift */,
+				711A78EF24F2809100A41A48 /* EditModeView.swift */,
+				71DC31A92559AD7A00B1F52A /* AddLessonModalForm.swift */,
+				71DC31AD255AA1C800B1F52A /* EditLessonView.swift */,
+				71C2CAB0256D2F03003D6278 /* SettingsView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		71EA51CE2556D1A000008165 /* Configs */ = {
+			isa = PBXGroup;
+			children = (
+				71C2CA9D25618BF5003D6278 /* NotificationManager.swift */,
+				711A78D624EE655000A41A48 /* AppDelegate.swift */,
+				71C4EA7C255C035700277DCC /* Timetable_3_0.xcdatamodel */,
+				711A78D824EE655000A41A48 /* SceneDelegate.swift */,
+				711A78DF24EE655100A41A48 /* Assets.xcassets */,
+				711A78E424EE655100A41A48 /* LaunchScreen.storyboard */,
+			);
+			path = Configs;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		711A78D224EE655000A41A48 /* Timetable 3.0 */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 711A78EA24EE655100A41A48 /* Build configuration list for PBXNativeTarget "Timetable 3.0" */;
+			buildPhases = (
+				711A78CF24EE655000A41A48 /* Sources */,
+				711A78D024EE655000A41A48 /* Frameworks */,
+				711A78D124EE655000A41A48 /* Resources */,
+				71C4EAB2255D536D00277DCC /* Embed Watch Content */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Timetable 3.0";
+			productName = "Timetable 3.0";
+			productReference = 711A78D324EE655000A41A48 /* Timetable 3.0.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		711A78CB24EE655000A41A48 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1210;
+				LastUpgradeCheck = 1210;
+				ORGANIZATIONNAME = Konrad;
+				TargetAttributes = {
+					711A78D224EE655000A41A48 = {
+						CreatedOnToolsVersion = 11.5;
+					};
+				};
+			};
+			buildConfigurationList = 711A78CE24EE655000A41A48 /* Build configuration list for PBXProject "Timetable 3.0" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+				pl,
+			);
+			mainGroup = 711A78CA24EE655000A41A48;
+			productRefGroup = 711A78D424EE655000A41A48 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				711A78D224EE655000A41A48 /* Timetable 3.0 */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		711A78D124EE655000A41A48 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				711A78E624EE655100A41A48 /* LaunchScreen.storyboard in Resources */,
+				71C2CAAA2563EFAD003D6278 /* Localizable.strings in Resources */,
+				711A78E324EE655100A41A48 /* Preview Assets.xcassets in Resources */,
+				711A78E024EE655100A41A48 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		711A78CF24EE655000A41A48 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				71C2CAB1256D2F03003D6278 /* SettingsView.swift in Sources */,
+				711A78F024F2809100A41A48 /* EditModeView.swift in Sources */,
+				71DC31AE255AA1C800B1F52A /* EditLessonView.swift in Sources */,
+				71C4EA7D255C035700277DCC /* Timetable_3_0.xcdatamodel in Sources */,
+				71C4EA83255C037D00277DCC /* Lesson+CoreDataProperties.swift in Sources */,
+				711A78D724EE655000A41A48 /* AppDelegate.swift in Sources */,
+				71EA51C9253F0A7D00008165 /* LessonModel+CoreDataClass.swift in Sources */,
+				71C4EA82255C037D00277DCC /* Lesson+CoreDataClass.swift in Sources */,
+				71DC31AA2559AD7A00B1F52A /* AddLessonModalForm.swift in Sources */,
+				711A78D924EE655000A41A48 /* SceneDelegate.swift in Sources */,
+				71C2CAB42574E123003D6278 /* Settings.swift in Sources */,
+				711A78DE24EE655000A41A48 /* MainView.swift in Sources */,
+				713AEF9E2537241A0000AB93 /* Days+CoreDataProperties.swift in Sources */,
+				71C2CA9E25618BF5003D6278 /* NotificationManager.swift in Sources */,
+				713AEF9D2537241A0000AB93 /* Days+CoreDataClass.swift in Sources */,
+				71539B802592075300A56508 /* OnboardingView.swift in Sources */,
+				71EA51CA253F0A7D00008165 /* LessonModel+CoreDataProperties.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		711A78E424EE655100A41A48 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				711A78E524EE655100A41A48 /* Base */,
+				71C2CAA82563EF7F003D6278 /* pl */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		71C2CAAC2563EFAD003D6278 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				71C2CAAB2563EFAD003D6278 /* pl */,
+				71C2CAAE2563EFCB003D6278 /* en */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		711A78E824EE655100A41A48 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.5;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_COMPILATION_MODE = singlefile;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		711A78E924EE655100A41A48 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.5;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = singlefile;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		711A78EB24EE655100A41A48 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_ASSET_PATHS = "\"Timetable 3.0/Preview Content\"";
+				DEVELOPMENT_TEAM = G323CMNMM3;
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = "Timetable 3.0/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = kondiko.Timetable;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Debug;
+		};
+		711A78EC24EE655100A41A48 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_ASSET_PATHS = "\"Timetable 3.0/Preview Content\"";
+				DEVELOPMENT_TEAM = G323CMNMM3;
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = "Timetable 3.0/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = kondiko.Timetable;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		711A78CE24EE655000A41A48 /* Build configuration list for PBXProject "Timetable 3.0" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				711A78E824EE655100A41A48 /* Debug */,
+				711A78E924EE655100A41A48 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		711A78EA24EE655100A41A48 /* Build configuration list for PBXNativeTarget "Timetable 3.0" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				711A78EB24EE655100A41A48 /* Debug */,
+				711A78EC24EE655100A41A48 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 711A78CB24EE655000A41A48 /* Project object */;
+}

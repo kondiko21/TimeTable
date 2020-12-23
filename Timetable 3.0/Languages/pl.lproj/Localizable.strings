@@ -1,0 +1,33 @@
+/* 
+  Localizable.strings
+  Timetable 3.0
+
+  Created by Konrad on 17/11/2020.
+  Copyright © 2020 Konrad. All rights reserved.
+*/
+"Room" = "Pokój";
+"Monday" = "Poniedziałek";
+"Tuesday" = "Wtorek";
+"Wednesday" = "Środa";
+"Thursday" = "Czwartek";
+"Friday" = "Piątek";
+"Lesson plan" = "Plan lekcji";
+"Edit plan:" = "Edycja planu:";
+"Close" = "Zamknij";
+"Add lesson" = "Dodaj lesson";
+"Never used lesson" = "Nowa lekcja";
+"Lessons" = "Przedmioty";
+"Informations" = "Informacje";
+"Start lesson" = "Początek lekcji";
+"End lesson"  = "Koniec lekcji";
+"Add lesson" = "Dodaj lekcję";
+"Edit lesson" = "Edytuj lekcję";
+"Primary informations" = "Podstawowe informacje";
+"Name" = "Nazwa";
+"Teacher" = "Nauczyciel";
+"Pick color" = "Wybierz kolor";
+"Set the background color" = "Wybierz kolor tła";
+"Next lesson" = "Następna lekcja";
+"Your next lesson is" = "Twoja kolejna lekcja to";
+"and starts"  = "i zaczyna się o";
+
