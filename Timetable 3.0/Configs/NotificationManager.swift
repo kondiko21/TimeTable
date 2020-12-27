@@ -12,7 +12,7 @@ import CoreData
 
 final class NotificationManager {
     
-    
+    static let shared = NotificationManager()
     var beforeLessonNotificationsEnabled = UserDefaults.standard.object(forKey: "before_lesson_notification") as? Bool ?? true
     var startLessonNotificationsEnabled = UserDefaults.standard.object(forKey: "start_lesson_notification") as? Bool ?? false
     
@@ -22,7 +22,7 @@ final class NotificationManager {
     var moc : NSManagedObjectContext
     let fetchRequest: NSFetchRequest<Days> = Days.fetchRequest()
     var days : [Days]
-    init() {
+    private init() {
             moc = appDelegate.persistentContainer.viewContext
             days = try! moc.fetch(fetchRequest)
             UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge, .sound]) { granted, error in
@@ -39,21 +39,23 @@ final class NotificationManager {
     func displayNotifications() {
         let center = UNUserNotificationCenter.current()
         center.getPendingNotificationRequests(completionHandler: { requests in
+           // print("BEFORE: \(UserDefaults.standard.object(forKey: "before_lesson_notification") as! Bool)")
+           // print("AFTER: \(UserDefaults.standard.object(forKey: "start_lesson_notification") as! Bool)")
+            print("Interval: \(UserDefaults.standard.object(forKey: "notification_interval_length") as? Int)")
             for request in requests {
-                print("NUMBERX \(request.trigger)")
+                print("NOTIFICATION: \(request.trigger)")
             }
         })
     }
     public func updateBeforeLessonNotificationsFor (day: Days) {
         if beforeLessonNotificationsEnabled {
-            var settingsInterval = UserDefaults.standard.object(forKey: "notification_interval_length") as? Int ?? 15
+            let settingsInterval = UserDefaults.standard.object(forKey: "notification_interval_length") as? Int ?? 5
             let notificationInterval = -settingsInterval*60
             let lessons = day.lessonArray
             if lessons.count != 0 {
                 removeNotificationWithSign("B", day)
                 for i in (0..<lessons.count-1) {
                     
-                    print("LENGTH: \(lessons[0])")
                     let dateFormatter = DateFormatter()
                     dateFormatter.dateFormat = "HH:mm"
                     var dateComponent = DateComponents()
@@ -63,11 +65,15 @@ final class NotificationManager {
                     dateComponent.weekday = getNumberOfWeekDayOfName(lessons[i].day.name)
                     dateComponent.hour = calendar.component(.hour, from: notificationHour )
                     dateComponent.minute = calendar.component(.minute, from: notificationHour)
-                    
+                    let notification1 = NSLocalizedString("Your next lesson is", comment: "")
+                    let notification2 = NSLocalizedString("and starts", comment: "")
+                    let notification3 = NSLocalizedString("in room", comment: "")
+                    let notification4 = NSLocalizedString("Next lesson", comment: "")
+
                     let content = UNMutableNotificationContent()
                     content.sound = UNNotificationSound.default
-                    content.title = "Next Lesson"
-                    content.body = "Your next lesson is \(lessons[i+1].lessonModel.name) and starts \(dateFormatter.string(from: lessons[i+1].startHour))"
+                    content.title = notification4
+                    content.body = "\(notification1) \(lessons[i+1].lessonModel.name) \(notification2) \(dateFormatter.string(from: lessons[i+1].startHour)) \(notification3) \(lessons[i+1].room)."
                     
                     let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponent, repeats: true)
                     let request  = UNNotificationRequest(identifier: "\(lessons[i].id.uuidString)B", content: content, trigger: trigger)
@@ -109,35 +115,40 @@ final class NotificationManager {
             if lessons.count != 0 {
                 
                 removeNotificationWithSign("S", day)
-                for i in (0..<lessons.count) {
+                for lesson in lessons {
                     
                     let dateFormatter = DateFormatter()
                     dateFormatter.dateFormat = "HH:mm"
                     var dateComponent = DateComponents()
                     let calendar = Calendar.current
                     
-                    dateComponent.weekday = getNumberOfWeekDayOfName(lessons[i].day.name)
-                    dateComponent.hour = calendar.component(.hour, from: lessons[i].startHour )
-                    dateComponent.minute = calendar.component(.minute, from: lessons[i].startHour )
+                    dateComponent.weekday = getNumberOfWeekDayOfName(lesson.day.name)
+                    dateComponent.hour = calendar.component(.hour, from: lesson.startHour )
+                    dateComponent.minute = calendar.component(.minute, from: lesson.startHour )
+                    
+                    let notification2 = NSLocalizedString("is about to start.", comment: "")
+                    let notification1 = NSLocalizedString("Next lesson", comment: "")
                     
                     let content = UNMutableNotificationContent()
                     content.sound = UNNotificationSound.default
-                    content.title = "Next Lesson"
-                    content.body = "\(lessons[i].lessonModel.name) is about to start)"
+                    content.title = notification1
+                    content.body = "\(lesson.lessonModel.name) \(notification2)"
                     
                     let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponent, repeats: true)
-                    let request  = UNNotificationRequest(identifier: "\(lessons[i].id.uuidString)S", content: content, trigger: trigger)
+                    let request  = UNNotificationRequest(identifier: "\(lesson.id.uuidString)S", content: content, trigger: trigger)
                     UNUserNotificationCenter.current().add(request, withCompletionHandler: nil)
+                    print("ACTION: Updating start lesson notification...")
+
                     
                 }
             }
             
-            let center = UNUserNotificationCenter.current()
-            center.getPendingNotificationRequests(completionHandler: { requests in
-                for request in requests {
-                    print("NUMBERX \(request.trigger)")
-                }
-            })
+//            let center = UNUserNotificationCenter.current()
+//            center.getPendingNotificationRequests(completionHandler: { requests in
+//                for request in requests {
+//                    print("NUMBERX \(request.trigger)")
+//                }
+//            })
         }
     }
     
@@ -152,6 +163,7 @@ final class NotificationManager {
         var IDs = lessons.map {$0.id.uuidString}
         for i in 0..<IDs.count {
             IDs[i] = IDs[i] + sign
+            print(IDs[i] + sign)
         }
         UNUserNotificationCenter.current().removePendingNotificationRequests(withIdentifiers: IDs)
     }

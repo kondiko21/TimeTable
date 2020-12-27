@@ -10,7 +10,7 @@ import SwiftUI
 
 struct EditModeView: View {
     
-    var notificationManager = NotificationManager()
+    var notificationManager = NotificationManager.shared
 
     @State var isFormSheetPresented = false
     @Environment(\.managedObjectContext) var moc

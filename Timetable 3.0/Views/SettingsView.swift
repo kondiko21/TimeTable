@@ -58,7 +58,6 @@ struct SettingsView: View {
 
                 }
             }
-            
             Section {
                 Toggle(isOn: $userSettings.beforeLessonNotificationsEnabled) {
                     Text("Enable next lesson notification")
@@ -67,7 +66,6 @@ struct SettingsView: View {
                     Text("Enable lesson beggining notification")
                 }
             }
-            
             Section {
                 HStack {
                     Text("Version")
@@ -75,7 +73,6 @@ struct SettingsView: View {
                     Text("1.0.0")
                 }
             }
-            
             .navigationBarTitle("Settings", displayMode: .automatic)
         }
     }

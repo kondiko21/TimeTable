@@ -5,7 +5,7 @@
   Created by Konrad on 17/11/2020.
   Copyright © 2020 Konrad. All rights reserved.
 */
-"Room" = "Pokój";
+"Room" = "Sala";
 "Monday" = "Poniedziałek";
 "Tuesday" = "Wtorek";
 "Wednesday" = "Środa";
@@ -14,7 +14,7 @@
 "Lesson plan" = "Plan lekcji";
 "Edit plan:" = "Edycja planu:";
 "Close" = "Zamknij";
-"Add lesson" = "Dodaj lesson";
+"Add lesson" = "Dodaj lekcję";
 "Never used lesson" = "Nowa lekcja";
 "Lessons" = "Przedmioty";
 "Informations" = "Informacje";
@@ -30,4 +30,35 @@
 "Next lesson" = "Następna lekcja";
 "Your next lesson is" = "Twoja kolejna lekcja to";
 "and starts"  = "i zaczyna się o";
+"in room"  = "w sali";
+"is about to start." = "właśnie się zaczyna.";
+"Next Lesson" = "Kolejna lekcja";
+"Incorrect lesson hours" = "Niepoprawna godzina";
+"There are other lessons in time you selected for this lesson:" = "W wybranych godzinach odbywają się inne zajęcia:";
+"Do you want to change hours of this lesson or remove interrupting lesson?" = "Chcesz zmienić godzinę, czy usunąć kolidujące lekcje?";
+"Remove" = "Usuń";
+"Change time" = "Zmień godziny";
+"Missing data" = "Brakujące dane";
+"There are missing data in your form or some of them are incorrect. Please fill every field and try again." = "W formularzu brakuje danych lub są  one niepoprawne. Wypełnij ponownie i spróbuj ponownie.";
+"Automatically" = "Automatyczny";
+"Light" = "Jasny";
+"Dark" = "Ciemny";
+"You need to restart your app to see changes." = "Musisz zresetować aplikację, aby zobaczyć zmiany.";
+"Color mode" = "Tryb interfejsu";
+"Value works only while you're setting your scheulde" = "Wartość działa podczas dodawania nowych lekcji.";
+"Lesson length" = "Długość lekcji";
+" minutes" = " minut";
+"Set the interval for the amount of minutes before the end of the lesson." = "Ustaw ile przed końcem lekcji chcesz otrzymać powiadomienie.";
+"Notification interval" = "Przyspieszenie powiadomień";
+"Enable next lesson notification" = "Powiadomienia o następnej lekcji";
+"Enable lesson beggining notification" = "Powiadomienia o rozpoczęciu lekcji";
+"Version" = "Wersja";
+"Welcome to TimeTable app" = "Witamy w aplikacji Timetable!";
+"This app lets you to manage your or your children time in school" = "Aplikacja pomoże Ci zarządzać czasem w szkole uczniom i rodzicom";
+"Your timetable" = "Twój plan lekcji";
+"You can add all your lessons and customize them with colors." = "Możesz dodać wszystkie twoje lekcje i spersonalizować je kolorami.";
+"Notifications" = "Powiadomienia";
+"You'll get notification when your lesson is about to start or where to go for your next class. You will never miss lesson again. \nHow cool is this!" = "Otrzymasz powiadomienie jaka jest następna lekcja i w jakiej sali oraz, że właśnie się rozpoczyna. Już nigdy nie przegapisz lekcji. \nCzy to nei wspaniałe?";
+"Settings" = "Ustawienia";
+"Go to settings and make the notification the most suitable for you. You can also change the dark mode!" = "Udaj się do ustawień, aby dostosować powiadomienia. Możesz tez włączyć tryb ciemny!";
 

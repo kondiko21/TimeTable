@@ -12,7 +12,7 @@ struct EditLessonView: View {
     
     @State var selectedLesson: Lesson
     @State var selectedDay: Days
-    var notificationManager = NotificationManager()
+    var notificationManager = NotificationManager.shared
     @State var selectedColor = Color.blue
     @State private var startHour: Date
     @State private var endHour: Date
@@ -107,8 +107,6 @@ struct EditLessonView: View {
         }
         do {
             try moc.save()
-            notificationManager.updateBeforeLessonNotificationsFor(day: selectedDay)
-            notificationManager.updateStartLessonNotificationsFor(day: selectedDay)
 
         }
         catch {
@@ -134,6 +132,9 @@ struct EditLessonView: View {
                 print(error)
             }
             moc.refreshAllObjects()
+            notificationManager.updateBeforeLessonNotificationsFor(day: selectedDay)
+            notificationManager.updateStartLessonNotificationsFor(day: selectedDay)
+            notificationManager.displayNotifications()
             self.presentationMode.wrappedValue.dismiss()
         }
         else {

@@ -4,7 +4,7 @@ import Combine
 class Settings: ObservableObject {
     
     
-    var notificationManager = NotificationManager()
+    var notificationManager = NotificationManager.shared
 
     @Published var lessonLength: Int {
         didSet {
@@ -46,6 +46,7 @@ class Settings: ObservableObject {
             } else {
                 notificationManager.removeAllNotificationsWithSign("S")
             }
+            print(UserDefaults.standard.object(forKey: "start_lesson_notification"))
         }
     }
     

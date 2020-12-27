@@ -34,7 +34,8 @@ struct MainView: View {
                             VStack(alignment: .leading,spacing: 0) {
                                 ZStack {
                                     HStack(alignment: .center, spacing: 10) {
-                                        Text(day.name)
+                                        let dayName = NSLocalizedString(day.name, comment: "")
+                                        Text(dayName)
                                             .fontWeight(.semibold)
                                             .font(Font.system(size: 15))
                                             .padding(.leading, 12)

@@ -30,7 +30,7 @@ struct AddLessonModalForm: View {
     @FetchRequest(entity: LessonModel.entity(), sortDescriptors: []) var lessons : FetchedResults<LessonModel>
     var lessonTime : Int = (UserDefaults.standard.object(forKey: "lesson_length") as? Int ?? 45) * 60
 
-    var notificationManager = NotificationManager()
+    var notificationManager = NotificationManager.shared
 
     var body: some View {
     NavigationView {
@@ -116,7 +116,6 @@ struct AddLessonModalForm: View {
             }
             var intersectString : String = ""
             for object in intersectionLesson {
-                print("INT: \(object.lessonModel.name)")
                 intersectString += object.lessonModel.name+", "
             }
             intersectString.removeLast(2)
@@ -136,9 +135,6 @@ struct AddLessonModalForm: View {
         }
         do {
             try moc.save()
-            notificationManager.updateBeforeLessonNotificationsFor(day: selectedDay)
-            notificationManager.updateStartLessonNotificationsFor(day: selectedDay)
-            notificationManager.displayNotifications()
         }
         catch {
             print(error)
@@ -169,7 +165,6 @@ struct AddLessonModalForm: View {
                 correctData = false
             }
             else {
-                print("MODEL \(modelLesson)")
                 let lesson = Lesson(context: self.moc)
                 lesson.endHour = self.endHour
                 lesson.id = UUID()
@@ -188,6 +183,8 @@ struct AddLessonModalForm: View {
             }
             moc.refreshAllObjects()
             notificationManager.updateBeforeLessonNotificationsFor(day: selectedDay)
+            notificationManager.updateStartLessonNotificationsFor(day: selectedDay)
+            notificationManager.displayNotifications()
             showModal.toggle()
         
         }
