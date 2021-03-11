@@ -7,6 +7,7 @@
 //
 
 import SwiftUI
+import WidgetKit
 
 struct AddLessonModalForm: View {
      
@@ -119,7 +120,7 @@ struct AddLessonModalForm: View {
                 intersectString += object.lessonModel.name+", "
             }
             intersectString.removeLast(2)
-            return Alert(title: Text("Incorrect lesson hours"), message: Text("There are other lessons in time you elected for this lesson: \(intersectString)\n Do you want to change hours of this lesson or remove interrupting lesson?"), primaryButton: cancelButton, secondaryButton: removeButton)
+            return Alert(title: Text("Incorrect lesson hours"), message: Text("There are other lessons in time you selected for this lesson: \(intersectString)\n Do you want to change hours of this lesson or remove interrupting lesson?"), primaryButton: cancelButton, secondaryButton: removeButton)
         })
     }
 }
@@ -145,20 +146,22 @@ struct AddLessonModalForm: View {
         
         var correctData = true;
         if self.lessonExist {
-            if room.isEmpty || name.isEmpty || teacher.isEmpty { correctData = false }
-            let lesson = Lesson(context: self.moc)
-            lesson.endHour = self.endHour
-            lesson.startHour = self.startHour
-            lesson.room = self.room
-            lesson.id = UUID()
-            id = lesson.id
-            lesson.lessonModel = LessonModel(context: self.moc)
-            lesson.lessonModel.name = self.name
-            lesson.lessonModel.teacher = self.teacher
-            if #available(iOS 14.0, *) {
-                lesson.lessonModel.color = UIColor.StringFromUIColor(color: UIColor(selectedColor))
+            if room.isEmpty || name.isEmpty || teacher.isEmpty || endHour == startHour  { correctData = false }
+            else {
+                let lesson = Lesson(context: self.moc)
+                lesson.endHour = self.endHour
+                lesson.startHour = self.startHour
+                lesson.room = self.room
+                lesson.id = UUID()
+                id = lesson.id
+                lesson.lessonModel = LessonModel(context: self.moc)
+                lesson.lessonModel.name = self.name
+                lesson.lessonModel.teacher = self.teacher
+                if #available(iOS 14.0, *) {
+                    lesson.lessonModel.color = UIColor.StringFromUIColor(color: UIColor(selectedColor))
+                }
+                lesson.day = self.selectedDay
             }
-            lesson.day = self.selectedDay
             
         } else {
             if room.isEmpty || isPickerChanged == false || endHour == startHour {
@@ -185,6 +188,9 @@ struct AddLessonModalForm: View {
             notificationManager.updateBeforeLessonNotificationsFor(day: selectedDay)
             notificationManager.updateStartLessonNotificationsFor(day: selectedDay)
             notificationManager.displayNotifications()
+            if #available(iOS 14.0, *) {
+                WidgetCenter.shared.reloadAllTimelines()
+            }
             showModal.toggle()
         
         }

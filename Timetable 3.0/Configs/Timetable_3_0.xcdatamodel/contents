@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="17192" systemVersion="19H2" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="17709" systemVersion="20D80" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="Days" representedClassName="Days" syncable="YES">
         <attribute name="id" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="name" optional="YES" attributeType="String"/>
@@ -7,10 +7,10 @@
         <relationship name="lessons" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Lesson" inverseName="day" inverseEntity="Lesson"/>
     </entity>
     <entity name="Lesson" representedClassName="Lesson" syncable="YES">
-        <attribute name="endHour" optional="YES" attributeType="Transformable" customClassName="Date"/>
+        <attribute name="endHour" optional="YES" attributeType="Date" valueTransformerName="DateValueTransformer" usesScalarValueType="NO" customClassName="Date"/>
         <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
         <attribute name="room" optional="YES" attributeType="String"/>
-        <attribute name="startHour" optional="YES" attributeType="Transformable" customClassName="Date"/>
+        <attribute name="startHour" optional="YES" attributeType="Date" valueTransformerName="DateValueTransformer" usesScalarValueType="NO" customClassName="Date"/>
         <relationship name="day" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Days" inverseName="lessons" inverseEntity="Days"/>
         <relationship name="lessonModel" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="LessonModel" inverseName="particularLesson" inverseEntity="LessonModel"/>
     </entity>
@@ -23,7 +23,7 @@
     </entity>
     <elements>
         <element name="Days" positionX="-4730.10546875" positionY="-1981.9453125" width="128" height="103"/>
-        <element name="Lesson" positionX="-4904.99609375" positionY="-1873.98828125" width="128" height="133"/>
+        <element name="Lesson" positionX="-4904.99609375" positionY="-1873.98828125" width="128" height="119"/>
         <element name="LessonModel" positionX="-4726.3046875" positionY="-1704.00390625" width="128" height="118"/>
     </elements>
 </model>

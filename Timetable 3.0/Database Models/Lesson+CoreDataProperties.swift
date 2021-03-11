@@ -2,8 +2,8 @@
 //  Lesson+CoreDataProperties.swift
 //  Timetable 3.0
 //
-//  Created by Konrad on 11/11/2020.
-//  Copyright © 2020 Konrad. All rights reserved.
+//  Created by Konrad on 11/03/2021.
+//  Copyright © 2021 Konrad. All rights reserved.
 //
 //
 
@@ -11,7 +11,7 @@ import Foundation
 import CoreData
 
 
-extension Lesson : Identifiable{
+extension Lesson {
 
     @nonobjc public class func fetchRequest() -> NSFetchRequest<Lesson> {
         return NSFetchRequest<Lesson>(entityName: "Lesson")
@@ -25,4 +25,3 @@ extension Lesson : Identifiable{
     @NSManaged public var lessonModel: LessonModel
 
 }
-

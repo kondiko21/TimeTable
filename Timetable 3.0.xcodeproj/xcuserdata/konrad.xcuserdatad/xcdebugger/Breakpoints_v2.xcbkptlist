@@ -318,8 +318,8 @@
             filePath = "Timetable 3.0/Views/EditLessonView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "58"
-            endingLineNumber = "58"
+            startingLineNumber = "59"
+            endingLineNumber = "59"
             landmarkName = "body"
             landmarkType = "24">
          </BreakpointContent>
@@ -334,8 +334,8 @@
             filePath = "Timetable 3.0/Views/EditLessonView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "65"
-            endingLineNumber = "65"
+            startingLineNumber = "66"
+            endingLineNumber = "66"
             landmarkName = "body"
             landmarkType = "24">
          </BreakpointContent>
@@ -350,8 +350,8 @@
             filePath = "Timetable 3.0/Views/EditLessonView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "64"
-            endingLineNumber = "64"
+            startingLineNumber = "65"
+            endingLineNumber = "65"
             landmarkName = "body"
             landmarkType = "24">
          </BreakpointContent>
@@ -400,6 +400,134 @@
                   startingLineNumber = "16"
                   endingLineNumber = "16"
                   offsetFromSymbolStart = "31">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "8B323E2E-4E6E-42E3-9A27-A2885DDD78F9"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Timetable 3.0/Configs/SceneDelegate.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "21"
+            endingLineNumber = "21"
+            landmarkName = "scene(_:willConnectTo:options:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "D943862F-4694-4A5B-B382-04571A1F846F"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "TimetableWidget/TimetableWidget.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "94"
+            endingLineNumber = "94"
+            landmarkName = "Provider"
+            landmarkType = "14">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "46F2055D-6725-4A79-99C6-9B26658ADF86"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "TimetableWidget/TimetableWidget.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "93"
+            endingLineNumber = "93"
+            landmarkName = "Provider"
+            landmarkType = "14">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "EFF6BAF7-BD1E-4FF6-BDB9-30CB72942AEE"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Timetable 3.0/Views/EditModeView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "62"
+            endingLineNumber = "62"
+            landmarkName = "delete(at:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "9D284A5A-B32E-41AE-B0FA-DED169F3B22F"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Timetable 3.0/Views/MainView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "92"
+            endingLineNumber = "92"
+            landmarkName = "getNumberOfWeekDayOfName(_:)"
+            landmarkType = "9">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "D9E26553-E6AF-44DF-819D-F92D3C97ADE3"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Timetable 3.0/Configs/AppDelegate.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "53"
+            endingLineNumber = "53"
+            landmarkName = "persistentContainer"
+            landmarkType = "24">
+            <Locations>
+               <Location
+                  uuid = "D9E26553-E6AF-44DF-819D-F92D3C97ADE3 - 44aceee8726f8331"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 () -&gt; __C.NSPersistentContainer in Timetable_3_0.AppDelegate.persistentContainer.getter : __C.NSPersistentContainer"
+                  moduleName = "Timetable 3.0"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/konrad/Documents/Aplikacje/Timetable%203.0/Timetable%203.0/Configs/AppDelegate.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "53"
+                  endingLineNumber = "53"
+                  offsetFromSymbolStart = "609">
+               </Location>
+               <Location
+                  uuid = "D9E26553-E6AF-44DF-819D-F92D3C97ADE3 - ddf689dff8ca7818"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (__C.NSPersistentStoreDescription, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in closure #1 () -&gt; __C.NSPersistentContainer in Timetable_3_0.AppDelegate.persistentContainer.getter : __C.NSPersistentContainer"
+                  moduleName = "Timetable 3.0"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/konrad/Documents/Aplikacje/Timetable%203.0/Timetable%203.0/Configs/AppDelegate.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "54"
+                  endingLineNumber = "54"
+                  offsetFromSymbolStart = "106">
                </Location>
             </Locations>
          </BreakpointContent>

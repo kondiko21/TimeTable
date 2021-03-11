@@ -21,10 +21,14 @@ final class NotificationManager {
     }()
     var moc : NSManagedObjectContext
     let fetchRequest: NSFetchRequest<Days> = Days.fetchRequest()
-    var days : [Days]
+    var days : [Days] = []
     private init() {
             moc = appDelegate.persistentContainer.viewContext
-            days = try! moc.fetch(fetchRequest)
+        do {
+            days = try moc.fetch(fetchRequest)
+        } catch {
+            print("Error")
+        }
             UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge, .sound]) { granted, error in
                 if granted == true && error == nil {
                     print("Notifications permitted")

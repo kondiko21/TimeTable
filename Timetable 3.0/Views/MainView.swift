@@ -63,10 +63,15 @@ struct MainView: View {
                         .onAppear {
                             let myDate = Date()
                             let currentWeekDay = Calendar.current.component(.weekday, from: myDate)
-                            if (2...6).contains(currentWeekDay) {
-                                value.scrollTo(currentWeekDay, anchor: .top)
-                            } else {
-                                value.scrollTo(2)
+                            let wasInactive = UserDefaults.standard.bool(forKey: "appBecameInactive")
+                            print(wasInactive)
+                            if wasInactive {
+                                UserDefaults.standard.set(false, forKey: "appBecameInactive")
+                                if (2...6).contains(currentWeekDay) {
+                                    value.scrollTo(currentWeekDay, anchor: .top)
+                                } else {
+                                    value.scrollTo(2)
+                                }
                             }
                         }
                         .navigationBarTitle(title, displayMode: .automatic)

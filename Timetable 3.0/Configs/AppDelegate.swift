@@ -32,7 +32,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // If any sessions were discarded while the application was not running, this will be called shortly after application:didFinishLaunchingWithOptions.
         // Use this method to release any resources that were specific to the discarded scenes, as they will not return.
     }
+    func applicationDidEnterBackground(_ application: UIApplication) {
 
+    }
+    
     // MARK: - Core Data stack
 
     lazy var persistentContainer: NSPersistentContainer = {
@@ -42,7 +45,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
          application to it. This property is optional since there are legitimate
          error conditions that could cause the creation of the store to fail.
         */
-        let container = NSPersistentCloudKitContainer(name: "Timetable_3_0")
+        let container = NSPersistentContainer(name: "Timetable_3_0")
+        let storeURL = URL.storeURL(for: "group.com.kondiko.Timetable", databaseName: "timetable")
+        let description = NSPersistentStoreDescription(url: storeURL)
+        container.persistentStoreDescriptions = [description]
+
         container.loadPersistentStores(completionHandler: { (storeDescription, error) in
             if let error = error as NSError? {
                 // Replace this implementation with code to handle the error appropriately.
