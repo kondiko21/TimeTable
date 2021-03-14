@@ -33,9 +33,9 @@
 "in room"  = "w sali";
 "is about to start." = "właśnie się zaczyna.";
 "Next Lesson" = "Kolejna lekcja";
-"Incorrect lesson hours" = "Niepoprawna godzina";
-"There are other lessons in time you selected for this lesson:" = "W wybranych godzinach odbywają się inne zajęcia:";
-"Do you want to change hours of this lesson or remove interrupting lesson?" = "Chcesz zmienić godzinę, czy usunąć kolidujące lekcje?";
+"other_lessons_title" = "Niepoprawna godzina";
+"other_lessons_message" = "W wybranych godzinach odbywają się inne zajęcia:";
+"other_lessons_question" = "Chcesz zmienić godzinę, czy usunąć kolidujące lekcje?";
 "Remove" = "Usuń";
 "Change time" = "Zmień godziny";
 "Missing data" = "Brakujące dane";
@@ -61,4 +61,4 @@
 "You'll get notification when your lesson is about to start or where to go for your next class. You will never miss lesson again. \nHow cool is this!" = "Otrzymasz powiadomienie jaka jest następna lekcja i w jakiej sali oraz, że właśnie się rozpoczyna. Już nigdy nie przegapisz lekcji. \nCzy to nei wspaniałe?";
 "Settings" = "Ustawienia";
 "Go to settings and make the notification the most suitable for you. You can also change the dark mode!" = "Udaj się do ustawień, aby dostosować powiadomienia. Możesz tez włączyć tryb ciemny!";
-
+"No lessons today!" = "Nie masz dzisiaj żadnych lekcji!";

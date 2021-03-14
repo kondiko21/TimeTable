@@ -27,9 +27,9 @@
 "in room"  = "in room";
 "is about to start." = "is about to start.";
 "Next Lesson" = "Next Lesson";
-"Incorrect lesson hours" = "Incorrect lesson hours";
-"There are other lessons in time you selected for this lesson:" = "There are other lessons in time you elected for this lesson:";
-"Do you want to change hours of this lesson or remove interrupting lesson?" = "Do you want to change hours of this lesson or remove interrupting lesson?";
+"other_lessons_title" = "Incorrect lesson hours";
+"other_lessons_message" = "There are other lessons in time you elected for this lesson:";
+"other_lessons_question" = "Do you want to change hours of this lesson or remove interrupting lesson?";
 "Remove" = "Remove";
 "Change time" = "Change time";
 "Missing data" = "Missing data";
@@ -55,3 +55,4 @@
 "You'll get notification when your lesson is about to start or where to go for your next class. You will never miss lesson again. \nHow cool is this!" = "You'll get notification when your lesson is about to start or where to go for your next class. You will never miss lesson again. \nHow cool is this!";
 "Settings" = "Settings";
 "Go to settings and make the notification the most suitable for you. You can also change the dark mode!" = "Go to settings and make the notification the most suitable for you. You can also change the dark mode!";
+"No lessons today!" = "No lessons today!";

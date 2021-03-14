@@ -7,6 +7,7 @@
 //
 
 import SwiftUI
+import WidgetKit
 
 struct EditModeView: View {
     
@@ -73,6 +74,9 @@ struct EditModeView: View {
         do {
             try moc.save()
             print(day.first!.name)
+            if #available(iOS 14.0, *) {
+                WidgetCenter.shared.reloadAllTimelines()
+            }
             notificationManager.updateBeforeLessonNotificationsFor(day: day.first!)
             notificationManager.updateStartLessonNotificationsFor(day: day.first!)
 

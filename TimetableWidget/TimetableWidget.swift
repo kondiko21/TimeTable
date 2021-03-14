@@ -72,7 +72,59 @@ static func storeURL(for appGroup: String, databaseName: String) -> URL {
 
 struct Provider: TimelineProvider {
     
+    let currentWeekDay = Calendar.current.component(.weekday, from: Date())
+    let moc : NSManagedObjectContext
+    var day : [Days] = []
+    init() {
+        moc =  persistentContainer.viewContext
+        let weekday = Calendar.current.component(.weekday, from: Date())
+        let predicate = NSPredicate(format: "name == %@", Calendar.current.getNameOfWeekDayOfNumber(6))
+        let request = NSFetchRequest<Days>(entityName: "Days")
+        request.predicate = predicate
+        do {
+            day = try moc.fetch(request)
+        } catch {
+            print(error)
+        }
+        print("REQUEST \(day)")
+    }
+
+    func placeholder(in context: Context) -> SimpleEntry {
+        let color = UIColor.StringFromUIColor(color: UIColor.systemBlue)
+       
+       let entry = SimpleEntry(date: Date(), endHour: Date(), color: color, name: "placeholder", room: "1")
+       return entry
+    }
     
+    func getSnapshot(in context: Context, completion: @escaping (SimpleEntry) -> ()) {
+        
+         let color = UIColor.StringFromUIColor(color: UIColor.systemBlue)
+        
+        let entry = SimpleEntry(date: Date(), endHour: Date(), color: color, name: "Math", room: "1")
+        
+        completion(entry)
+        }
+
+    public func getTimeline(in context: Context, completion: @escaping (Timeline<Entry>) -> ()) {
+            var entries: [SimpleEntry] = []
+            print( "test \(day)")
+            if (2...6).contains(6) {
+                for lesson in day[0].lessonArray {
+                    let hour =  Calendar.current.component(.hour, from: lesson.startHour)
+                    let minute =  Calendar.current.component(.minute, from: lesson.startHour)
+                    let entryDate = Calendar.current.date(bySettingHour: hour, minute: minute, second: 0, of: Date())!
+                    let entry = SimpleEntry(date: entryDate, endHour: lesson.endHour, color: lesson.lessonModel.color, name: lesson.lessonModel.name, room: lesson.room)
+                        entries.append(entry)
+                }
+            }
+            let startDay = Calendar.current.startOfDay(for: Date())
+            let reloadDay = Calendar.current.date(byAdding: .day, value: 1, to: startDay)!
+            let timeline = Timeline(entries: entries, policy: .after(reloadDay))
+            completion(timeline)
+        }
+}
+
+struct AllLessonsProvider: TimelineProvider {
     
     let currentWeekDay = Calendar.current.component(.weekday, from: Date())
     let moc : NSManagedObjectContext
@@ -80,7 +132,7 @@ struct Provider: TimelineProvider {
     init() {
         moc =  persistentContainer.viewContext
         let weekday = Calendar.current.component(.weekday, from: Date())
-        let predicate = NSPredicate(format: "name == %@", Calendar.current.getNameOfWeekDayOfNumber(weekday))
+        let predicate = NSPredicate(format: "name == %@", Calendar.current.getNameOfWeekDayOfNumber(6))
         let request = NSFetchRequest<Days>(entityName: "Days")
         request.predicate = predicate
         do {
@@ -89,35 +141,31 @@ struct Provider: TimelineProvider {
             print(error)
         }
     }
-    
-   
-    
-    func placeholder(in context: Context) -> SimpleEntry {
-        let placeholder = Lesson()
-        placeholder.lessonModel.name = "Math"
-        return SimpleEntry(date: Date(), lesson: placeholder)
-    }
 
-    func getSnapshot(in context: Context, completion: @escaping (SimpleEntry) -> ()) {
-        let placeholder = Lesson()
-        placeholder.lessonModel.name = "Math"
-    let entry = SimpleEntry(date: Date(), lesson: placeholder)
-            completion(entry)
+    func placeholder(in context: Context) -> LessonsDayEntry {
+       let entry = LessonsDayEntry(date: Date(), lessons: [])
+       return entry
+    }
+    
+    func getSnapshot(in context: Context, completion: @escaping (LessonsDayEntry) -> ()) {
+                
+        let entry = LessonsDayEntry(date: Date(),lessons: day[0].lessonArray)
+        completion(entry)
         }
 
     public func getTimeline(in context: Context, completion: @escaping (Timeline<Entry>) -> ()) {
-            var entries: [SimpleEntry] = []
-
-            for lesson in day[0].lessonArray {
-                let hour =  Calendar.current.component(.hour, from: lesson.endHour)
-                let minute =  Calendar.current.component(.minute, from: lesson.endHour)
-                let entryDate = Calendar.current.date(bySettingHour: hour, minute: minute, second: 0, of: Date())!
-                let entry = SimpleEntry(date: entryDate, lesson: lesson)
-                    entries.append(entry)
-            }
-        
+            var entries: [LessonsDayEntry] = []
+            
             let startDay = Calendar.current.startOfDay(for: Date())
             let reloadDay = Calendar.current.date(byAdding: .day, value: 1, to: startDay)!
+            if (2...6).contains(6) {
+                let entity = LessonsDayEntry(date: Date() ,lessons: day[0].lessonArray)
+                entries.append(entity)
+            } else {
+                print("Zero lessons")
+                let entity = LessonsDayEntry(date: Date() ,lessons: [])
+                entries.append(entity)
+            }
             let timeline = Timeline(entries: entries, policy: .after(reloadDay))
             completion(timeline)
         }
@@ -125,7 +173,15 @@ struct Provider: TimelineProvider {
 
 struct SimpleEntry: TimelineEntry {
     let date: Date
-    let lesson: Lesson
+    let endHour : Date
+    let color : String
+    let name : String
+    let room : String
+}
+
+struct LessonsDayEntry: TimelineEntry {
+    let date: Date
+    let lessons : [Lesson]
 }
 
 struct TimetableWidgetEntryView : View {
@@ -137,39 +193,97 @@ struct TimetableWidgetEntryView : View {
         
         let formatter = DateFormatter()
         formatter.dateFormat = "HH:mm"
-        hour = formatter.string(from: entry.lesson.endHour)
-        print(entry.lesson.lessonModel.color)
+        hour = formatter.string(from: entry.endHour)
         
         self.entry = entry
     }
     var body: some View {
-        ZStack {
-            Color(UIColor.UIColorFromString(string: entry.lesson.lessonModel.color))
-            VStack(alignment: .leading){
-                Text("Current lesson:")
-                Text(entry.lesson.lessonModel.name).font(.title).bold()
-                Spacer()
-                Text("In room \(entry.lesson.room)")
-                Text("Ends: \(hour)").font(.title)
-            }
-            .padding(.top, 10)
-            .padding(.bottom, 10)
-            .padding(.leading, 0)
+        SingleLessonView(color: entry.color, name: entry.name, hour: hour, room: entry.room)
+    }
+}
+
+struct TimetableAllLessonsView : View {
+    var entry: AllLessonsProvider.Entry
+    
+    var hour : String = ""
+    var lessonHours : [UUID : String] = [:]
+    init(entry : AllLessonsProvider.Entry) {
+        
+        let formatter = DateFormatter()
+        formatter.dateFormat = "HH:mm"
+        for lesson in entry.lessons {
+            hour += formatter.string(from: lesson.startHour)
+            hour += " - "
+            hour += formatter.string(from: lesson.endHour)
+            lessonHours[lesson.id] = hour
+            hour = ""
         }
+        
+        self.entry = entry
+    }
+    
+    var body: some View {
+        GeometryReader { geo in
+            ZStack {
+                Color(.systemBackground)
+                Spacer()
+                if entry.lessons.count != 0 {
+                VStack(alignment: .leading, spacing: 0){
+                    ForEach(entry.lessons, id: \.self) { lesson in
+                        ZStack {
+                            Color(UIColor.UIColorFromString(string:lesson.lessonModel.color))
+                            HStack(alignment: .center) {
+                                Text(lesson.lessonModel.name)
+                                    .font(.system(.body, design: .rounded))
+                                    .bold()
+                                Spacer()
+                                Text(lessonHours[lesson.id]!)
+                            }.padding()
+                        }
+                    }
+                    .frame(height:geo.size.height/8)
+                }
+                .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .topLeading)
+                } else {
+                    Text("No lessons today!")
+                }
+                
+        }
+    }
     }
 }
 
 @main
-struct TimetableWidget: Widget {
+struct MyWidgetBundle: WidgetBundle {
+    @WidgetBundleBuilder
+    var body: some Widget {
+        TimetableCurrentLesson()
+        TimetableNextLessons()
+    }
+}
+
+struct TimetableCurrentLesson: Widget {
     let kind: String = "TimetableWidget"
 
     var body: some WidgetConfiguration {
         StaticConfiguration(kind: kind, provider: Provider()) { entry in
             TimetableWidgetEntryView(entry: entry)
         }
-        .configurationDisplayName("My Widget")
-        .description("This is an example widget.")
+        .configurationDisplayName("Lesson Widget")
+        .description("Current lesson right on your screen.")
         .supportedFamilies([.systemSmall])
+    }
+}
+struct TimetableNextLessons: Widget {
+    let kind: String = "TimetableLessonsWidget"
+
+    var body: some WidgetConfiguration {
+        StaticConfiguration(kind: kind, provider: AllLessonsProvider()) { entry in
+            TimetableAllLessonsView(entry: entry)
+        }
+        .configurationDisplayName("Lessons Widget")
+        .description("All lessons right on your screen.")
+        .supportedFamilies([.systemLarge])
     }
 }
 

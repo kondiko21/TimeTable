@@ -43,9 +43,6 @@ final class NotificationManager {
     func displayNotifications() {
         let center = UNUserNotificationCenter.current()
         center.getPendingNotificationRequests(completionHandler: { requests in
-           // print("BEFORE: \(UserDefaults.standard.object(forKey: "before_lesson_notification") as! Bool)")
-           // print("AFTER: \(UserDefaults.standard.object(forKey: "start_lesson_notification") as! Bool)")
-            print("Interval: \(UserDefaults.standard.object(forKey: "notification_interval_length") as? Int)")
             for request in requests {
                 print("NOTIFICATION: \(request.trigger)")
             }
@@ -82,7 +79,7 @@ final class NotificationManager {
                     let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponent, repeats: true)
                     let request  = UNNotificationRequest(identifier: "\(lessons[i].id.uuidString)B", content: content, trigger: trigger)
                     UNUserNotificationCenter.current().add(request, withCompletionHandler: nil)
-                    print("ACTION: Updating before lesson notification... \(dateComponent)")
+                    //print("ACTION: Updating before lesson notification... \(dateComponent)")
                 }
             }
             
@@ -100,7 +97,7 @@ final class NotificationManager {
             for day in days {
                 updateBeforeLessonNotificationsFor(day: day)
             }
-            print("ACTION: Updating before lesson notification...")
+            //print("ACTION: Updating before lesson notification...")
         }
     }
     
@@ -141,7 +138,7 @@ final class NotificationManager {
                     let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponent, repeats: true)
                     let request  = UNNotificationRequest(identifier: "\(lesson.id.uuidString)S", content: content, trigger: trigger)
                     UNUserNotificationCenter.current().add(request, withCompletionHandler: nil)
-                    print("ACTION: Updating start lesson notification...")
+                   // print("ACTION: Updating start lesson notification...")
 
                     
                 }
@@ -167,7 +164,7 @@ final class NotificationManager {
         var IDs = lessons.map {$0.id.uuidString}
         for i in 0..<IDs.count {
             IDs[i] = IDs[i] + sign
-            print(IDs[i] + sign)
+           // print(IDs[i] + sign)
         }
         UNUserNotificationCenter.current().removePendingNotificationRequests(withIdentifiers: IDs)
     }

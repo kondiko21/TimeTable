@@ -19,6 +19,7 @@ struct AddLessonModalForm: View {
     @State var teacher = ""
     @State var room = ""
     @State var id : UUID = UUID()
+    @Environment(\.managedObjectContext) var moc
     @State var modelLesson: LessonModel = LessonModel()
     @State var createdLesson: Lesson = Lesson()
     @State var startHour: Date = Date()
@@ -27,10 +28,12 @@ struct AddLessonModalForm: View {
     @State var isAlertPresented = false
     @State var isMissingDataAlertPresented = false
     @State private var intersectionLesson: [Lesson] = []
-    @Environment(\.managedObjectContext) var moc
     @FetchRequest(entity: LessonModel.entity(), sortDescriptors: []) var lessons : FetchedResults<LessonModel>
     var lessonTime : Int = (UserDefaults.standard.object(forKey: "lesson_length") as? Int ?? 45) * 60
-
+    let message1 = NSLocalizedString("other_lessons_message", comment: "")
+    let message2 = NSLocalizedString("other_lessons_question", comment: "")
+    let title1 = NSLocalizedString("other_lessons_title", comment: "")
+    
     var notificationManager = NotificationManager.shared
 
     var body: some View {
@@ -79,6 +82,7 @@ struct AddLessonModalForm: View {
                         .onChange(of: endHour) { (newValue) in
                             startHour = endHour.addingTimeInterval(-TimeInterval(lessonTime))
                         }
+                        
                     }
                 }
                 Button(action: {
@@ -120,7 +124,7 @@ struct AddLessonModalForm: View {
                 intersectString += object.lessonModel.name+", "
             }
             intersectString.removeLast(2)
-            return Alert(title: Text("Incorrect lesson hours"), message: Text("There are other lessons in time you selected for this lesson: \(intersectString)\n Do you want to change hours of this lesson or remove interrupting lesson?"), primaryButton: cancelButton, secondaryButton: removeButton)
+            return Alert(title: Text(title1), message: Text("\(message1) \(intersectString)\n \(message2)"), primaryButton: cancelButton, secondaryButton: removeButton)
         })
     }
 }
@@ -145,12 +149,16 @@ struct AddLessonModalForm: View {
     func addLesson() {
         
         var correctData = true;
+        let formatter = DateFormatter()
+        formatter.dateFormat = "HH:mm"
         if self.lessonExist {
-            if room.isEmpty || name.isEmpty || teacher.isEmpty || endHour == startHour  { correctData = false }
+            if room.isEmpty || name.isEmpty || teacher.isEmpty || formatter.string(from: endHour)==formatter.string(from: startHour)  { correctData = false }
             else {
                 let lesson = Lesson(context: self.moc)
-                lesson.endHour = self.endHour
-                lesson.startHour = self.startHour
+                let startHourData = Date().timetableDate(date: startHour)
+                let endHourData = Date().timetableDate(date: endHour)
+                lesson.endHour = endHourData
+                lesson.startHour = startHourData
                 lesson.room = self.room
                 lesson.id = UUID()
                 id = lesson.id
@@ -164,15 +172,17 @@ struct AddLessonModalForm: View {
             }
             
         } else {
-            if room.isEmpty || isPickerChanged == false || endHour == startHour {
+            if room.isEmpty || isPickerChanged == false || formatter.string(from: endHour)==formatter.string(from: startHour) {
                 correctData = false
             }
             else {
                 let lesson = Lesson(context: self.moc)
-                lesson.endHour = self.endHour
+                let startHourData = Date().timetableDate(date: startHour)
+                let endHourData = Date().timetableDate(date: endHour)
+                lesson.endHour = endHourData
                 lesson.id = UUID()
                 self.id = lesson.id
-                lesson.startHour = self.startHour
+                lesson.startHour = startHourData
                 lesson.room = self.room
                 lesson.lessonModel = self.modelLesson
                 lesson.day = self.selectedDay
@@ -187,7 +197,7 @@ struct AddLessonModalForm: View {
             moc.refreshAllObjects()
             notificationManager.updateBeforeLessonNotificationsFor(day: selectedDay)
             notificationManager.updateStartLessonNotificationsFor(day: selectedDay)
-            notificationManager.displayNotifications()
+            //notificationManager.displayNotifications()
             if #available(iOS 14.0, *) {
                 WidgetCenter.shared.reloadAllTimelines()
             }
@@ -203,10 +213,15 @@ struct AddLessonModalForm: View {
 func checkTimeAvailability(_ start : Date, _ end : Date, _ day : Days, _ editedLesson : Lesson?) -> [Lesson] {
     let primaryInterval = DateInterval(start: start, end: end)
     var intersectingLesson : [Lesson] = []
+    print(start)
+    print(end)
+    print(primaryInterval)
     for lesson in day.lessonArray {
         if editedLesson != lesson || editedLesson == nil {
             let checkInterval = DateInterval(start: lesson.startHour, end: lesson.endHour)
-            if primaryInterval.intersects(checkInterval) {
+            print(checkInterval)
+            if primaryInterval.intersects(checkInterval)  {
+                print("INTERSECTION")
                 intersectingLesson.append(lesson)
             }
         }

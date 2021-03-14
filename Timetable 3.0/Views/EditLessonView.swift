@@ -135,7 +135,6 @@ struct EditLessonView: View {
             moc.refreshAllObjects()
             notificationManager.updateBeforeLessonNotificationsFor(day: selectedDay)
             notificationManager.updateStartLessonNotificationsFor(day: selectedDay)
-            notificationManager.displayNotifications()
             if #available(iOS 14.0, *) {
                 WidgetCenter.shared.reloadAllTimelines()
             }

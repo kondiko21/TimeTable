@@ -25,7 +25,7 @@ extension Days : Identifiable {
     public var lessonArray: [Lesson] {
            let set = lessons as? Set<Lesson> ?? []
            return set.sorted {
-               $0.startHour < $1.startHour
+            $0.startHour < $1.startHour
            }
        }
 }
