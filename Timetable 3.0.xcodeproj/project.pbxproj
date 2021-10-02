@@ -31,6 +31,7 @@
 		71733ACB25FA07D900207B5E /* Lesson+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71733AC025FA078500207B5E /* Lesson+CoreDataClass.swift */; };
 		71733AD025FA0CD600207B5E /* Calendar_extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71733ACF25FA0CD600207B5E /* Calendar_extension.swift */; };
 		71733AD325FA0D1C00207B5E /* Calendar_extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71733ACF25FA0CD600207B5E /* Calendar_extension.swift */; };
+		71B31B6927076D40004B20D1 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 71C2CAAC2563EFAD003D6278 /* Localizable.strings */; };
 		71C2CA9E25618BF5003D6278 /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71C2CA9D25618BF5003D6278 /* NotificationManager.swift */; };
 		71C2CAAA2563EFAD003D6278 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 71C2CAAC2563EFAD003D6278 /* Localizable.strings */; };
 		71C2CAB1256D2F03003D6278 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71C2CAB0256D2F03003D6278 /* SettingsView.swift */; };
@@ -367,6 +368,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				71F3B3D025F39CEC0063978A /* Assets.xcassets in Resources */,
+				71B31B6927076D40004B20D1 /* Localizable.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -580,6 +582,7 @@
 				DEVELOPMENT_TEAM = G323CMNMM3;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = "Timetable 3.0/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -604,6 +607,7 @@
 				DEVELOPMENT_TEAM = G323CMNMM3;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = "Timetable 3.0/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -637,7 +641,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -663,7 +667,7 @@
 				SKIP_INSTALL = YES;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

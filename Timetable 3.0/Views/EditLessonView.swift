@@ -25,16 +25,20 @@ struct EditLessonView: View {
     @Environment(\.managedObjectContext) var moc
     @FetchRequest(entity: LessonModel.entity(), sortDescriptors: []) var lessons : FetchedResults<LessonModel>
     
+    let formatter : DateFormatter
+    
     init(selectedLesson: Lesson, selectedDay: Days) {
         self._selectedDay = State(initialValue: selectedDay)
         self._selectedLesson = State(initialValue: selectedLesson)
         _selectedColor = State(initialValue: Color(UIColor.UIColorFromString(string: selectedLesson.lessonModel.color)))
         _startHour =  State(initialValue: selectedLesson.startHour)
         _endHour =  State(initialValue: selectedLesson.endHour)
+        formatter = DateFormatter()
+        formatter.dateFormat = "HH:mm"
     }
     
     
-    var lessonTime: Int = 45
+    var lessonTime : Int = (UserDefaults.standard.object(forKey: "lesson_length") as? Int ?? 45) * 60
     var body: some View {
         if #available(iOS 14.0, *) {
             Form {
@@ -43,24 +47,37 @@ struct EditLessonView: View {
                     TextField("Teacher", text: $selectedLesson.lessonModel.teacher)
                 }
                 Section(header: Text("Pick color").font(Font.headline)) {
-                        ColorPicker("Set the background color", selection: $selectedColor)
+                    ColorPicker("Set the background color", selection: $selectedColor)
                 }
                 Section(header: Text("Informations").font(Font.headline)) {
                     TextField("Room", text: $selectedLesson.room)
-                    DatePicker("Start lesson", selection: $startHour, displayedComponents: .hourAndMinute)
+                    HStack {
+                        Text("Start lesson")
+                        DatePicker("Start lesson", selection: $startHour, displayedComponents: .hourAndMinute)
                             .onChange(of: startHour) { (newValue) in
-                                endHour = startHour.addingTimeInterval(TimeInterval(lessonTime*60))
+                                endHour = startHour.addingTimeInterval(TimeInterval(lessonTime))
                             }
-                    DatePicker("End lesson", selection: $endHour, displayedComponents: .hourAndMinute)
+                            .datePickerStyle(GraphicalDatePickerStyle())
+                            .labelsHidden()
+                    }
+                    
+                    HStack {
+                        Text("End lesson")
+                        DatePicker("End lesson", selection: $endHour, displayedComponents: .hourAndMinute)
+                            .datePickerStyle(GraphicalDatePickerStyle())
+                            .labelsHidden()
+                    }
+                    
                 }
                 Button(action: {
-                    if selectedLesson.startHour != startHour || selectedLesson.endHour != endHour {
+                    if  (formatter.string(from: selectedLesson.startHour) !=  formatter.string(from: startHour) ||  formatter.string(from: selectedLesson.endHour) !=  formatter.string(from: endHour)) && formatter.string(from: endHour) > formatter.string(from: startHour) {
+                        print(formatter.string(from: endHour) + " " + formatter.string(from: startHour))
                         intersectionLesson = checkTimeAvailability(startHour, endHour, selectedDay, selectedLesson)
                     }
                     selectedLesson.startHour = startHour
                     selectedLesson.endHour = endHour
                     selectedLesson.lessonModel.color = UIColor.StringFromUIColor(color: UIColor(selectedColor))
-                    if(intersectionLesson.isEmpty) {
+                    if intersectionLesson.isEmpty && formatter.string(from: selectedLesson.endHour) > formatter.string(from: selectedLesson.startHour)  {
                         updateContext()
                     } else {
                         isAlertPresented.toggle()
@@ -82,16 +99,20 @@ struct EditLessonView: View {
                     intersectionLesson = []
                     isAlertPresented = false
                 }
+                
                 let removeButton = Alert.Button.default(Text("Remove")) {
                     removeInterruptingLessons(lessons: intersectionLesson)
                     updateContext()
                     isAlertPresented.toggle()
                 }
                 var intersectString : String = ""
-                for object in intersectionLesson {
-                    intersectString += object.lessonModel.name+", "
+                
+                if formatter.string(from: endHour) > formatter.string(from: startHour) {
+                    for object in intersectionLesson {
+                        intersectString += object.lessonModel.name+", "
+                    }
+                    intersectString.removeLast(2)
                 }
-                intersectString.removeLast(2 )
                 return Alert(title: Text("Incorrect lesson hours"), message: Text("There are other lessons int time you elected for this lesson: \(intersectString)\n Do you want to change hours of this lesson or remove interrupting lesson?"), primaryButton: cancelButton, secondaryButton: removeButton)
             })
         }
@@ -108,7 +129,7 @@ struct EditLessonView: View {
         }
         do {
             try moc.save()
-
+            
         }
         catch {
             print(error)
@@ -122,7 +143,7 @@ struct EditLessonView: View {
         }
         var correctData: Bool = true
         
-        if selectedLesson.lessonModel.name.isEmpty || selectedLesson.lessonModel.teacher.isEmpty || selectedLesson.room.isEmpty {
+        if selectedLesson.lessonModel.name.isEmpty || selectedLesson.lessonModel.teacher.isEmpty {
             correctData = false
         }
         

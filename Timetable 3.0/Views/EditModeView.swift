@@ -12,7 +12,7 @@ import WidgetKit
 struct EditModeView: View {
     
     var notificationManager = NotificationManager.shared
-
+    
     @State var isFormSheetPresented = false
     @Environment(\.managedObjectContext) var moc
     @FetchRequest var day: FetchedResults<Days>
@@ -21,15 +21,15 @@ struct EditModeView: View {
     var dateFormatter = DateFormatter()
     var title = NSLocalizedString("Edit plan:", comment: "View Title")
     var dayNameLanguage : String
-
-     
+    
+    
     init(dayName: String) {
         self.dayName = dayName
         self._day = FetchRequest(entity: Days.entity(), sortDescriptors: [],predicate: NSPredicate(format: "name == %@", dayName))
         dateFormatter.dateFormat = "HH:mm"
         dayNameLanguage = NSLocalizedString(dayName, comment: "")
     }
-        
+    
     
     var body: some View {
         List {
@@ -38,7 +38,7 @@ struct EditModeView: View {
                     Color(UIColor.UIColorFromString(string: dayData.lessonModel.color))
                     HStack {
                         Text(dayData.lessonModel.name).font(Font.headline)
-                        .padding(20)
+                            .padding(20)
                         Text(dateFormatter.string(from: dayData.startHour)).font(Font.headline)
                     }
                     NavigationLink(destination: EditLessonView(selectedLesson: dayData, selectedDay: day.first!)){
@@ -46,15 +46,15 @@ struct EditModeView: View {
                 }
                 .listRowInsets(EdgeInsets())
             }.onDelete(perform: self.delete)
-            }
-            .sheet(isPresented: $isFormSheetPresented) {
+        }
+        .sheet(isPresented: $isFormSheetPresented) {
             AddLessonModalForm(showModal: $isFormSheetPresented, selectedDay: day.first!).environment(\.managedObjectContext, self.moc)
         }
         .listStyle(PlainListStyle())
         .navigationBarTitle("\(title) \(dayNameLanguage)", displayMode: .inline)
         .navigationBarItems(trailing: Button(action: {
             isFormSheetPresented.toggle()
-         
+            
         }, label: {
             Image(systemName: "plus.circle")
         }))
@@ -79,7 +79,7 @@ struct EditModeView: View {
             }
             notificationManager.updateBeforeLessonNotificationsFor(day: day.first!)
             notificationManager.updateStartLessonNotificationsFor(day: day.first!)
-
+            
         } catch {
             print(error)
             

@@ -44,7 +44,7 @@ final class NotificationManager {
         let center = UNUserNotificationCenter.current()
         center.getPendingNotificationRequests(completionHandler: { requests in
             for request in requests {
-                print("NOTIFICATION: \(request.trigger)")
+                print("NOTIFICATION: \(String(describing: request.trigger))")
             }
         })
     }
@@ -74,7 +74,11 @@ final class NotificationManager {
                     let content = UNMutableNotificationContent()
                     content.sound = UNNotificationSound.default
                     content.title = notification4
-                    content.body = "\(notification1) \(lessons[i+1].lessonModel.name) \(notification2) \(dateFormatter.string(from: lessons[i+1].startHour)) \(notification3) \(lessons[i+1].room)."
+                    if lessons[i+1].room != "" {
+                        content.body = "\(notification1) \(lessons[i+1].lessonModel.name) \(notification2) \(dateFormatter.string(from: lessons[i+1].startHour)) \(notification3) \(lessons[i+1].room)."
+                    } else {
+                        content.body = "\(notification1) \(lessons[i+1].lessonModel.name) \(notification2) \(dateFormatter.string(from: lessons[i+1].startHour))"
+                    }
                     
                     let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponent, repeats: true)
                     let request  = UNNotificationRequest(identifier: "\(lessons[i].id.uuidString)B", content: content, trigger: trigger)
@@ -128,7 +132,7 @@ final class NotificationManager {
                     dateComponent.minute = calendar.component(.minute, from: lesson.startHour )
                     
                     let notification2 = NSLocalizedString("is about to start.", comment: "")
-                    let notification1 = NSLocalizedString("Next lesson", comment: "")
+                    let notification1 = NSLocalizedString("Lesson start", comment: "")
                     
                     let content = UNMutableNotificationContent()
                     content.sound = UNNotificationSound.default
@@ -143,13 +147,6 @@ final class NotificationManager {
                     
                 }
             }
-            
-//            let center = UNUserNotificationCenter.current()
-//            center.getPendingNotificationRequests(completionHandler: { requests in
-//                for request in requests {
-//                    print("NUMBERX \(request.trigger)")
-//                }
-//            })
         }
     }
     

@@ -10,6 +10,7 @@ import UIKit
 import SwiftUI
 import CoreData
 
+@available(iOS 14.0, *)
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?

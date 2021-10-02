@@ -10,10 +10,17 @@ import SwiftUI
 
 struct SettingsView: View {
     
-    private var states = ["Dark", "Light", "Automatically"]
+    let appVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String
+    let appBuildVersion = Bundle.main.infoDictionary?["CFBundleVersion"] as? String
+    
+    private var states = [
+        NSLocalizedString("Dark", comment: ""),
+        NSLocalizedString("Light", comment: ""),
+        NSLocalizedString("Automatically", comment: "")
+    ]
     @State private var colorSchemeSelected = 0
     @ObservedObject var userSettings = Settings()
-
+    
     var body: some View {
         Form {
             Section(footer: Text("You need to restart your app to see changes.")) {
@@ -43,7 +50,7 @@ struct SettingsView: View {
                         .frame(width: 40, height: 34)
                         .clipped()
                     Text(" minutes")
-
+                    
                 }
             }
             Section(footer: Text("Set the interval for the amount of minutes before the end of the lesson.")) {
@@ -55,7 +62,7 @@ struct SettingsView: View {
                         .frame(width: 40, height: 34)
                         .clipped()
                     Text(" minutes")
-
+                    
                 }
             }
             Section {
@@ -70,7 +77,7 @@ struct SettingsView: View {
                 HStack {
                     Text("Version")
                     Spacer()
-                    Text("1.0.0")
+                    Text("\(appVersion!)  |  build \(appBuildVersion!)")
                 }
             }
             .navigationBarTitle("Settings", displayMode: .automatic)

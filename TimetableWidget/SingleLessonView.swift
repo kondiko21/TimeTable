@@ -14,12 +14,20 @@ struct SingleLessonView: View {
     var name : String
     var hour : String
     var room : String
-    
+    let currentWidgetText = NSLocalizedString("current_lesson_widget", comment: "")
+    let endWidgetText = NSLocalizedString("lesson_end_widget", comment: "")
+    let roomWidgetText = NSLocalizedString("lesson_room_widget", comment: "")
+    let noLessonWidgetText = NSLocalizedString("no_lessons_widget", comment: "")
+    let noLessonYetWidgetText = NSLocalizedString("no_lessons_yet_widget", comment: "")
+
+
     var body: some View {
+        if name != "placeholder" {
         ZStack {
             Color(UIColor.UIColorFromString(string: color))
             VStack(alignment: .leading){
-                Text("Current lesson:")
+                
+                Text("\(currentWidgetText):")
                 if #available(iOS 14.0, *) {
                     Text(name)
                         .font(.system(.title2, design: .rounded))
@@ -27,15 +35,42 @@ struct SingleLessonView: View {
                         .fixedSize(horizontal: false, vertical: true)
                 }
                 Spacer()
-                Text("In room \(room)")
-                Text("Ends: \(hour)").font(.title)
+                if room != "" {
+                    Text("\(roomWidgetText) \(room)")
+                }
+                if #available(iOS 14.0, *) {
+                    Text("\(endWidgetText) \(hour)")
+                        .font(.system(.title2, design: .rounded))
+                        .bold()
+                }
             }
-            .padding(.top, 10)
-            .padding(.bottom, 10)
-            .padding(.leading, 5)
-            .padding(.trailing, 5)
-        
-    }    }
+            .padding(10)
+            }
+
+        } else if name == "before_placeholder" {
+            ZStack {
+                VStack(alignment: .leading){
+                    ZStack {
+                        Color(.systemBackground)
+                        Text(noLessonYetWidgetText)
+                            .font(Font.system(size: 15, weight: .semibold,  design: .rounded))
+                    }
+                }
+            }
+        } else {
+            ZStack {
+                VStack(alignment: .leading){
+                    ZStack {
+                        Color(.systemBackground)
+                        Text(noLessonWidgetText)
+                            .font(Font.system(size: 15, weight: .semibold,  design: .rounded))
+                    }
+                }
+            }
+
+
+        }
+    }
 }
 
 

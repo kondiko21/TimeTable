@@ -7,10 +7,10 @@
 //
 
 import SwiftUI
-import WidgetKit
+import WatchConnectivity
 
 struct AddLessonModalForm: View {
-     
+    
     @Binding var showModal: Bool
     @State var selectedDay: Days
     @State var isPickerChanged = false
@@ -33,13 +33,17 @@ struct AddLessonModalForm: View {
     let message1 = NSLocalizedString("other_lessons_message", comment: "")
     let message2 = NSLocalizedString("other_lessons_question", comment: "")
     let title1 = NSLocalizedString("other_lessons_title", comment: "")
+    let message3 = NSLocalizedString("missing_data_message", comment: "")
+    let button1 = NSLocalizedString("remove", comment: "")
+    let button2 = NSLocalizedString("change_time", comment: "")
+    let title2 = NSLocalizedString("missing_data_title", comment: "")
     
     var notificationManager = NotificationManager.shared
-
+    
     var body: some View {
-    NavigationView {
-        Form {
-            Toggle(isOn: $lessonExist ) { Text("Never used lesson") }
+        NavigationView {
+            Form {
+                Toggle(isOn: $lessonExist ) { Text("Never used lesson") }
                 if lessonExist {
                     
                     Section(header: Text("Primary informations").font(Font.headline)) {
@@ -73,16 +77,27 @@ struct AddLessonModalForm: View {
                 Section(header: Text("Informations").font(Font.headline)) {
                     TextField("Room", text: $room)
                     if #available(iOS 14.0, *) {
-                    DatePicker("Start lesson", selection: $startHour, displayedComponents: .hourAndMinute)
-                        .onChange(of: startHour) { (newValue) in
-                            endHour = startHour.addingTimeInterval(TimeInterval(lessonTime))
+                        HStack {
+                            Text("Start lesson")
+                            DatePicker("Start lesson",
+                                       selection: $startHour,
+                                       displayedComponents: .hourAndMinute)
+                                .datePickerStyle(GraphicalDatePickerStyle())
+                                .onChange(of: startHour) { (newValue) in
+                                    endHour = startHour.addingTimeInterval(TimeInterval(lessonTime))
+                                }
+                                .labelsHidden()
                         }
-                     
-                     DatePicker("End lesson", selection: $endHour, displayedComponents: .hourAndMinute)
-                        .onChange(of: endHour) { (newValue) in
-                            startHour = endHour.addingTimeInterval(-TimeInterval(lessonTime))
+                        HStack {
+                            Text("End lesson")
+                            DatePicker("End lessonxxxx", selection: $endHour, displayedComponents: .hourAndMinute)
+                                .onChange(of: endHour) { (newValue) in
+                                    startHour = endHour.addingTimeInterval(-TimeInterval(lessonTime))
+                                }
+                                .labelsHidden()
+                                .datePickerStyle(GraphicalDatePickerStyle())
+                            
                         }
-                        
                     }
                 }
                 Button(action: {
@@ -99,35 +114,35 @@ struct AddLessonModalForm: View {
                     let cancelButton = Alert.Button.default(Text("Close")) {
                         isMissingDataAlertPresented.toggle()
                     }
-                    return Alert(title: Text("Missing data"), message: Text("There are missing data in your form or some of them are incorrect. Please fill every field and try again."), dismissButton: cancelButton)
+                    return Alert(title: Text(title2), message: Text(message3), dismissButton: cancelButton)
                 })
-        }
-        .navigationBarTitle("Add lesson", displayMode: .automatic)
-        .navigationBarItems(trailing: Button(action: { showModal.toggle()}
-                                             , label: {
-                                                Text("Close")
-                                             }))
-        
-        .alert(isPresented: $isAlertPresented, content: { () -> Alert in
-            let cancelButton = Alert.Button.default(Text("Change time")) {
-                intersectionLesson = []
-                isAlertPresented = false
             }
+            .navigationBarTitle("Add lesson", displayMode: .automatic)
+            .navigationBarItems(trailing: Button(action: { showModal.toggle()}
+                                                 , label: {
+                                                    Text("Close")
+                                                 }))
             
-            let removeButton = Alert.Button.default(Text("Remove")) {
-                removeInterruptingLessons(lessons: intersectionLesson)
-                addLesson()
-                isAlertPresented.toggle()
-            }
-            var intersectString : String = ""
-            for object in intersectionLesson {
-                intersectString += object.lessonModel.name+", "
-            }
-            intersectString.removeLast(2)
-            return Alert(title: Text(title1), message: Text("\(message1) \(intersectString)\n \(message2)"), primaryButton: cancelButton, secondaryButton: removeButton)
-        })
+            .alert(isPresented: $isAlertPresented, content: { () -> Alert in
+                let cancelButton = Alert.Button.default(Text(button2)) {
+                    intersectionLesson = []
+                    isAlertPresented = false
+                }
+                
+                let removeButton = Alert.Button.default(Text(button1)) {
+                    removeInterruptingLessons(lessons: intersectionLesson)
+                    addLesson()
+                    isAlertPresented.toggle()
+                }
+                var intersectString : String = ""
+                for object in intersectionLesson {
+                    intersectString += object.lessonModel.name+", "
+                }
+                intersectString.removeLast(2)
+                return Alert(title: Text(title1), message: Text("\(message1) \(intersectString)\n \(message2)"), primaryButton: cancelButton, secondaryButton: removeButton)
+            })
+        }
     }
-}
     
     func removeInterruptingLessons(lessons: [Lesson]) {
         for lesson in lessons {
@@ -152,7 +167,7 @@ struct AddLessonModalForm: View {
         let formatter = DateFormatter()
         formatter.dateFormat = "HH:mm"
         if self.lessonExist {
-            if room.isEmpty || name.isEmpty || teacher.isEmpty || formatter.string(from: endHour)==formatter.string(from: startHour)  { correctData = false }
+            if name.isEmpty || teacher.isEmpty || formatter.string(from: endHour)<=formatter.string(from: startHour)  { correctData = false }
             else {
                 let lesson = Lesson(context: self.moc)
                 let startHourData = Date().timetableDate(date: startHour)
@@ -172,7 +187,7 @@ struct AddLessonModalForm: View {
             }
             
         } else {
-            if room.isEmpty || isPickerChanged == false || formatter.string(from: endHour)==formatter.string(from: startHour) {
+            if isPickerChanged == false || formatter.string(from: endHour)<=formatter.string(from: startHour) {
                 correctData = false
             }
             else {
@@ -198,11 +213,8 @@ struct AddLessonModalForm: View {
             notificationManager.updateBeforeLessonNotificationsFor(day: selectedDay)
             notificationManager.updateStartLessonNotificationsFor(day: selectedDay)
             //notificationManager.displayNotifications()
-            if #available(iOS 14.0, *) {
-                WidgetCenter.shared.reloadAllTimelines()
-            }
             showModal.toggle()
-        
+            
         }
         else {
             isMissingDataAlertPresented.toggle()
@@ -211,15 +223,13 @@ struct AddLessonModalForm: View {
 }
 
 func checkTimeAvailability(_ start : Date, _ end : Date, _ day : Days, _ editedLesson : Lesson?) -> [Lesson] {
-    let primaryInterval = DateInterval(start: start, end: end)
     var intersectingLesson : [Lesson] = []
-    print(start)
-    print(end)
-    print(primaryInterval)
+    let startHourData = Date().timetableDate(date: start)
+    let endHourData = Date().timetableDate(date: end)
+    let primaryInterval = DateInterval(start: startHourData, end: endHourData)
     for lesson in day.lessonArray {
         if editedLesson != lesson || editedLesson == nil {
             let checkInterval = DateInterval(start: lesson.startHour, end: lesson.endHour)
-            print(checkInterval)
             if primaryInterval.intersects(checkInterval)  {
                 print("INTERSECTION")
                 intersectingLesson.append(lesson)
@@ -232,7 +242,7 @@ func checkTimeAvailability(_ start : Date, _ end : Date, _ day : Days, _ editedL
 
 
 public extension UIColor {
-
+    
     class func StringFromUIColor(color: UIColor) -> String {
         let components = color.cgColor.components
         return "[\(components![0]), \(components![1]), \(components![2]), \(components![3])]"
@@ -242,9 +252,9 @@ public extension UIColor {
         let componentsString = string.replacingOccurrences(of: "[", with: "").replacingOccurrences(of: "]", with: "")
         let components = componentsString.split(separator: ",")
         return UIColor(red: CGFloat((components[0] as NSString).floatValue),
-                     green: CGFloat((components[1] as NSString).floatValue),
-                      blue: CGFloat((components[2] as NSString).floatValue),
-                     alpha: CGFloat((components[3] as NSString).floatValue))
+                       green: CGFloat((components[1] as NSString).floatValue),
+                       blue: CGFloat((components[2] as NSString).floatValue),
+                       alpha: CGFloat((components[3] as NSString).floatValue))
     }
     
 }
