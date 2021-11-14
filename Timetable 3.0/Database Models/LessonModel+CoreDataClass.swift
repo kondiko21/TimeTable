@@ -2,8 +2,8 @@
 //  LessonModel+CoreDataClass.swift
 //  Timetable 3.0
 //
-//  Created by Konrad on 20/10/2020.
-//  Copyright © 2020 Konrad. All rights reserved.
+//  Created by Konrad on 02/10/2021.
+//  Copyright © 2021 Konrad. All rights reserved.
 //
 //
 
@@ -14,4 +14,3 @@ import CoreData
 public class LessonModel: NSManagedObject {
 
 }
-

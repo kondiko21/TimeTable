@@ -13,7 +13,7 @@ import CoreData
 struct MainView: View {
     
     @Environment (\.colorScheme) var colorScheme:ColorScheme
-    @FetchRequest(entity: Days.entity(), sortDescriptors: [NSSortDescriptor(key: "id", ascending: true)]) var days : FetchedResults<Days>
+    @FetchRequest(entity: Days.entity(), sortDescriptors: [NSSortDescriptor(key: "number", ascending: true)]) var days : FetchedResults<Days>
     let title = NSLocalizedString("Lesson plan", comment: "Title")
     let dateNow = Date().timetableDate(date: Date())
     @State var togglerRefresh = true
@@ -31,6 +31,7 @@ struct MainView: View {
             ScrollView {
                 ScrollViewReader { value in
                     ForEach(days, id:\.self) { day in
+                        if day.isDisplayed {
                         VStack(alignment: .leading,spacing: 0) {
                             ZStack {
                                 HStack(alignment: .center, spacing: 10) {
@@ -59,20 +60,21 @@ struct MainView: View {
                             }
                         }
                         .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0))
-                    }
+                        }
+                    }.id(UUID())
                     .onAppear {
                         let myDate = Date()
                         let currentWeekDay = Calendar.current.component(.weekday, from: myDate)
                         let wasInactive = UserDefaults.standard.bool(forKey: "appBecameInactive")
-                        print(wasInactive)
-                        if wasInactive {
-                            UserDefaults.standard.set(false, forKey: "appBecameInactive")
-                            if (2...6).contains(currentWeekDay) {
-                                value.scrollTo(currentWeekDay, anchor: .top)
-                            } else {
-                                value.scrollTo(2)
-                            }
-                        }
+//                        print(wasInactive)
+//                        if wasInactive {
+//                            UserDefaults.standard.set(false, forKey: "appBecameInactive")
+//                            if (2...6).contains(currentWeekDay) {
+//                                value.scrollTo(currentWeekDay, anchor: .top)
+//                            } else {
+//                                value.scrollTo(2)
+//                            }
+//                        }
                     }
                     .onReceive(NotificationCenter.default.publisher(for: UIApplication.willEnterForegroundNotification)) { _ in
                         togglerRefresh.toggle()
@@ -176,9 +178,6 @@ struct LessonPlanElement: View {
         self.lesson = lesson
         self.hourNow = current
         dateFormatter.dateFormat = "HH:mm"
-        print(lesson.lessonModel.name)
-        print(lesson.startHour)
-        print(lesson.endHour)
         let lessonTime = DateInterval(start: lesson.startHour, end: lesson.endHour)
         let currentWeekDay = Calendar.current.getNameOfWeekDayOfNumber(Calendar.current.component(.weekday, from: Date()))
         if lessonTime.contains(hourNow) && lesson.day.name == currentWeekDay {

@@ -20,6 +20,7 @@ struct SettingsView: View {
     ]
     @State private var colorSchemeSelected = 0
     @ObservedObject var userSettings = Settings()
+    @State var orderScreenActive  = false
     
     var body: some View {
         Form {
@@ -73,6 +74,17 @@ struct SettingsView: View {
                     Text("Enable lesson beggining notification")
                 }
             }
+            
+            Section {
+                Button {
+                    orderScreenActive = true
+                } label: {
+                    Text("Days order")
+                }
+
+
+            }
+            
             Section {
                 HStack {
                     Text("Version")
@@ -81,6 +93,9 @@ struct SettingsView: View {
                 }
             }
             .navigationBarTitle("Settings", displayMode: .automatic)
+            .sheet(isPresented: $orderScreenActive) {
+                DaysOrderView(orderScreenActive: $orderScreenActive)
+            }
         }
     }
 }

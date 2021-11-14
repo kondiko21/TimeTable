@@ -11,6 +11,8 @@
 "Wednesday" = "Środa";
 "Thursday" = "Czwartek";
 "Friday" = "Piątek";
+"Saturday" = "Sobota";
+"Sunday" = "Niedziela";
 "Lesson plan" = "Plan lekcji";
 "Edit plan:" = "Edycja planu:";
 "Close" = "Zamknij";
@@ -69,3 +71,4 @@
 "lesson_next_widget" = "Kolejne lekcje:";
 "no_lessons_widget" = "Brak lekcji na dziś!";
 "no_lessons_yet_widget" = "Dzisiejsze lekcje jeszcze się nie rozpoczęły!";
+"Settings" = "Ustawienia";

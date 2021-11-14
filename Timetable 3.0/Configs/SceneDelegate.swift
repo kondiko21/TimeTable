@@ -9,11 +9,16 @@
 import UIKit
 import SwiftUI
 import CoreData
+import WidgetKit
+import ClockKit
 
 @available(iOS 14.0, *)
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
+    var wasMigrated : Bool = false
+    var addedWeekend : Bool = false
+    let keyValStore = NSUbiquitousKeyValueStore()
     @ObservedObject var settings = Settings()
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         UserDefaults.standard.set(false, forKey: "_UIConstraintBasedLayoutLogUnsatisfiable")
@@ -40,39 +45,132 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             
             //Define if display onboarding view
             if !hasLaunchedBefore{
+                UserDefaults.standard.set(true, forKey: "hasLaunchedBefore")
                 window.rootViewController = UIHostingController(rootView: onboardView)
             } else {
                 window.rootViewController = UIHostingController(rootView: contentView)
             }
+            
+            wasMigrated = keyValStore.bool(forKey: "wasMigratedToCloud")
+            addedWeekend = keyValStore.bool(forKey: "addedWeekend")
+
+//            checkAppUpgrade()
+            addWeekends()
 
             self.window = window
-            if !hasLaunchedBefore{
+            if !hasLaunchedBefore && !wasMigrated {
 
                 let monday = Days(context: context)
                 monday.name = "Monday"
-                monday.id = 0
+                monday.id = UUID()
+                monday.number = 0
                 let tuesday = Days(context: context)
                 tuesday.name = "Tuesday"
-                tuesday.id = 1
+                tuesday.id = UUID()
+                tuesday.number = 1
                 let wednesday = Days(context: context)
                 wednesday.name = "Wednesday"
-                wednesday.id = 2
+                wednesday.id = UUID()
+                wednesday.number = 2
                 let thursday = Days(context: context)
                 thursday.name = "Thursday"
-                thursday.id = 3
+                thursday.id = UUID()
+                thursday.number = 3
                 let friday = Days(context: context)
                 friday.name = "Friday"
-                friday.id = 4
+                friday.id = UUID()
+                friday.number = 4
+                let saturday = Days(context: context)
+                saturday.name = "Saturday"
+                saturday.id = UUID()
+                saturday.number = 5
+                saturday.isDisplayed = false
+                let sunday = Days(context: context)
+                sunday.name = "Sunday"
+                sunday.id = UUID()
+                sunday.number = 6
+                sunday.isDisplayed = false
 
                 do {
                     try context.save()
                 } catch {
                     print(error)
             }
-                UserDefaults.standard.set(true, forKey: "hasLaunchedBefore")
+                keyValStore.set(true, forKey: "wasMigratedToCloud")
+                keyValStore.synchronize()
            }
 
             window.makeKeyAndVisible()
+        }
+        
+//        func checkAppUpgrade() {
+//            let currentVersion = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String
+//            let versionOfLastRun = UserDefaults.standard.object(forKey: "VersionOfLastRun") as? String
+//
+//
+//            if versionOfLastRun == nil {
+//
+//                let saturday = Days(context: context)
+//                saturday.name = "Saturday"
+//                saturday.id = UUID()
+//                saturday.number = 5
+//                saturday.isDisplayed = false
+//                let sunday = Days(context: context)
+//                sunday.name = "Sunday"
+//                sunday.id = UUID()
+//                sunday.number = 6
+//                sunday.isDisplayed = false
+//
+//                UserDefaults.standard.set(true, forKey: "AddedWeekends")
+//
+//                do {
+//                    try context.save()
+//                } catch {
+//                    print(error)
+//                }
+//                wasMigrated = true
+//
+//                keyValStore.set(true, forKey: "wasMigratedToCloud")
+//                keyValStore.synchronize()
+//
+//            } else if versionOfLastRun != currentVersion {
+//                // App was updated since last run
+//
+//            } else {
+//                // nothing changed
+//
+//            }
+//
+//            UserDefaults.standard.set(currentVersion, forKey: "VersionOfLastRun")
+//            UserDefaults.standard.synchronize()
+//        }
+        
+        func addWeekends() {
+            if !addedWeekend {
+                let saturday = Days(context: context)
+                saturday.name = "Saturday"
+                saturday.id = UUID()
+                saturday.number = 5
+                saturday.isDisplayed = false
+                let sunday = Days(context: context)
+                sunday.name = "Sunday"
+                sunday.id = UUID()
+                sunday.number = 6
+                sunday.isDisplayed = false
+
+                do {
+                    try context.save()
+                } catch {
+                    print(error)
+                }
+                
+                keyValStore.set(true, forKey: "addedWeekend")
+                keyValStore.synchronize()
+            }
+        }
+        
+        func updateDays() {
+                
         }
     }
 
@@ -93,6 +191,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // Called when the scene will move from an active state to an inactive state.
         // This may occur due to temporary interruptions (ex. an incoming phone call).
         UserDefaults.standard.set(true, forKey: "appBecameInactive")
+        WidgetCenter.shared.reloadAllTimelines()
 
     }
 
@@ -112,7 +211,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         (UIApplication.shared.delegate as? AppDelegate)?.saveContext()
         
     }
-
+    
 
 }
 

@@ -7,7 +7,7 @@
 //
 
 import SwiftUI
-import WatchConnectivity
+import WidgetKit
 
 struct AddLessonModalForm: View {
     
@@ -212,6 +212,7 @@ struct AddLessonModalForm: View {
             moc.refreshAllObjects()
             notificationManager.updateBeforeLessonNotificationsFor(day: selectedDay)
             notificationManager.updateStartLessonNotificationsFor(day: selectedDay)
+//            WidgetCenter.shared.reloadAllTimelines()
             //notificationManager.displayNotifications()
             showModal.toggle()
             

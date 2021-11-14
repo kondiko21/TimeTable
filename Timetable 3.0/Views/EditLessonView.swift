@@ -129,7 +129,6 @@ struct EditLessonView: View {
         }
         do {
             try moc.save()
-            
         }
         catch {
             print(error)

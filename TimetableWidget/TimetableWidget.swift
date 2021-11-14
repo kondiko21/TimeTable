@@ -9,6 +9,7 @@
 import WidgetKit
 import SwiftUI
 import CoreData
+import CloudKit
 
 struct Provider: TimelineProvider {
     
@@ -52,7 +53,7 @@ struct Provider: TimelineProvider {
             let startWidgetTime = Calendar.current.date(bySettingHour: 1, minute: 0, second: 0, of: Date())!
             var entries: [SimpleEntry] = []
         
-            if (2...6).contains(currentWeekDay) {
+        if day[0].isDisplayed {
                 
 //                entries.append(beforeEntry)
                 for lesson in day[0].lessonArray {
@@ -115,11 +116,11 @@ struct AllLessonsProvider: TimelineProvider {
             
             let startDay = Calendar.current.startOfDay(for: Date())
             let reloadDay = Calendar.current.date(byAdding: .day, value: 1, to: startDay)!
-            if (2...6).contains(currentWeekDay) {
+        
+            if day[0].isDisplayed {
                 let entity = LessonsDayEntry(date: Date() ,lessons: day[0].lessonArray)
                 entries.append(entity)
-            } else {
-                print("Zero lessons")
+            } else { 
                 let entity = LessonsDayEntry(date: Date() ,lessons: [])
                 entries.append(entity)
             }
@@ -170,7 +171,7 @@ struct MediumLessonsProvider: TimelineProvider {
             let startWidgetTime = Calendar.current.date(bySettingHour: 1, minute: 0, second: 0, of: Date())!
             let reloadDay = Calendar.current.date(byAdding: .day, value: 1, to: startDay)!
         
-            if (2...6).contains(currentWeekDay) {
+        if day[0].isDisplayed {
                 
                 let lessonsCount = day[0].lessonArray.count
                 
@@ -484,12 +485,15 @@ public extension UIColor {
     
 }
 
-var persistentContainer: NSPersistentContainer = {
+var persistentContainer: NSPersistentCloudKitContainer = {
   
-    let container = NSPersistentContainer(name: "Timetable_3_0")
+    let container = NSPersistentCloudKitContainer(name: "Timetable_3_0 v2")
     let storeURL = URL.storeURL(for: "group.com.kondiko.Timetable", databaseName: "timetable")
     let description = NSPersistentStoreDescription(url: storeURL)
     container.persistentStoreDescriptions = [description]
+    description.setOption(true as NSNumber, forKey: NSPersistentHistoryTrackingKey)
+    description.cloudKitContainerOptions = NSPersistentCloudKitContainerOptions(containerIdentifier: "iCloud.com.kondiko.timetable")
+
 
     container.loadPersistentStores(completionHandler: { (storeDescription, error) in
         if let error = error as NSError? {
@@ -497,6 +501,9 @@ var persistentContainer: NSPersistentContainer = {
             fatalError("Unresolved error \(error), \(error.userInfo)")
         }
     })
+    
+    container.viewContext.automaticallyMergesChangesFromParent = true
+    container.viewContext.mergePolicy = NSMergeByPropertyStoreTrumpMergePolicy
     return container
 }()
 

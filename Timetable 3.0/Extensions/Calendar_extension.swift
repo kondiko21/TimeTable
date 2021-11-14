@@ -12,6 +12,9 @@ extension Calendar {
     
     func getNumberOfWeekDayOfName(_ name : String) -> Int {
         
+        if name == "Sunday" {
+            return 1
+        }
         if name == "Monday" {
             return 2
         }
@@ -27,12 +30,19 @@ extension Calendar {
         if name == "Friday" {
             return 6
         }
+        if name == "Saturday" {
+            return 7
+        }
         return 0
  
     }
     
     func getNameOfWeekDayOfNumber(_ number : Int) -> String {
         
+        
+        if number == 1 {
+            return "Sunday"
+        }
         if number == 2 {
             return "Monday"
         }
@@ -47,6 +57,9 @@ extension Calendar {
         }
         if number == 6 {
             return "Friday"
+        }
+        if number == 7 {
+            return "Saturday"
         }
         return "Wrong data"
  

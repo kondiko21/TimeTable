@@ -5,6 +5,8 @@
 "Wednesday" = "Wednesday";
 "Thursday" = "Thursday";
 "Friday" = "Friday";
+"Saturday" = "Saturday";
+"Sunday" = "Sunday";
 "Lesson plan" = "Timetable";
 "Edit plan:" = "Edit plan:";
 "Close" = "Close";
@@ -63,3 +65,4 @@
 "lesson_next_widget" = "Next lessons:";
 "no_lessons_widget" = "No lessons today!";
 "no_lessons_yet_widget" = "You haven't started lessons yet";
+"Settings" = "Settings";

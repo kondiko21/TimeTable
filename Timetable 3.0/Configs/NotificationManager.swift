@@ -183,6 +183,12 @@ final class NotificationManager {
         if name == "Friday" {
             return 6
         }
+        if name == "Saturday" {
+            return 7
+        }
+        if name == "Sunday" {
+            return 1
+        }
         return 0
         
     }

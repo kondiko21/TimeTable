@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7111512C2731B671002FCEA0 /* v1_to_v3_MappingModel.xcmappingmodel in Sources */ = {isa = PBXBuildFile; fileRef = 7111512B2731B671002FCEA0 /* v1_to_v3_MappingModel.xcmappingmodel */; };
+		71168E57270B5C71008B9CBE /* DaysOrderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71168E56270B5C71008B9CBE /* DaysOrderView.swift */; };
 		711A78D724EE655000A41A48 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 711A78D624EE655000A41A48 /* AppDelegate.swift */; };
 		711A78D924EE655000A41A48 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 711A78D824EE655000A41A48 /* SceneDelegate.swift */; };
 		711A78DE24EE655000A41A48 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 711A78DD24EE655000A41A48 /* MainView.swift */; };
@@ -14,38 +16,48 @@
 		711A78E324EE655100A41A48 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 711A78E224EE655100A41A48 /* Preview Assets.xcassets */; };
 		711A78E624EE655100A41A48 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 711A78E424EE655100A41A48 /* LaunchScreen.storyboard */; };
 		711A78F024F2809100A41A48 /* EditModeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 711A78EF24F2809100A41A48 /* EditModeView.swift */; };
-		713AEF9D2537241A0000AB93 /* Days+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 713AEF9B2537241A0000AB93 /* Days+CoreDataClass.swift */; };
-		713AEF9E2537241A0000AB93 /* Days+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 713AEF9C2537241A0000AB93 /* Days+CoreDataProperties.swift */; };
 		71434D2A25FBAD2D00EDD6B1 /* Date_extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71434D2925FBAD2D00EDD6B1 /* Date_extension.swift */; };
 		71434D3D25FD17D000EDD6B1 /* SingleLessonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71434D3C25FD17D000EDD6B1 /* SingleLessonView.swift */; };
 		71434D4025FD188800EDD6B1 /* SingleLessonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71434D3C25FD17D000EDD6B1 /* SingleLessonView.swift */; };
+		714624EA2708BD4300F341C7 /* LessonModel+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 714624E82708BD4300F341C7 /* LessonModel+CoreDataClass.swift */; };
+		714624EB2708BD4300F341C7 /* LessonModel+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 714624E92708BD4300F341C7 /* LessonModel+CoreDataProperties.swift */; };
+		714624EC2708BD8F00F341C7 /* Timetable_3_0 v2.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 71B31B6A2708BB5D004B20D1 /* Timetable_3_0 v2.xcdatamodeld */; };
+		714624F42708BF5900F341C7 /* Timetable_3_0 v2.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 71B31B6A2708BB5D004B20D1 /* Timetable_3_0 v2.xcdatamodeld */; };
 		71539B802592075300A56508 /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71539B7F2592075300A56508 /* OnboardingView.swift */; };
-		71733AB225F95E5F00207B5E /* Days+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 713AEF9B2537241A0000AB93 /* Days+CoreDataClass.swift */; };
-		71733AB425F95E5F00207B5E /* Days+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 713AEF9C2537241A0000AB93 /* Days+CoreDataProperties.swift */; };
-		71733AB625F95E5F00207B5E /* LessonModel+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71EA51C7253F0A7D00008165 /* LessonModel+CoreDataClass.swift */; };
-		71733AB725F95E5F00207B5E /* LessonModel+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71EA51C8253F0A7D00008165 /* LessonModel+CoreDataProperties.swift */; };
-		71733ABD25F9673200207B5E /* Timetable_3_0.xcdatamodel in Sources */ = {isa = PBXBuildFile; fileRef = 71C4EA7C255C035700277DCC /* Timetable_3_0.xcdatamodel */; };
-		71733AC625FA07D800207B5E /* Lesson+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71733AC125FA078500207B5E /* Lesson+CoreDataProperties.swift */; };
-		71733AC725FA07D800207B5E /* Lesson+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71733AC025FA078500207B5E /* Lesson+CoreDataClass.swift */; };
-		71733ACA25FA07D900207B5E /* Lesson+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71733AC125FA078500207B5E /* Lesson+CoreDataProperties.swift */; };
-		71733ACB25FA07D900207B5E /* Lesson+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71733AC025FA078500207B5E /* Lesson+CoreDataClass.swift */; };
 		71733AD025FA0CD600207B5E /* Calendar_extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71733ACF25FA0CD600207B5E /* Calendar_extension.swift */; };
 		71733AD325FA0D1C00207B5E /* Calendar_extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71733ACF25FA0CD600207B5E /* Calendar_extension.swift */; };
+		719FA7302708C288008CFA05 /* LessonModel+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 714624E82708BD4300F341C7 /* LessonModel+CoreDataClass.swift */; };
+		719FA7312708C28A008CFA05 /* LessonModel+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 714624E92708BD4300F341C7 /* LessonModel+CoreDataProperties.swift */; };
+		719FA7342708C291008CFA05 /* Lesson+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71B31B712708BC64004B20D1 /* Lesson+CoreDataClass.swift */; };
+		719FA7352708C293008CFA05 /* Lesson+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71B31B722708BC64004B20D1 /* Lesson+CoreDataProperties.swift */; };
 		71B31B6927076D40004B20D1 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 71C2CAAC2563EFAD003D6278 /* Localizable.strings */; };
+		71B31B732708BCCE004B20D1 /* Lesson+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71B31B712708BC64004B20D1 /* Lesson+CoreDataClass.swift */; };
+		71B31B752708BCCE004B20D1 /* Lesson+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71B31B722708BC64004B20D1 /* Lesson+CoreDataProperties.swift */; };
 		71C2CA9E25618BF5003D6278 /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71C2CA9D25618BF5003D6278 /* NotificationManager.swift */; };
 		71C2CAAA2563EFAD003D6278 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 71C2CAAC2563EFAD003D6278 /* Localizable.strings */; };
 		71C2CAB1256D2F03003D6278 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71C2CAB0256D2F03003D6278 /* SettingsView.swift */; };
 		71C2CAB42574E123003D6278 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71C2CAB32574E123003D6278 /* Settings.swift */; };
-		71C4EA7D255C035700277DCC /* Timetable_3_0.xcdatamodel in Sources */ = {isa = PBXBuildFile; fileRef = 71C4EA7C255C035700277DCC /* Timetable_3_0.xcdatamodel */; };
+		71CA01A5273AD27D003635E2 /* v1_to_v3_MappingModel.xcmappingmodel in Sources */ = {isa = PBXBuildFile; fileRef = 7111512B2731B671002FCEA0 /* v1_to_v3_MappingModel.xcmappingmodel */; };
+		71CA01A6273AD281003635E2 /* v2_to_v3_mappingModel.xcmappingmodel in Sources */ = {isa = PBXBuildFile; fileRef = 71D320922719E5E6002D1F11 /* v2_to_v3_mappingModel.xcmappingmodel */; };
+		71CA01A7273AD28C003635E2 /* DaysMigrationPolicy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71D320942719E894002D1F11 /* DaysMigrationPolicy.swift */; };
+		71CA01AB273EFB2B003635E2 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 71CA01AA273EFB2B003635E2 /* CloudKit.framework */; };
+		71CA01AE273FEB08003635E2 /* v1_to_v4_MappingModel.xcmappingmodel in Sources */ = {isa = PBXBuildFile; fileRef = 71CA01AD273FEB08003635E2 /* v1_to_v4_MappingModel.xcmappingmodel */; };
+		71CA01AF273FEB08003635E2 /* v1_to_v4_MappingModel.xcmappingmodel in Sources */ = {isa = PBXBuildFile; fileRef = 71CA01AD273FEB08003635E2 /* v1_to_v4_MappingModel.xcmappingmodel */; };
+		71CA01B027404733003635E2 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 71CA01AA273EFB2B003635E2 /* CloudKit.framework */; };
+		71CA01B227404C21003635E2 /* NetworkExtension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 71CA01B127404C21003635E2 /* NetworkExtension.framework */; };
+		71D3208C2719DE19002D1F11 /* Days+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71D3208B2719DDD4002D1F11 /* Days+CoreDataProperties.swift */; };
+		71D3208D2719DE19002D1F11 /* Days+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71D3208B2719DDD4002D1F11 /* Days+CoreDataProperties.swift */; };
+		71D3208E2719DE1B002D1F11 /* Days+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71D3208A2719DDD4002D1F11 /* Days+CoreDataClass.swift */; };
+		71D3208F2719DE1C002D1F11 /* Days+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71D3208A2719DDD4002D1F11 /* Days+CoreDataClass.swift */; };
+		71D320932719E5E6002D1F11 /* v2_to_v3_mappingModel.xcmappingmodel in Sources */ = {isa = PBXBuildFile; fileRef = 71D320922719E5E6002D1F11 /* v2_to_v3_mappingModel.xcmappingmodel */; };
+		71D320952719E894002D1F11 /* DaysMigrationPolicy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71D320942719E894002D1F11 /* DaysMigrationPolicy.swift */; };
 		71DC31AA2559AD7A00B1F52A /* AddLessonModalForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71DC31A92559AD7A00B1F52A /* AddLessonModalForm.swift */; };
 		71DC31AE255AA1C800B1F52A /* EditLessonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71DC31AD255AA1C800B1F52A /* EditLessonView.swift */; };
-		71EA51C9253F0A7D00008165 /* LessonModel+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71EA51C7253F0A7D00008165 /* LessonModel+CoreDataClass.swift */; };
-		71EA51CA253F0A7D00008165 /* LessonModel+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71EA51C8253F0A7D00008165 /* LessonModel+CoreDataProperties.swift */; };
 		71F3B3C925F39CE90063978A /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 71F3B3C825F39CE90063978A /* WidgetKit.framework */; };
 		71F3B3CB25F39CE90063978A /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 71F3B3CA25F39CE90063978A /* SwiftUI.framework */; };
 		71F3B3CE25F39CE90063978A /* TimetableWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71F3B3CD25F39CE90063978A /* TimetableWidget.swift */; };
 		71F3B3D025F39CEC0063978A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 71F3B3CF25F39CEC0063978A /* Assets.xcassets */; };
-		71F3B3D425F39CEC0063978A /* TimetableWidgetExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 71F3B3C625F39CE90063978A /* TimetableWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		71F3B3D425F39CEC0063978A /* Timetable 3.0WidgetExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 71F3B3C625F39CE90063978A /* Timetable 3.0WidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -75,7 +87,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 13;
 			files = (
-				71F3B3D425F39CEC0063978A /* TimetableWidgetExtension.appex in Embed App Extensions */,
+				71F3B3D425F39CEC0063978A /* Timetable 3.0WidgetExtension.appex in Embed App Extensions */,
 			);
 			name = "Embed App Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -83,6 +95,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		7111512B2731B671002FCEA0 /* v1_to_v3_MappingModel.xcmappingmodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcmappingmodel; path = v1_to_v3_MappingModel.xcmappingmodel; sourceTree = "<group>"; };
+		71168E56270B5C71008B9CBE /* DaysOrderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DaysOrderView.swift; sourceTree = "<group>"; };
 		711A78D324EE655000A41A48 /* Timetable 3.0.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Timetable 3.0.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		711A78D624EE655000A41A48 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		711A78D824EE655000A41A48 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -92,16 +106,18 @@
 		711A78E524EE655100A41A48 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		711A78E724EE655100A41A48 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		711A78EF24F2809100A41A48 /* EditModeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditModeView.swift; sourceTree = "<group>"; };
-		713AEF9B2537241A0000AB93 /* Days+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "Days+CoreDataClass.swift"; path = "Timetable 3.0/Database Models/Days+CoreDataClass.swift"; sourceTree = SOURCE_ROOT; };
-		713AEF9C2537241A0000AB93 /* Days+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "Days+CoreDataProperties.swift"; path = "Timetable 3.0/Database Models/Days+CoreDataProperties.swift"; sourceTree = SOURCE_ROOT; };
 		71434D2925FBAD2D00EDD6B1 /* Date_extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Date_extension.swift; sourceTree = "<group>"; };
 		71434D3C25FD17D000EDD6B1 /* SingleLessonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleLessonView.swift; sourceTree = "<group>"; };
+		714624E82708BD4300F341C7 /* LessonModel+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LessonModel+CoreDataClass.swift"; sourceTree = "<group>"; };
+		714624E92708BD4300F341C7 /* LessonModel+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LessonModel+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		71539B7F2592075300A56508 /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
 		71733AAF25F95B1000207B5E /* Timetable 3.0.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Timetable 3.0.entitlements"; sourceTree = "<group>"; };
 		71733ABA25F960F500207B5E /* TimetableWidgetExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = TimetableWidgetExtension.entitlements; sourceTree = "<group>"; };
-		71733AC025FA078500207B5E /* Lesson+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Lesson+CoreDataClass.swift"; sourceTree = "<group>"; };
-		71733AC125FA078500207B5E /* Lesson+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Lesson+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		71733ACF25FA0CD600207B5E /* Calendar_extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Calendar_extension.swift; sourceTree = "<group>"; };
+		71B31B6B2708BB5D004B20D1 /* Timetable_3_0.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Timetable_3_0.xcdatamodel; sourceTree = "<group>"; };
+		71B31B6C2708BB5D004B20D1 /* Timetable_3_0 v 2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Timetable_3_0 v 2.xcdatamodel"; sourceTree = "<group>"; };
+		71B31B712708BC64004B20D1 /* Lesson+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Lesson+CoreDataClass.swift"; sourceTree = "<group>"; };
+		71B31B722708BC64004B20D1 /* Lesson+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Lesson+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		71C2CA9D25618BF5003D6278 /* NotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationManager.swift; sourceTree = "<group>"; };
 		71C2CAA82563EF7F003D6278 /* pl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pl; path = pl.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		71C2CAAB2563EFAD003D6278 /* pl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pl; path = pl.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -111,11 +127,18 @@
 		71C4EA7C255C035700277DCC /* Timetable_3_0.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; name = Timetable_3_0.xcdatamodel; path = "Timetable 3.0/Configs/Timetable_3_0.xcdatamodel"; sourceTree = SOURCE_ROOT; };
 		71C4EA8B255D536B00277DCC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		71C4EA8D255D536B00277DCC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		71CA01AA273EFB2B003635E2 /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
+		71CA01AC273FEA9A003635E2 /* Timetable_3_0 v 4.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Timetable_3_0 v 4.xcdatamodel"; sourceTree = "<group>"; };
+		71CA01AD273FEB08003635E2 /* v1_to_v4_MappingModel.xcmappingmodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcmappingmodel; path = v1_to_v4_MappingModel.xcmappingmodel; sourceTree = "<group>"; };
+		71CA01B127404C21003635E2 /* NetworkExtension.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NetworkExtension.framework; path = System/Library/Frameworks/NetworkExtension.framework; sourceTree = SDKROOT; };
+		71D320892719DD61002D1F11 /* Timetable_3_0 v 3.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Timetable_3_0 v 3.xcdatamodel"; sourceTree = "<group>"; };
+		71D3208A2719DDD4002D1F11 /* Days+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Days+CoreDataClass.swift"; sourceTree = "<group>"; };
+		71D3208B2719DDD4002D1F11 /* Days+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Days+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		71D320922719E5E6002D1F11 /* v2_to_v3_mappingModel.xcmappingmodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcmappingmodel; path = v2_to_v3_mappingModel.xcmappingmodel; sourceTree = "<group>"; };
+		71D320942719E894002D1F11 /* DaysMigrationPolicy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DaysMigrationPolicy.swift; sourceTree = "<group>"; };
 		71DC31A92559AD7A00B1F52A /* AddLessonModalForm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddLessonModalForm.swift; sourceTree = "<group>"; };
 		71DC31AD255AA1C800B1F52A /* EditLessonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditLessonView.swift; sourceTree = "<group>"; };
-		71EA51C7253F0A7D00008165 /* LessonModel+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "LessonModel+CoreDataClass.swift"; path = "Timetable 3.0/Database Models/LessonModel+CoreDataClass.swift"; sourceTree = SOURCE_ROOT; };
-		71EA51C8253F0A7D00008165 /* LessonModel+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "LessonModel+CoreDataProperties.swift"; path = "Timetable 3.0/Database Models/LessonModel+CoreDataProperties.swift"; sourceTree = SOURCE_ROOT; };
-		71F3B3C625F39CE90063978A /* TimetableWidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = TimetableWidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		71F3B3C625F39CE90063978A /* Timetable 3.0WidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Timetable 3.0WidgetExtension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
 		71F3B3C825F39CE90063978A /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
 		71F3B3CA25F39CE90063978A /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
 		71F3B3CD25F39CE90063978A /* TimetableWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimetableWidget.swift; sourceTree = "<group>"; };
@@ -128,6 +151,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				71CA01AB273EFB2B003635E2 /* CloudKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -135,6 +159,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				71CA01B027404733003635E2 /* CloudKit.framework in Frameworks */,
+				71CA01B227404C21003635E2 /* NetworkExtension.framework in Frameworks */,
 				71F3B3CB25F39CE90063978A /* SwiftUI.framework in Frameworks */,
 				71F3B3C925F39CE90063978A /* WidgetKit.framework in Frameworks */,
 			);
@@ -159,7 +185,7 @@
 			isa = PBXGroup;
 			children = (
 				711A78D324EE655000A41A48 /* Timetable 3.0.app */,
-				71F3B3C625F39CE90063978A /* TimetableWidgetExtension.appex */,
+				71F3B3C625F39CE90063978A /* Timetable 3.0WidgetExtension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -216,12 +242,12 @@
 		71EA51CC2556D14C00008165 /* Database Models */ = {
 			isa = PBXGroup;
 			children = (
-				71EA51C7253F0A7D00008165 /* LessonModel+CoreDataClass.swift */,
-				71EA51C8253F0A7D00008165 /* LessonModel+CoreDataProperties.swift */,
-				71733AC025FA078500207B5E /* Lesson+CoreDataClass.swift */,
-				71733AC125FA078500207B5E /* Lesson+CoreDataProperties.swift */,
-				713AEF9B2537241A0000AB93 /* Days+CoreDataClass.swift */,
-				713AEF9C2537241A0000AB93 /* Days+CoreDataProperties.swift */,
+				714624E82708BD4300F341C7 /* LessonModel+CoreDataClass.swift */,
+				714624E92708BD4300F341C7 /* LessonModel+CoreDataProperties.swift */,
+				71D3208A2719DDD4002D1F11 /* Days+CoreDataClass.swift */,
+				71D3208B2719DDD4002D1F11 /* Days+CoreDataProperties.swift */,
+				71B31B712708BC64004B20D1 /* Lesson+CoreDataClass.swift */,
+				71B31B722708BC64004B20D1 /* Lesson+CoreDataProperties.swift */,
 				71C2CAB32574E123003D6278 /* Settings.swift */,
 			);
 			path = "Database Models";
@@ -236,6 +262,7 @@
 				71DC31A92559AD7A00B1F52A /* AddLessonModalForm.swift */,
 				71DC31AD255AA1C800B1F52A /* EditLessonView.swift */,
 				71C2CAB0256D2F03003D6278 /* SettingsView.swift */,
+				71168E56270B5C71008B9CBE /* DaysOrderView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -245,6 +272,11 @@
 			children = (
 				71C2CA9D25618BF5003D6278 /* NotificationManager.swift */,
 				711A78D624EE655000A41A48 /* AppDelegate.swift */,
+				71B31B6A2708BB5D004B20D1 /* Timetable_3_0 v2.xcdatamodeld */,
+				71CA01AD273FEB08003635E2 /* v1_to_v4_MappingModel.xcmappingmodel */,
+				7111512B2731B671002FCEA0 /* v1_to_v3_MappingModel.xcmappingmodel */,
+				71D320922719E5E6002D1F11 /* v2_to_v3_mappingModel.xcmappingmodel */,
+				71D320942719E894002D1F11 /* DaysMigrationPolicy.swift */,
 				71C4EA7C255C035700277DCC /* Timetable_3_0.xcdatamodel */,
 				711A78D824EE655000A41A48 /* SceneDelegate.swift */,
 				711A78DF24EE655100A41A48 /* Assets.xcassets */,
@@ -256,6 +288,8 @@
 		71F3B3C725F39CE90063978A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				71CA01B127404C21003635E2 /* NetworkExtension.framework */,
+				71CA01AA273EFB2B003635E2 /* CloudKit.framework */,
 				71F3B3C825F39CE90063978A /* WidgetKit.framework */,
 				71F3B3CA25F39CE90063978A /* SwiftUI.framework */,
 			);
@@ -296,9 +330,9 @@
 			productReference = 711A78D324EE655000A41A48 /* Timetable 3.0.app */;
 			productType = "com.apple.product-type.application";
 		};
-		71F3B3C525F39CE90063978A /* TimetableWidgetExtension */ = {
+		71F3B3C525F39CE90063978A /* Timetable 3.0WidgetExtension */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 71F3B3D825F39CEC0063978A /* Build configuration list for PBXNativeTarget "TimetableWidgetExtension" */;
+			buildConfigurationList = 71F3B3D825F39CEC0063978A /* Build configuration list for PBXNativeTarget "Timetable 3.0WidgetExtension" */;
 			buildPhases = (
 				71F3B3C225F39CE90063978A /* Sources */,
 				71F3B3C325F39CE90063978A /* Frameworks */,
@@ -308,9 +342,9 @@
 			);
 			dependencies = (
 			);
-			name = TimetableWidgetExtension;
+			name = "Timetable 3.0WidgetExtension";
 			productName = TimetableWidgetExtension;
-			productReference = 71F3B3C625F39CE90063978A /* TimetableWidgetExtension.appex */;
+			productReference = 71F3B3C625F39CE90063978A /* Timetable 3.0WidgetExtension.appex */;
 			productType = "com.apple.product-type.app-extension";
 		};
 /* End PBXNativeTarget section */
@@ -346,7 +380,7 @@
 			projectRoot = "";
 			targets = (
 				711A78D224EE655000A41A48 /* Timetable 3.0 */,
-				71F3B3C525F39CE90063978A /* TimetableWidgetExtension */,
+				71F3B3C525F39CE90063978A /* Timetable 3.0WidgetExtension */,
 			);
 		};
 /* End PBXProject section */
@@ -379,26 +413,31 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				71733ACB25FA07D900207B5E /* Lesson+CoreDataClass.swift in Sources */,
 				71C2CAB1256D2F03003D6278 /* SettingsView.swift in Sources */,
+				71CA01AE273FEB08003635E2 /* v1_to_v4_MappingModel.xcmappingmodel in Sources */,
 				71434D3D25FD17D000EDD6B1 /* SingleLessonView.swift in Sources */,
 				711A78F024F2809100A41A48 /* EditModeView.swift in Sources */,
+				71B31B752708BCCE004B20D1 /* Lesson+CoreDataProperties.swift in Sources */,
+				714624EA2708BD4300F341C7 /* LessonModel+CoreDataClass.swift in Sources */,
+				714624EC2708BD8F00F341C7 /* Timetable_3_0 v2.xcdatamodeld in Sources */,
 				71DC31AE255AA1C800B1F52A /* EditLessonView.swift in Sources */,
-				71C4EA7D255C035700277DCC /* Timetable_3_0.xcdatamodel in Sources */,
+				71B31B732708BCCE004B20D1 /* Lesson+CoreDataClass.swift in Sources */,
+				71D320932719E5E6002D1F11 /* v2_to_v3_mappingModel.xcmappingmodel in Sources */,
+				71D3208C2719DE19002D1F11 /* Days+CoreDataProperties.swift in Sources */,
 				711A78D724EE655000A41A48 /* AppDelegate.swift in Sources */,
-				71EA51C9253F0A7D00008165 /* LessonModel+CoreDataClass.swift in Sources */,
+				71168E57270B5C71008B9CBE /* DaysOrderView.swift in Sources */,
 				71DC31AA2559AD7A00B1F52A /* AddLessonModalForm.swift in Sources */,
+				714624EB2708BD4300F341C7 /* LessonModel+CoreDataProperties.swift in Sources */,
+				71D320952719E894002D1F11 /* DaysMigrationPolicy.swift in Sources */,
+				7111512C2731B671002FCEA0 /* v1_to_v3_MappingModel.xcmappingmodel in Sources */,
 				71434D2A25FBAD2D00EDD6B1 /* Date_extension.swift in Sources */,
 				711A78D924EE655000A41A48 /* SceneDelegate.swift in Sources */,
 				71C2CAB42574E123003D6278 /* Settings.swift in Sources */,
-				71733ACA25FA07D900207B5E /* Lesson+CoreDataProperties.swift in Sources */,
 				711A78DE24EE655000A41A48 /* MainView.swift in Sources */,
-				713AEF9E2537241A0000AB93 /* Days+CoreDataProperties.swift in Sources */,
+				71D3208E2719DE1B002D1F11 /* Days+CoreDataClass.swift in Sources */,
 				71C2CA9E25618BF5003D6278 /* NotificationManager.swift in Sources */,
-				713AEF9D2537241A0000AB93 /* Days+CoreDataClass.swift in Sources */,
 				71539B802592075300A56508 /* OnboardingView.swift in Sources */,
 				71733AD025FA0CD600207B5E /* Calendar_extension.swift in Sources */,
-				71EA51CA253F0A7D00008165 /* LessonModel+CoreDataProperties.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -406,16 +445,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				71733AB725F95E5F00207B5E /* LessonModel+CoreDataProperties.swift in Sources */,
-				71733AB425F95E5F00207B5E /* Days+CoreDataProperties.swift in Sources */,
+				71CA01A6273AD281003635E2 /* v2_to_v3_mappingModel.xcmappingmodel in Sources */,
 				71434D4025FD188800EDD6B1 /* SingleLessonView.swift in Sources */,
-				71733AC625FA07D800207B5E /* Lesson+CoreDataProperties.swift in Sources */,
-				71733AB225F95E5F00207B5E /* Days+CoreDataClass.swift in Sources */,
-				71733AB625F95E5F00207B5E /* LessonModel+CoreDataClass.swift in Sources */,
-				71733AC725FA07D800207B5E /* Lesson+CoreDataClass.swift in Sources */,
-				71733ABD25F9673200207B5E /* Timetable_3_0.xcdatamodel in Sources */,
 				71733AD325FA0D1C00207B5E /* Calendar_extension.swift in Sources */,
+				714624F42708BF5900F341C7 /* Timetable_3_0 v2.xcdatamodeld in Sources */,
+				71D3208D2719DE19002D1F11 /* Days+CoreDataProperties.swift in Sources */,
+				71CA01A5273AD27D003635E2 /* v1_to_v3_MappingModel.xcmappingmodel in Sources */,
+				719FA7342708C291008CFA05 /* Lesson+CoreDataClass.swift in Sources */,
+				719FA7302708C288008CFA05 /* LessonModel+CoreDataClass.swift in Sources */,
+				71CA01AF273FEB08003635E2 /* v1_to_v4_MappingModel.xcmappingmodel in Sources */,
+				719FA7352708C293008CFA05 /* Lesson+CoreDataProperties.swift in Sources */,
 				71F3B3CE25F39CE90063978A /* TimetableWidget.swift in Sources */,
+				71CA01A7273AD28C003635E2 /* DaysMigrationPolicy.swift in Sources */,
+				71D3208F2719DE1C002D1F11 /* Days+CoreDataClass.swift in Sources */,
+				719FA7312708C28A008CFA05 /* LessonModel+CoreDataProperties.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -424,7 +467,7 @@
 /* Begin PBXTargetDependency section */
 		71F3B3D325F39CEC0063978A /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 71F3B3C525F39CE90063978A /* TimetableWidgetExtension */;
+			target = 71F3B3C525F39CE90063978A /* Timetable 3.0WidgetExtension */;
 			targetProxy = 71F3B3D225F39CEC0063978A /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -692,7 +735,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		71F3B3D825F39CEC0063978A /* Build configuration list for PBXNativeTarget "TimetableWidgetExtension" */ = {
+		71F3B3D825F39CEC0063978A /* Build configuration list for PBXNativeTarget "Timetable 3.0WidgetExtension" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				71F3B3D625F39CEC0063978A /* Debug */,
@@ -702,6 +745,22 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		71B31B6A2708BB5D004B20D1 /* Timetable_3_0 v2.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				71CA01AC273FEA9A003635E2 /* Timetable_3_0 v 4.xcdatamodel */,
+				71D320892719DD61002D1F11 /* Timetable_3_0 v 3.xcdatamodel */,
+				71B31B6B2708BB5D004B20D1 /* Timetable_3_0.xcdatamodel */,
+				71B31B6C2708BB5D004B20D1 /* Timetable_3_0 v 2.xcdatamodel */,
+			);
+			currentVersion = 71CA01AC273FEA9A003635E2 /* Timetable_3_0 v 4.xcdatamodel */;
+			path = "Timetable_3_0 v2.xcdatamodeld";
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 711A78CB24EE655000A41A48 /* Project object */;
 }
