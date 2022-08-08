@@ -17,7 +17,7 @@ extension Days: Identifiable {
         return NSFetchRequest<Days>(entityName: "Days")
     }
 
-    @NSManaged public var id: UUID?
+    @NSManaged public var id: UUID
     @NSManaged public var isDisplayed: Bool
     @NSManaged public var name: String
     @NSManaged public var number: Int16

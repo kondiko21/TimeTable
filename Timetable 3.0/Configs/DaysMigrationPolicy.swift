@@ -15,7 +15,7 @@ class DaysMigrationPolicy : NSEntityMigrationPolicy {
          return UUID()
      }
     
-    @objc func isDisplayed(id:Int16) -> Bool {
+    @objc func isDisplayedWith(id:Int16) -> Bool {
          return true
      }
     

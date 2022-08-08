@@ -66,6 +66,7 @@ struct MainView: View {
                         let myDate = Date()
                         let currentWeekDay = Calendar.current.component(.weekday, from: myDate)
                         let wasInactive = UserDefaults.standard.bool(forKey: "appBecameInactive")
+                        print(days)
 //                        print(wasInactive)
 //                        if wasInactive {
 //                            UserDefaults.standard.set(false, forKey: "appBecameInactive")

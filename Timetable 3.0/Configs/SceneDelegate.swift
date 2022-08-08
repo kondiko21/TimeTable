@@ -51,14 +51,14 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                 window.rootViewController = UIHostingController(rootView: contentView)
             }
             
-            wasMigrated = keyValStore.bool(forKey: "wasMigratedToCloud")
-            addedWeekend = keyValStore.bool(forKey: "addedWeekend")
+//            wasMigrated = keyValStore.bool(forKey: "wasMigratedToCloud")
+//            addedWeekend = keyValStore.bool(forKey: "addedWeekend")
 
 //            checkAppUpgrade()
-            addWeekends()
+//            addWeekends()
 
             self.window = window
-            if !hasLaunchedBefore && !wasMigrated {
+            if !hasLaunchedBefore {
 
                 let monday = Days(context: context)
                 monday.name = "Monday"
