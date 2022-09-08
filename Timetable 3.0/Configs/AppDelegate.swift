@@ -39,20 +39,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     // MARK: - Core Data stack
 
-    lazy var persistentContainer: NSPersistentContainer = {
+    lazy var persistentContainer: NSPersistentCloudKitContainer = {
         /*
          The persistent container for the application. This implementation
          creates and returns a container, having loaded the store for the
          application to it. This property is optional since there are legitimate
          error conditions that could cause the creation of the store to fail.
         */
-        let container = NSPersistentContainer(name: "Timetable_3_0 v2")
+        let container = NSPersistentCloudKitContainer(name: "Timetable_3_0 v2")
         let storeURL = URL.storeURL(for: "group.com.kondiko.Timetable", databaseName: "timetable")
         let description = NSPersistentStoreDescription(url: storeURL)
         container.viewContext.automaticallyMergesChangesFromParent = true
         description.shouldMigrateStoreAutomatically = true
-        description.shouldInferMappingModelAutomatically = true
+        description.shouldInferMappingModelAutomatically = false
         container.persistentStoreDescriptions = [description]
+        description.cloudKitContainerOptions = nil
+
         
         //FUNCTION($entityPolicy, "isDisplayedWithId:" , $source.id)
         container.loadPersistentStores(completionHandler: { (storeDescription, error) in

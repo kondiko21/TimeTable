@@ -485,9 +485,9 @@ public extension UIColor {
     
 }
 
-var persistentContainer: NSPersistentContainer = {
+var persistentContainer: NSPersistentCloudKitContainer = {
   
-    let container = NSPersistentContainer(name: "Timetable_3_0 v2")
+    let container = NSPersistentCloudKitContainer(name: "Timetable_3_0 v2")
     let storeURL = URL.storeURL(for: "group.com.kondiko.Timetable", databaseName: "timetable")
     let description = NSPersistentStoreDescription(url: storeURL)
     
@@ -495,7 +495,7 @@ var persistentContainer: NSPersistentContainer = {
     description.shouldInferMappingModelAutomatically = true
     container.persistentStoreDescriptions = [description]
     description.setOption(true as NSNumber, forKey: NSPersistentHistoryTrackingKey)
-//    description.cloudKitContainerOptions = NSPersistentCloudKitContainerOptions(containerIdentifier: "iCloud.com.kondiko.timetable")
+    description.cloudKitContainerOptions = nil
 
 
     container.loadPersistentStores(completionHandler: { (storeDescription, error) in
@@ -505,7 +505,7 @@ var persistentContainer: NSPersistentContainer = {
         }
     })
     
-    container.viewContext.automaticallyMergesChangesFromParent = true
+    container.viewContext.automaticallyMergesChangesFromParent = false
     container.viewContext.mergePolicy = NSMergeByPropertyStoreTrumpMergePolicy
     return container
 }()

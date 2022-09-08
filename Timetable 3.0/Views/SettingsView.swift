@@ -35,8 +35,8 @@ struct SettingsView: View {
                                         .padding()
                                 }
                             })
-                        .pickerStyle(WheelPickerStyle())
-                        .frame(width: 130, height: 30)
+                        .pickerStyle(MenuPickerStyle())
+                        .frame(width: 140, height: 30)
                         .clipped()
                         .labelsHidden()
                 }

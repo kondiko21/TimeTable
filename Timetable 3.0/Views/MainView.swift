@@ -22,7 +22,7 @@ struct MainView: View {
         
         UITableView.appearance().tableFooterView = UIView()
         UITableView.appearance().separatorStyle = .none
-        
+        print(days)
     }
     
     var body: some View {

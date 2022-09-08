@@ -18,7 +18,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     var window: UIWindow?
     var wasMigrated : Bool = false
     var addedWeekend : Bool = false
-    let keyValStore = NSUbiquitousKeyValueStore()
     @ObservedObject var settings = Settings()
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         UserDefaults.standard.set(false, forKey: "_UIConstraintBasedLayoutLogUnsatisfiable")
@@ -51,53 +50,56 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                 window.rootViewController = UIHostingController(rootView: contentView)
             }
             
-//            wasMigrated = keyValStore.bool(forKey: "wasMigratedToCloud")
-//            addedWeekend = keyValStore.bool(forKey: "addedWeekend")
+            let existingVersion = UserDefaults.standard.object(forKey: "CurrentVersionNumber") as? String
+            let appVersionNumber = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as! String
 
-//            checkAppUpgrade()
-//            addWeekends()
+            if existingVersion != appVersionNumber {
+                print("existingVersion = \(String(describing: existingVersion))")
+                UserDefaults.standard.set(appVersionNumber, forKey: "CurrentVersionNumber")
+
+                addWeekends()
+                
+            }
 
             self.window = window
             if !hasLaunchedBefore {
 
                 let monday = Days(context: context)
                 monday.name = "Monday"
-                monday.id = UUID()
+                monday.id = 0
                 monday.number = 0
                 let tuesday = Days(context: context)
                 tuesday.name = "Tuesday"
-                tuesday.id = UUID()
+                tuesday.id = 1
                 tuesday.number = 1
                 let wednesday = Days(context: context)
                 wednesday.name = "Wednesday"
-                wednesday.id = UUID()
+                wednesday.id = 2
                 wednesday.number = 2
                 let thursday = Days(context: context)
                 thursday.name = "Thursday"
-                thursday.id = UUID()
+                thursday.id = 3
                 thursday.number = 3
                 let friday = Days(context: context)
                 friday.name = "Friday"
-                friday.id = UUID()
+                friday.id = 4
                 friday.number = 4
-                let saturday = Days(context: context)
-                saturday.name = "Saturday"
-                saturday.id = UUID()
-                saturday.number = 5
-                saturday.isDisplayed = false
-                let sunday = Days(context: context)
-                sunday.name = "Sunday"
-                sunday.id = UUID()
-                sunday.number = 6
-                sunday.isDisplayed = false
+//                let saturday = Days(context: context)
+//                saturday.name = "Saturday"
+//                saturday.id = 5
+//                saturday.number = 5
+//                saturday.isDisplayed = false
+//                let sunday = Days(context: context)
+//                sunday.name = "Sunday"
+//                sunday.id = 6
+//                sunday.number = 6
+//                sunday.isDisplayed = false
 
                 do {
                     try context.save()
                 } catch {
                     print(error)
             }
-                keyValStore.set(true, forKey: "wasMigratedToCloud")
-                keyValStore.synchronize()
            }
 
             window.makeKeyAndVisible()
@@ -149,12 +151,12 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             if !addedWeekend {
                 let saturday = Days(context: context)
                 saturday.name = "Saturday"
-                saturday.id = UUID()
+                saturday.id = 5
                 saturday.number = 5
                 saturday.isDisplayed = false
                 let sunday = Days(context: context)
                 sunday.name = "Sunday"
-                sunday.id = UUID()
+                sunday.id = 6
                 sunday.number = 6
                 sunday.isDisplayed = false
 
@@ -163,9 +165,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                 } catch {
                     print(error)
                 }
-                
-                keyValStore.set(true, forKey: "addedWeekend")
-                keyValStore.synchronize()
             }
         }
         
