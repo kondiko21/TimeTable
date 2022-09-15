@@ -51,7 +51,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let description = NSPersistentStoreDescription(url: storeURL)
         container.viewContext.automaticallyMergesChangesFromParent = true
         description.shouldMigrateStoreAutomatically = true
-        description.shouldInferMappingModelAutomatically = false
+        description.shouldInferMappingModelAutomatically = true
         container.persistentStoreDescriptions = [description]
         description.cloudKitContainerOptions = nil
 

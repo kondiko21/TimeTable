@@ -16,84 +16,111 @@ struct MainView: View {
     @FetchRequest(entity: Days.entity(), sortDescriptors: [NSSortDescriptor(key: "number", ascending: true)]) var days : FetchedResults<Days>
     let title = NSLocalizedString("Lesson plan", comment: "Title")
     let dateNow = Date().timetableDate(date: Date())
+    @State var usersList = [UserPlan()]
     @State var togglerRefresh = true
+    @State var showNewUserView = false
+    @State var newUserName = ""
     
     init() {
         
         UITableView.appearance().tableFooterView = UIView()
         UITableView.appearance().separatorStyle = .none
-        print(days)
     }
     
     var body: some View {
-        
-        NavigationView {
-            ScrollView {
-                ScrollViewReader { value in
-                    ForEach(days, id:\.self) { day in
-                        if day.isDisplayed {
-                        VStack(alignment: .leading,spacing: 0) {
-                            ZStack {
-                                HStack(alignment: .center, spacing: 10) {
-                                    let dayName = NSLocalizedString(day.name, comment: "")
-                                    Text(dayName)
-                                        .fontWeight(.semibold)
-                                        .font(Font.system(size: 15))
-                                        .padding(.leading, 12)
-                                        .foregroundColor(Color(UIColor.systemGray))
-                                    Spacer()
-                                    NavigationLink(destination: EditModeView(dayName: day.name)) {
-                                        
-                                        Image(systemName: "square.and.pencil").resizable()
-                                            .font(Font.title.weight(.semibold))
-                                            .frame(width: 15, height: 15, alignment: .center)
+        ZStack {
+            NavigationView {
+                ScrollView {
+                    ScrollViewReader { value in
+                        ForEach(days, id:\.self) { day in
+                            if day.isDisplayed {
+                            VStack(alignment: .leading,spacing: 0) {
+                                ZStack {
+                                    HStack(alignment: .center, spacing: 10) {
+                                        let dayName = NSLocalizedString(day.name, comment: "")
+                                        Text(dayName)
+                                            .fontWeight(.semibold)
+                                            .font(Font.system(size: 15))
+                                            .padding(.leading, 12)
                                             .foregroundColor(Color(UIColor.systemGray))
-                                    }.padding(10)
-                                    
+                                        Spacer()
+                                        NavigationLink(destination: EditModeView(dayName: day.name)) {
+                                            
+                                            Image(systemName: "square.and.pencil").resizable()
+                                                .font(Font.title.weight(.semibold))
+                                                .frame(width: 15, height: 15, alignment: .center)
+                                                .foregroundColor(Color(UIColor.systemGray))
+                                        }.padding(10)
+                                        
+                                    }
+                                    .frame(width: UIScreen.main.bounds.width)
+                                    .id(getNumberOfWeekDayOfName(day.name))
                                 }
-                                .frame(width: UIScreen.main.bounds.width)
-                                .id(getNumberOfWeekDayOfName(day.name))
+                                .padding(.top, 10)
+                                ForEach(day.lessonArray, id: \.self) { lesson in
+                                    LessonPlanElement(lesson: lesson, current: dateNow)
+                                }
                             }
-                            .padding(.top, 10)
-                            ForEach(day.lessonArray, id: \.self) { lesson in
-                                LessonPlanElement(lesson: lesson, current: dateNow)
+                            .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0))
                             }
+                        }.id(UUID())
+                        .onReceive(NotificationCenter.default.publisher(for: UIApplication.willEnterForegroundNotification)) { _ in
+                            togglerRefresh.toggle()
                         }
-                        .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0))
-                        }
-                    }.id(UUID())
-                    .onAppear {
-                        let myDate = Date()
-                        let currentWeekDay = Calendar.current.component(.weekday, from: myDate)
-                        let wasInactive = UserDefaults.standard.bool(forKey: "appBecameInactive")
-                        print(days)
-//                        print(wasInactive)
-//                        if wasInactive {
-//                            UserDefaults.standard.set(false, forKey: "appBecameInactive")
-//                            if (2...6).contains(currentWeekDay) {
-//                                value.scrollTo(currentWeekDay, anchor: .top)
-//                            } else {
-//                                value.scrollTo(2)
-//                            }
-//                        }
+                        .toolbar(content: {
+                            ToolbarItem(placement: .navigationBarLeading) {
+                                HStack {
+                                    Text(title).font(.largeTitle).bold()
+                                        .accessibilityAddTraits(.isHeader)
+                                    Menu {
+                                        UsersMenuView(users: $usersList, showNewUserToggle: $showNewUserView)
+
+                                    } label: {
+                                        Image(systemName: "chevron.right")
+                                    }
+                                }
+                            }
+                            ToolbarItem(placement: .navigationBarTrailing) {
+                                NavigationLink(destination: SettingsView()){
+                                    Image(systemName: "gear")
+                                        .resizable()
+                                        .frame(width: 24, height: 24, alignment: .center)
+                                        .foregroundColor(Color.iconColor(for: colorScheme))
+                                }
+                            }
+                        })
                     }
-                    .onReceive(NotificationCenter.default.publisher(for: UIApplication.willEnterForegroundNotification)) { _ in
-                        togglerRefresh.toggle()
-                    }
-                    .navigationBarTitle(title, displayMode: .automatic)
-                    .navigationBarItems(trailing:
-                                            NavigationLink(destination: SettingsView()){
-                                                Image(systemName: "gear")
-                                                    .resizable()
-                                                    .frame(width: 24, height: 24, alignment: .center)
-                                                    .foregroundColor(Color.iconColor(for: colorScheme))
-                                            })
                 }
+                .navigationBarTitleDisplayMode(.inline)
+            }
+            if showNewUserView {
+                TextFieldPopUpView(headerText: "Welcome in new version!", messageText: "Hi! We prepared new version of app that allows you to add multiple timetables. Becouse of that we would like you to ask you to type name of your current plan. ", buttonText: "Name timetable", textFieldValue: .constant("test"), isPresented: .constant(true))
             }
         }
-        .navigationBarHidden(true)
     }
 }
+
+struct UsersMenuView: View {
+    
+    @Binding var users : [UserPlan]
+    @Binding var showNewUserView : Bool
+    
+    init(users: Binding<[UserPlan]>, showNewUserToggle: Binding<Bool>) {
+        self._users = users
+        self._showNewUserView = showNewUserToggle
+    }
+    
+    var body: some View  {
+        Button {
+            showNewUserView = true
+        } label: {
+            Text("Add new plan")
+        }
+
+    }
+    
+}
+
 func getNumberOfWeekDayOfName(_ name : String) -> Int {
     
     if name == "Monday" {
@@ -110,6 +137,12 @@ func getNumberOfWeekDayOfName(_ name : String) -> Int {
     }
     if name == "Friday" {
         return 6
+    }
+    if name == "Saturday" {
+        return 7
+    }
+    if name == "Sunday" {
+        return 8
     }
     return 0
     
@@ -149,7 +182,7 @@ struct RoundedCorners: View {
     }
 }
 
-func currentTime() -> String{
+func currentTime() -> String {
     let time = Date()
     let timeFormatter = DateFormatter()
     timeFormatter.dateFormat = "HH:ss"
