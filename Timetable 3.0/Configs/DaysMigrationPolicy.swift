@@ -11,11 +11,14 @@ import CoreData
 
 class DaysMigrationPolicy : NSEntityMigrationPolicy {
     
-    @objc func identificatorFor(id:Int16) -> UUID {
+    @objc func idNumberWith(Id:Int16) -> UUID {
+        print("GENERATE UUID")
          return UUID()
      }
     
     @objc func isDisplayedWith(id:Int16) -> Bool {
+        
+            print("GENERATE IS DISPLAYEDDDDDDD")
          return true
      }
     

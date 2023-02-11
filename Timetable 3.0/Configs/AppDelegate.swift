@@ -51,9 +51,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let description = NSPersistentStoreDescription(url: storeURL)
         container.viewContext.automaticallyMergesChangesFromParent = true
         description.shouldMigrateStoreAutomatically = true
-        description.shouldInferMappingModelAutomatically = true
-        container.persistentStoreDescriptions = [description]
+        description.shouldInferMappingModelAutomatically = false
         description.cloudKitContainerOptions = nil
+        description.setOption(true as NSNumber, forKey: NSPersistentHistoryTrackingKey)
+        container.persistentStoreDescriptions = [description]
 
         
         //FUNCTION($entityPolicy, "isDisplayedWithId:" , $source.id)

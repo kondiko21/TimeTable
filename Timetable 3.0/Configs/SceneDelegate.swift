@@ -47,7 +47,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                 UserDefaults.standard.set(true, forKey: "hasLaunchedBefore")
                 window.rootViewController = UIHostingController(rootView: onboardView)
             } else {
-                window.rootViewController = UIHostingController(rootView: contentView)
+                window.rootViewController = UIHostingController(rootView: contentView.environmentObject(Settings()))
             }
             
             let existingVersion = UserDefaults.standard.object(forKey: "CurrentVersionNumber") as? String
@@ -105,47 +105,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             window.makeKeyAndVisible()
         }
         
-//        func checkAppUpgrade() {
-//            let currentVersion = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String
-//            let versionOfLastRun = UserDefaults.standard.object(forKey: "VersionOfLastRun") as? String
-//
-//
-//            if versionOfLastRun == nil {
-//
-//                let saturday = Days(context: context)
-//                saturday.name = "Saturday"
-//                saturday.id = UUID()
-//                saturday.number = 5
-//                saturday.isDisplayed = false
-//                let sunday = Days(context: context)
-//                sunday.name = "Sunday"
-//                sunday.id = UUID()
-//                sunday.number = 6
-//                sunday.isDisplayed = false
-//
-//                UserDefaults.standard.set(true, forKey: "AddedWeekends")
-//
-//                do {
-//                    try context.save()
-//                } catch {
-//                    print(error)
-//                }
-//                wasMigrated = true
-//
-//                keyValStore.set(true, forKey: "wasMigratedToCloud")
-//                keyValStore.synchronize()
-//
-//            } else if versionOfLastRun != currentVersion {
-//                // App was updated since last run
-//
-//            } else {
-//                // nothing changed
-//
-//            }
-//
-//            UserDefaults.standard.set(currentVersion, forKey: "VersionOfLastRun")
-//            UserDefaults.standard.synchronize()
-//        }
         
         func addWeekends() {
             if !addedWeekend {
@@ -207,7 +166,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // Save changes in the application's managed object context when the application transitions to the background.
         
         UserDefaults.standard.set(true, forKey: "appBecameInactive")
-        (UIApplication.shared.delegate as? AppDelegate)?.saveContext()
+//        (UIApplication.shared.delegate as? AppDelegate)?.saveContext()
         
     }
     

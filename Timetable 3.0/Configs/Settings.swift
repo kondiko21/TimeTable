@@ -46,9 +46,10 @@ class Settings: ObservableObject {
             } else {
                 notificationManager.removeAllNotificationsWithSign("S")
             }
-            print(UserDefaults.standard.object(forKey: "start_lesson_notification"))
         }
     }
+    
+    @Published var modifiedLesson : Bool = true
     
     init() {
         

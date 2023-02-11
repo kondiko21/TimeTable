@@ -13,18 +13,24 @@ import CoreData
 struct MainView: View {
     
     @Environment (\.colorScheme) var colorScheme:ColorScheme
-    @FetchRequest(entity: Days.entity(), sortDescriptors: [NSSortDescriptor(key: "number", ascending: true)]) var days : FetchedResults<Days>
+    @Environment(\.managedObjectContext) var moc
+    
+    @FetchRequest(entity: UserPlan.entity(), sortDescriptors: [NSSortDescriptor(key: "name", ascending: true)], predicate: nil) var users : FetchedResults<UserPlan>
+    @FetchRequest(entity: Days.entity(), sortDescriptors: [NSSortDescriptor(key: "number", ascending: true)]) var daysFetch : FetchedResults<Days>
     let title = NSLocalizedString("Lesson plan", comment: "Title")
-    let dateNow = Date().timetableDate(date: Date())
-    @State var usersList = [UserPlan()]
-    @State var togglerRefresh = true
+    @State var usersList : [UserPlan] = []
+    @State var days : [Days] = []
     @State var showNewUserView = false
     @State var newUserName = ""
+    @State var selectedUser: UserPlan?
+    let versionController = VersionController.shared
     
     init() {
-        
-        UITableView.appearance().tableFooterView = UIView()
-        UITableView.appearance().separatorStyle = .none
+        //        var predicate = NSPredicate(format: "name = %@", selectedUser.name )
+        //        togglerRefresh.toggle()
+        //        UITableView.appearance().tableFooterView = UIView()
+        //        UITableView.appearance().separatorStyle = .none
+        //        _selectedUser = State(initialValue: UserPlan())
     }
     
     var body: some View {
@@ -32,91 +38,122 @@ struct MainView: View {
             NavigationView {
                 ScrollView {
                     ScrollViewReader { value in
-                        ForEach(days, id:\.self) { day in
-                            if day.isDisplayed {
-                            VStack(alignment: .leading,spacing: 0) {
-                                ZStack {
-                                    HStack(alignment: .center, spacing: 10) {
-                                        let dayName = NSLocalizedString(day.name, comment: "")
-                                        Text(dayName)
-                                            .fontWeight(.semibold)
-                                            .font(Font.system(size: 15))
-                                            .padding(.leading, 12)
-                                            .foregroundColor(Color(UIColor.systemGray))
-                                        Spacer()
-                                        NavigationLink(destination: EditModeView(dayName: day.name)) {
-                                            
-                                            Image(systemName: "square.and.pencil").resizable()
-                                                .font(Font.title.weight(.semibold))
-                                                .frame(width: 15, height: 15, alignment: .center)
-                                                .foregroundColor(Color(UIColor.systemGray))
-                                        }.padding(10)
-                                        
-                                    }
-                                    .frame(width: UIScreen.main.bounds.width)
-                                    .id(getNumberOfWeekDayOfName(day.name))
-                                }
-                                .padding(.top, 10)
-                                ForEach(day.lessonArray, id: \.self) { lesson in
-                                    LessonPlanElement(lesson: lesson, current: dateNow)
-                                }
-                            }
-                            .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0))
-                            }
-                        }.id(UUID())
-                        .onReceive(NotificationCenter.default.publisher(for: UIApplication.willEnterForegroundNotification)) { _ in
-                            togglerRefresh.toggle()
+                        if !users.isEmpty && selectedUser != nil{
+                            DayList(selectedUser: selectedUser!)
                         }
-                        .toolbar(content: {
-                            ToolbarItem(placement: .navigationBarLeading) {
-                                HStack {
-                                    Text(title).font(.largeTitle).bold()
-                                        .accessibilityAddTraits(.isHeader)
-                                    Menu {
-                                        UsersMenuView(users: $usersList, showNewUserToggle: $showNewUserView)
-
-                                    } label: {
-                                        Image(systemName: "chevron.right")
-                                    }
-                                }
-                            }
-                            ToolbarItem(placement: .navigationBarTrailing) {
-                                NavigationLink(destination: SettingsView()){
-                                    Image(systemName: "gear")
-                                        .resizable()
-                                        .frame(width: 24, height: 24, alignment: .center)
-                                        .foregroundColor(Color.iconColor(for: colorScheme))
-                                }
-                            }
-                        })
                     }
                 }
                 .navigationBarTitleDisplayMode(.inline)
+                .onChange(of: showNewUserView) { newValue in
+                    if showNewUserView == false {
+                        let firstUser = UserDefaults.standard.bool(forKey: "addedFirstUser")
+                        if !firstUser {
+                            UserDefaults.standard.set(true, forKey: "addedFirstUser")
+                            let user = UserPlan(context: moc)
+                            user.name = newUserName
+                            user.id = UUID()
+                            for day in daysFetch {
+                                user.addToWeekdays(day)
+                            }
+                            do {
+                                try moc.save()
+                            }
+                            catch {
+                                print(error)
+                            }
+                            selectedUser = user
+                        } else {
+                            let user = UserPlan(context: moc)
+                            user.name = newUserName
+                            user.id = UUID()
+                            do {
+                                try moc.save()
+                            }
+                            catch {
+                                print(error)
+                            }
+                            addWeekdaysfor(user: user, context: moc)
+                        }
+                        
+                    }
+                }.toolbar(content: {
+                    ToolbarItem(placement: .navigationBarLeading) {
+                        HStack {
+                            if selectedUser != nil {
+                                Text(selectedUser!.name).font(.largeTitle).bold()
+                                    .accessibilityAddTraits(.isHeader)
+                            } else {
+                                Text(title).font(.largeTitle).bold()
+                                    .accessibilityAddTraits(.isHeader)
+                            }
+                            Menu {
+                                UsersMenuView(users: users.map({ user in
+                                    return user
+                                }), showNewUserToggle: $showNewUserView, selectedUser: $selectedUser)
+                                
+                            } label: {
+                                Image(systemName: "chevron.right")
+                            }
+                        }
+                    }
+                    ToolbarItem(placement: .navigationBarTrailing) {
+                        NavigationLink(destination: SettingsView()){
+                            Image(systemName: "gear")
+                                .resizable()
+                                .frame(width: 24, height: 24, alignment: .center)
+                                .foregroundColor(Color.iconColor(for: colorScheme))
+                        }
+                        NavigationLink(destination: EmptyView()) { EmptyView()}.opacity(0)
+                    }
+                })
             }
             if showNewUserView {
-                TextFieldPopUpView(headerText: "Welcome in new version!", messageText: "Hi! We prepared new version of app that allows you to add multiple timetables. Becouse of that we would like you to ask you to type name of your current plan. ", buttonText: "Name timetable", textFieldValue: .constant("test"), isPresented: .constant(true))
+                if versionController.firstLaunchOfThisVersion() {
+                    TextFieldPopUpView(headerText: "Welcome in new version!", messageText: "Hi! We prepared new version of app that allows you to add multiple timetables. Becouse of that we would like you to ask you to type name of your current plan. ", buttonText: "Name timetable", textFieldValue: $newUserName, isPresented: $showNewUserView)
+                } else {
+                    TextFieldPopUpView(headerText: "Add new plan", messageText: "Type name of the plan.", buttonText: "Add plan", textFieldValue: $newUserName, isPresented: $showNewUserView)
+                }
             }
+        }.onAppear {
+            if versionController.firstLaunchOfThisVersion() {
+                showNewUserView = true
+                DispatchQueue.main.asyncAfter(deadline: .now() + 10) {
+                    versionController.updateVersion()
+                }
+            }
+            if !users.isEmpty { selectedUser = users[0] }
         }
     }
 }
 
 struct UsersMenuView: View {
     
-    @Binding var users : [UserPlan]
+    var users : [UserPlan]
     @Binding var showNewUserView : Bool
+    @Binding var selectedUser : UserPlan?
     
-    init(users: Binding<[UserPlan]>, showNewUserToggle: Binding<Bool>) {
-        self._users = users
+    
+    init(users: [UserPlan], showNewUserToggle: Binding<Bool>, selectedUser: Binding<UserPlan?>) {
+        self.users = users
         self._showNewUserView = showNewUserToggle
+        self._selectedUser = selectedUser
     }
     
     var body: some View  {
+        ForEach(users, id:\.self) { user in
+            Button {
+                print("Changed user")
+                selectedUser = user
+            } label: {
+                Text(user.name)
+            }
+        }
         Button {
             showNewUserView = true
         } label: {
             Text("Add new plan")
         }
-
+        
     }
     
 }
@@ -286,23 +323,12 @@ struct LessonPlanElement: View {
                 }
             }
         }.padding(.leading, 10)
-        .padding(.trailing, 10)
-        .padding(.bottom, 10)
-        .cornerRadius(5)
+            .padding(.trailing, 10)
+            .padding(.bottom, 10)
+            .cornerRadius(5)
         
     }
 }
-
-@available(iOS 14.0, *)
-struct MainView_Previews: PreviewProvider {
-    static var previews: some View {
-        let context = (UIApplication.shared.delegate as! AppDelegate)
-            .persistentContainer.viewContext
-        return MainView()
-            .environment(\.managedObjectContext, context)
-    }
-}
-
 
 extension Color {
     static let black = Color.black
@@ -317,3 +343,104 @@ extension Color {
     }
 }
 
+func addWeekdaysfor(user: UserPlan, context: NSManagedObjectContext) {
+    let monday = Days(context: context)
+    monday.name = "Monday"
+    monday.id = 0
+    monday.number = 0
+    monday.isDisplayed = true
+    monday.user = user
+    let tuesday = Days(context: context)
+    tuesday.name = "Tuesday"
+    tuesday.id = 1
+    tuesday.number = 1
+    tuesday.isDisplayed = true
+    tuesday.user = user
+    let wednesday = Days(context: context)
+    wednesday.name = "Wednesday"
+    wednesday.id = 2
+    wednesday.number = 2
+    wednesday.isDisplayed = true
+    wednesday.user = user
+    let thursday = Days(context: context)
+    thursday.name = "Thursday"
+    thursday.id = 3
+    thursday.number = 3
+    thursday.isDisplayed = true
+    thursday.user = user
+    let friday = Days(context: context)
+    friday.name = "Friday"
+    friday.id = 4
+    friday.number = 4
+    friday.isDisplayed = true
+    friday.user = user
+    let saturday = Days(context: context)
+    saturday.name = "Saturday"
+    saturday.id = 5
+    saturday.number = 5
+    saturday.isDisplayed = false
+    saturday.user = user
+    let sunday = Days(context: context)
+    sunday.name = "Sunday"
+    sunday.id = 6
+    sunday.number = 6
+    sunday.isDisplayed = false
+    sunday.user = user
+    
+    do {
+        try context.save()
+    } catch {
+        print(error)
+    }
+}
+
+struct DayList: View {
+    
+    @Environment(\.managedObjectContext) var moc
+    let dateNow = Date().timetableDate(date: Date())
+    @FetchRequest var fetchedUsers: FetchedResults<Days>
+    @EnvironmentObject var userSettings : Settings
+    
+    
+    init(selectedUser: UserPlan) {
+        let predicate = NSPredicate(format: "%K == %@",
+                                            #keyPath(Days.user), selectedUser)
+        _fetchedUsers = FetchRequest<Days>(sortDescriptors: [NSSortDescriptor(keyPath: \Days.number, ascending: true)], predicate: predicate)
+    }
+    
+    var body: some View {
+        if !fetchedUsers.isEmpty {
+            ForEach(fetchedUsers, id:\.self) { day in
+                if day.isDisplayed {
+                    VStack(alignment: .leading,spacing: 0) {
+                        ZStack {
+                            HStack(alignment: .center, spacing: 10) {
+                                let dayName = NSLocalizedString(day.name, comment: "")
+                                Text(dayName)
+                                    .fontWeight(.semibold)
+                                    .font(Font.system(size: 15))
+                                    .padding(.leading, 12)
+                                    .foregroundColor(Color(UIColor.systemGray))
+                                Spacer()
+                                NavigationLink(destination: EditModeView(editedDay: day)) {
+                                    Image(systemName: "square.and.pencil").resizable()
+                                        .font(Font.title.weight(.semibold))
+                                        .frame(width: 15, height: 15, alignment: .center)
+                                        .foregroundColor(Color(UIColor.systemGray))
+                                }.padding(10)
+                                    
+                                
+                            }
+                            .id(getNumberOfWeekDayOfName(day.name))
+                        }
+                        .padding(.top, 10)
+                        ForEach(day.lessonArray, id: \.self) { lesson in
+                            LessonPlanElement(lesson: lesson, current: dateNow)
+                        }
+                    }
+                    .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0))
+                }
+            }
+        }
+    }
+}

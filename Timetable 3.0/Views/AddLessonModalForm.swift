@@ -94,6 +94,9 @@ struct AddLessonModalForm: View {
                                 .onChange(of: endHour) { (newValue) in
                                     startHour = endHour.addingTimeInterval(-TimeInterval(lessonTime))
                                 }
+                                .onAppear {
+                                    endHour = Date().addingTimeInterval(TimeInterval(lessonTime))
+                                }
                                 .labelsHidden()
                                 .datePickerStyle(GraphicalDatePickerStyle())
                             
@@ -206,6 +209,7 @@ struct AddLessonModalForm: View {
         if correctData {
             do {
                 try self.moc.save()
+                showModal.toggle()
             } catch {
                 print(error)
             }
@@ -214,7 +218,6 @@ struct AddLessonModalForm: View {
             notificationManager.updateStartLessonNotificationsFor(day: selectedDay)
 //            WidgetCenter.shared.reloadAllTimelines()
             //notificationManager.displayNotifications()
-            showModal.toggle()
             
         }
         else {

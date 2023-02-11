@@ -11,23 +11,24 @@ import WidgetKit
 
 struct EditLessonView: View {
     
-    @State var selectedLesson: Lesson
-    @State var selectedDay: Days
     var notificationManager = NotificationManager.shared
-    @State var selectedColor = Color.blue
+    @State private var selectedLesson: Lesson
+    @State private var selectedDay: Days
+    @State private var selectedColor = Color.blue
     @State private var startHour: Date
     @State private var endHour: Date
-    @State var modelLesson: LessonModel = LessonModel()
-    @State var isAlertPresented = false
-    @State var isMissingDataAlertPresented = false
-    @State var intersectionLesson: [Lesson] = []
-    @Environment(\.presentationMode) var presentationMode
+    @State private var modelLesson: LessonModel = LessonModel()
+    @State private var isAlertPresented = false
+    @State private var isMissingDataAlertPresented = false
+    @State private var intersectionLesson: [Lesson] = []
+    @Environment(\.presentationMode) var dismiss
     @Environment(\.managedObjectContext) var moc
+    @EnvironmentObject var userSettings : Settings
     @FetchRequest(entity: LessonModel.entity(), sortDescriptors: []) var lessons : FetchedResults<LessonModel>
     
     let formatter : DateFormatter
     
-    init(selectedLesson: Lesson, selectedDay: Days) {
+    init(selectedLesson: Lesson, selectedDay: Days){
         self._selectedDay = State(initialValue: selectedDay)
         self._selectedLesson = State(initialValue: selectedLesson)
         _selectedColor = State(initialValue: Color(UIColor.UIColorFromString(string: selectedLesson.lessonModel.color)))
@@ -137,9 +138,8 @@ struct EditLessonView: View {
     
     func updateContext() {
         
-        if #available(iOS 14.0, *) {
             selectedLesson.lessonModel.color = UIColor.StringFromUIColor(color: UIColor(selectedColor))
-        }
+        
         var correctData: Bool = true
         
         if selectedLesson.lessonModel.name.isEmpty || selectedLesson.lessonModel.teacher.isEmpty {
@@ -149,16 +149,15 @@ struct EditLessonView: View {
         if correctData {
             do {
                 try self.moc.save()
+                dismiss.wrappedValue.dismiss()
+                userSettings.modifiedLesson.toggle()
             } catch {
                 print(error)
             }
-            moc.refreshAllObjects()
+//            moc.refreshAllObjects()
             notificationManager.updateBeforeLessonNotificationsFor(day: selectedDay)
             notificationManager.updateStartLessonNotificationsFor(day: selectedDay)
-            if #available(iOS 14.0, *) {
-                WidgetCenter.shared.reloadAllTimelines()
-            }
-            self.presentationMode.wrappedValue.dismiss()
+            WidgetCenter.shared.reloadAllTimelines()
         }
         else {
             isMissingDataAlertPresented.toggle()

@@ -50,7 +50,6 @@ struct Provider: TimelineProvider {
         
             let startDay = Calendar.current.startOfDay(for: Date())
             let reloadDay = Calendar.current.date(byAdding: .day, value: 1, to: startDay)!
-            let startWidgetTime = Calendar.current.date(bySettingHour: 1, minute: 0, second: 0, of: Date())!
             var entries: [SimpleEntry] = []
         
         if day[0].isDisplayed {
@@ -89,7 +88,6 @@ struct AllLessonsProvider: TimelineProvider {
     var day : [Days] = []
     init() {
         moc =  persistentContainer.viewContext
-        let weekday = Calendar.current.component(.weekday, from: Date())
         let predicate = NSPredicate(format: "name == %@", Calendar.current.getNameOfWeekDayOfNumber(currentWeekDay))
         let request = NSFetchRequest<Days>(entityName: "Days")
         request.predicate = predicate
@@ -138,7 +136,6 @@ struct MediumLessonsProvider: TimelineProvider {
     var day : [Days] = []
     init() {
         moc =  persistentContainer.viewContext
-        let weekday = Calendar.current.component(.weekday, from: Date())
         let predicate = NSPredicate(format: "name == %@", Calendar.current.getNameOfWeekDayOfNumber(currentWeekDay))
         let request = NSFetchRequest<Days>(entityName: "Days")
         request.predicate = predicate
@@ -168,7 +165,6 @@ struct MediumLessonsProvider: TimelineProvider {
         
             var entries: [MediumLessonsEntry] = []
             let startDay = Calendar.current.startOfDay(for: Date())
-            let startWidgetTime = Calendar.current.date(bySettingHour: 1, minute: 0, second: 0, of: Date())!
             let reloadDay = Calendar.current.date(byAdding: .day, value: 1, to: startDay)!
         
         if day[0].isDisplayed {

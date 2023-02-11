@@ -38,7 +38,7 @@ struct TextFieldPopUpView: View {
                             .padding([.leading, .trailing], 30)
                             .padding(.top, 10)
                         Button {
-                            print("test")
+                            isPresented = false
                         } label: {
                             ZStack {
                                 Color((UIColor(red: 0.27, green: 0.35, blue: 0.75, alpha: 1.00)))

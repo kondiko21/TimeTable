@@ -7,8 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		71033A0228D0F53500668298 /* TextFieldPopUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71033A0128D0F53500668298 /* TextFieldPopUpView.swift */; };
 		71168E57270B5C71008B9CBE /* DaysOrderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71168E56270B5C71008B9CBE /* DaysOrderView.swift */; };
-		711A78D724EE655000A41A48 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 711A78D624EE655000A41A48 /* AppDelegate.swift */; };
 		711A78D924EE655000A41A48 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 711A78D824EE655000A41A48 /* SceneDelegate.swift */; };
 		711A78DE24EE655000A41A48 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 711A78DD24EE655000A41A48 /* MainView.swift */; };
 		711A78E024EE655100A41A48 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 711A78DF24EE655100A41A48 /* Assets.xcassets */; };
@@ -23,6 +23,21 @@
 		714624EC2708BD8F00F341C7 /* Timetable_3_0 v2.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 71B31B6A2708BB5D004B20D1 /* Timetable_3_0 v2.xcdatamodeld */; };
 		714624F42708BF5900F341C7 /* Timetable_3_0 v2.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 71B31B6A2708BB5D004B20D1 /* Timetable_3_0 v2.xcdatamodeld */; };
 		71539B802592075300A56508 /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71539B7F2592075300A56508 /* OnboardingView.swift */; };
+		715D6284290AE50000C1BB99 /* Days+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 715D6282290AE50000C1BB99 /* Days+CoreDataClass.swift */; };
+		715D6285290AE50000C1BB99 /* Days+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 715D6282290AE50000C1BB99 /* Days+CoreDataClass.swift */; };
+		715D6286290AE50000C1BB99 /* Days+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 715D6283290AE50000C1BB99 /* Days+CoreDataProperties.swift */; };
+		715D6287290AE50000C1BB99 /* Days+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 715D6283290AE50000C1BB99 /* Days+CoreDataProperties.swift */; };
+		715D6289290AF5A300C1BB99 /* v3tov4Mapping.xcmappingmodel in Sources */ = {isa = PBXBuildFile; fileRef = 715D6288290AF5A300C1BB99 /* v3tov4Mapping.xcmappingmodel */; };
+		715D628A290AF5A300C1BB99 /* v3tov4Mapping.xcmappingmodel in Sources */ = {isa = PBXBuildFile; fileRef = 715D6288290AF5A300C1BB99 /* v3tov4Mapping.xcmappingmodel */; };
+		715D628C290AF82200C1BB99 /* v2tov3Maping.xcmappingmodel in Sources */ = {isa = PBXBuildFile; fileRef = 715D628B290AF82200C1BB99 /* v2tov3Maping.xcmappingmodel */; };
+		715D628D290AF82200C1BB99 /* v2tov3Maping.xcmappingmodel in Sources */ = {isa = PBXBuildFile; fileRef = 715D628B290AF82200C1BB99 /* v2tov3Maping.xcmappingmodel */; };
+		715D628F290EB17100C1BB99 /* EnvironmentValue_extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 715D628E290EB17100C1BB99 /* EnvironmentValue_extension.swift */; };
+		715D6290290EB17100C1BB99 /* EnvironmentValue_extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 715D628E290EB17100C1BB99 /* EnvironmentValue_extension.swift */; };
+		715D62922922B35F00C1BB99 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 711A78D624EE655000A41A48 /* AppDelegate.swift */; };
+		715D62932922B36B00C1BB99 /* UserPlan+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71FCC14D28D63CBB00F94FCA /* UserPlan+CoreDataProperties.swift */; };
+		715D62942922B36C00C1BB99 /* UserPlan+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71FCC14D28D63CBB00F94FCA /* UserPlan+CoreDataProperties.swift */; };
+		715D62952922B37300C1BB99 /* UserPlan+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71FCC14C28D63CBB00F94FCA /* UserPlan+CoreDataClass.swift */; };
+		715D62962922B37400C1BB99 /* UserPlan+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71FCC14C28D63CBB00F94FCA /* UserPlan+CoreDataClass.swift */; };
 		71733AD025FA0CD600207B5E /* Calendar_extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71733ACF25FA0CD600207B5E /* Calendar_extension.swift */; };
 		71733AD325FA0D1C00207B5E /* Calendar_extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71733ACF25FA0CD600207B5E /* Calendar_extension.swift */; };
 		717EE9A628A0346100D5F80E /* v1tov2Mapping.xcmappingmodel in Sources */ = {isa = PBXBuildFile; fileRef = 717EE9A528A0346100D5F80E /* v1tov2Mapping.xcmappingmodel */; };
@@ -42,10 +57,6 @@
 		71CA01AB273EFB2B003635E2 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 71CA01AA273EFB2B003635E2 /* CloudKit.framework */; };
 		71CA01B027404733003635E2 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 71CA01AA273EFB2B003635E2 /* CloudKit.framework */; };
 		71CA01B227404C21003635E2 /* NetworkExtension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 71CA01B127404C21003635E2 /* NetworkExtension.framework */; };
-		71D3208C2719DE19002D1F11 /* Days+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71D3208B2719DDD4002D1F11 /* Days+CoreDataProperties.swift */; };
-		71D3208D2719DE19002D1F11 /* Days+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71D3208B2719DDD4002D1F11 /* Days+CoreDataProperties.swift */; };
-		71D3208E2719DE1B002D1F11 /* Days+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71D3208A2719DDD4002D1F11 /* Days+CoreDataClass.swift */; };
-		71D3208F2719DE1C002D1F11 /* Days+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71D3208A2719DDD4002D1F11 /* Days+CoreDataClass.swift */; };
 		71D320952719E894002D1F11 /* DaysMigrationPolicy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71D320942719E894002D1F11 /* DaysMigrationPolicy.swift */; };
 		71DC31AA2559AD7A00B1F52A /* AddLessonModalForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71DC31A92559AD7A00B1F52A /* AddLessonModalForm.swift */; };
 		71DC31AE255AA1C800B1F52A /* EditLessonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71DC31AD255AA1C800B1F52A /* EditLessonView.swift */; };
@@ -54,6 +65,7 @@
 		71F3B3CE25F39CE90063978A /* TimetableWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71F3B3CD25F39CE90063978A /* TimetableWidget.swift */; };
 		71F3B3D025F39CEC0063978A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 71F3B3CF25F39CEC0063978A /* Assets.xcassets */; };
 		71F3B3D425F39CEC0063978A /* Timetable 3.0WidgetExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 71F3B3C625F39CE90063978A /* Timetable 3.0WidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		71FCC13F28D3857F00F94FCA /* VersionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71FCC13E28D3857F00F94FCA /* VersionController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -91,6 +103,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		71033A0028CDE38800668298 /* Timetable_3_0 v3.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Timetable_3_0 v3.xcdatamodel"; sourceTree = "<group>"; };
+		71033A0128D0F53500668298 /* TextFieldPopUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldPopUpView.swift; sourceTree = "<group>"; };
 		71168E56270B5C71008B9CBE /* DaysOrderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DaysOrderView.swift; sourceTree = "<group>"; };
 		711A78D324EE655000A41A48 /* Timetable 3.0.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Timetable 3.0.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		711A78D624EE655000A41A48 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -105,7 +119,13 @@
 		71434D3C25FD17D000EDD6B1 /* SingleLessonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleLessonView.swift; sourceTree = "<group>"; };
 		714624E82708BD4300F341C7 /* LessonModel+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LessonModel+CoreDataClass.swift"; sourceTree = "<group>"; };
 		714624E92708BD4300F341C7 /* LessonModel+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LessonModel+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		715240CC2909BD4E00384739 /* Timetable_3_0 v45.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Timetable_3_0 v45.xcdatamodel"; sourceTree = "<group>"; };
 		71539B7F2592075300A56508 /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
+		715D6282290AE50000C1BB99 /* Days+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "Days+CoreDataClass.swift"; path = "../../Days+CoreDataClass.swift"; sourceTree = "<group>"; };
+		715D6283290AE50000C1BB99 /* Days+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Days+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		715D6288290AF5A300C1BB99 /* v3tov4Mapping.xcmappingmodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcmappingmodel; path = v3tov4Mapping.xcmappingmodel; sourceTree = "<group>"; };
+		715D628B290AF82200C1BB99 /* v2tov3Maping.xcmappingmodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcmappingmodel; path = v2tov3Maping.xcmappingmodel; sourceTree = "<group>"; };
+		715D628E290EB17100C1BB99 /* EnvironmentValue_extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnvironmentValue_extension.swift; sourceTree = "<group>"; };
 		71733AAF25F95B1000207B5E /* Timetable 3.0.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Timetable 3.0.entitlements"; sourceTree = "<group>"; };
 		71733ABA25F960F500207B5E /* TimetableWidgetExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = TimetableWidgetExtension.entitlements; sourceTree = "<group>"; };
 		71733ACF25FA0CD600207B5E /* Calendar_extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Calendar_extension.swift; sourceTree = "<group>"; };
@@ -127,8 +147,6 @@
 		71CA01AC273FEA9A003635E2 /* Timetable_3_0 v 4.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Timetable_3_0 v 4.xcdatamodel"; sourceTree = "<group>"; };
 		71CA01B127404C21003635E2 /* NetworkExtension.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NetworkExtension.framework; path = System/Library/Frameworks/NetworkExtension.framework; sourceTree = SDKROOT; };
 		71D320892719DD61002D1F11 /* Timetable_3_0 v 3.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Timetable_3_0 v 3.xcdatamodel"; sourceTree = "<group>"; };
-		71D3208A2719DDD4002D1F11 /* Days+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Days+CoreDataClass.swift"; sourceTree = "<group>"; };
-		71D3208B2719DDD4002D1F11 /* Days+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Days+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		71D320942719E894002D1F11 /* DaysMigrationPolicy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DaysMigrationPolicy.swift; sourceTree = "<group>"; };
 		71DC31A92559AD7A00B1F52A /* AddLessonModalForm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddLessonModalForm.swift; sourceTree = "<group>"; };
 		71DC31AD255AA1C800B1F52A /* EditLessonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditLessonView.swift; sourceTree = "<group>"; };
@@ -138,6 +156,9 @@
 		71F3B3CD25F39CE90063978A /* TimetableWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimetableWidget.swift; sourceTree = "<group>"; };
 		71F3B3CF25F39CEC0063978A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		71F3B3D125F39CEC0063978A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		71FCC13E28D3857F00F94FCA /* VersionController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VersionController.swift; sourceTree = "<group>"; };
+		71FCC14C28D63CBB00F94FCA /* UserPlan+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserPlan+CoreDataClass.swift"; sourceTree = "<group>"; };
+		71FCC14D28D63CBB00F94FCA /* UserPlan+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserPlan+CoreDataProperties.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -212,6 +233,7 @@
 			children = (
 				71733ACF25FA0CD600207B5E /* Calendar_extension.swift */,
 				71434D2925FBAD2D00EDD6B1 /* Date_extension.swift */,
+				715D628E290EB17100C1BB99 /* EnvironmentValue_extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -236,13 +258,14 @@
 		71EA51CC2556D14C00008165 /* Database Models */ = {
 			isa = PBXGroup;
 			children = (
+				715D6282290AE50000C1BB99 /* Days+CoreDataClass.swift */,
+				715D6283290AE50000C1BB99 /* Days+CoreDataProperties.swift */,
+				71FCC14C28D63CBB00F94FCA /* UserPlan+CoreDataClass.swift */,
+				71FCC14D28D63CBB00F94FCA /* UserPlan+CoreDataProperties.swift */,
 				714624E82708BD4300F341C7 /* LessonModel+CoreDataClass.swift */,
 				714624E92708BD4300F341C7 /* LessonModel+CoreDataProperties.swift */,
-				71D3208A2719DDD4002D1F11 /* Days+CoreDataClass.swift */,
-				71D3208B2719DDD4002D1F11 /* Days+CoreDataProperties.swift */,
 				71B31B712708BC64004B20D1 /* Lesson+CoreDataClass.swift */,
 				71B31B722708BC64004B20D1 /* Lesson+CoreDataProperties.swift */,
-				71C2CAB32574E123003D6278 /* Settings.swift */,
 			);
 			path = "Database Models";
 			sourceTree = "<group>";
@@ -250,13 +273,14 @@
 		71EA51CD2556D17600008165 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				711A78DD24EE655000A41A48 /* MainView.swift */,
 				71539B7F2592075300A56508 /* OnboardingView.swift */,
+				711A78DD24EE655000A41A48 /* MainView.swift */,
 				711A78EF24F2809100A41A48 /* EditModeView.swift */,
-				71DC31A92559AD7A00B1F52A /* AddLessonModalForm.swift */,
 				71DC31AD255AA1C800B1F52A /* EditLessonView.swift */,
+				71DC31A92559AD7A00B1F52A /* AddLessonModalForm.swift */,
 				71C2CAB0256D2F03003D6278 /* SettingsView.swift */,
 				71168E56270B5C71008B9CBE /* DaysOrderView.swift */,
+				71033A0128D0F53500668298 /* TextFieldPopUpView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -264,12 +288,16 @@
 		71EA51CE2556D1A000008165 /* Configs */ = {
 			isa = PBXGroup;
 			children = (
+				71C2CAB32574E123003D6278 /* Settings.swift */,
 				71C2CA9D25618BF5003D6278 /* NotificationManager.swift */,
-				711A78D624EE655000A41A48 /* AppDelegate.swift */,
-				71B31B6A2708BB5D004B20D1 /* Timetable_3_0 v2.xcdatamodeld */,
-				717EE9A528A0346100D5F80E /* v1tov2Mapping.xcmappingmodel */,
+				71FCC13E28D3857F00F94FCA /* VersionController.swift */,
 				71D320942719E894002D1F11 /* DaysMigrationPolicy.swift */,
 				711A78D824EE655000A41A48 /* SceneDelegate.swift */,
+				711A78D624EE655000A41A48 /* AppDelegate.swift */,
+				71B31B6A2708BB5D004B20D1 /* Timetable_3_0 v2.xcdatamodeld */,
+				715D6288290AF5A300C1BB99 /* v3tov4Mapping.xcmappingmodel */,
+				715D628B290AF82200C1BB99 /* v2tov3Maping.xcmappingmodel */,
+				717EE9A528A0346100D5F80E /* v1tov2Mapping.xcmappingmodel */,
 				711A78DF24EE655100A41A48 /* Assets.xcassets */,
 				711A78E424EE655100A41A48 /* LaunchScreen.storyboard */,
 			);
@@ -404,26 +432,33 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				715D6289290AF5A300C1BB99 /* v3tov4Mapping.xcmappingmodel in Sources */,
 				71C2CAB1256D2F03003D6278 /* SettingsView.swift in Sources */,
 				71434D3D25FD17D000EDD6B1 /* SingleLessonView.swift in Sources */,
 				711A78F024F2809100A41A48 /* EditModeView.swift in Sources */,
+				71033A0228D0F53500668298 /* TextFieldPopUpView.swift in Sources */,
 				71B31B752708BCCE004B20D1 /* Lesson+CoreDataProperties.swift in Sources */,
 				714624EA2708BD4300F341C7 /* LessonModel+CoreDataClass.swift in Sources */,
 				714624EC2708BD8F00F341C7 /* Timetable_3_0 v2.xcdatamodeld in Sources */,
+				715D6284290AE50000C1BB99 /* Days+CoreDataClass.swift in Sources */,
+				71FCC13F28D3857F00F94FCA /* VersionController.swift in Sources */,
 				71DC31AE255AA1C800B1F52A /* EditLessonView.swift in Sources */,
+				715D62932922B36B00C1BB99 /* UserPlan+CoreDataProperties.swift in Sources */,
 				71B31B732708BCCE004B20D1 /* Lesson+CoreDataClass.swift in Sources */,
-				71D3208C2719DE19002D1F11 /* Days+CoreDataProperties.swift in Sources */,
-				711A78D724EE655000A41A48 /* AppDelegate.swift in Sources */,
+				715D6286290AE50000C1BB99 /* Days+CoreDataProperties.swift in Sources */,
+				715D628F290EB17100C1BB99 /* EnvironmentValue_extension.swift in Sources */,
+				715D62952922B37300C1BB99 /* UserPlan+CoreDataClass.swift in Sources */,
 				71168E57270B5C71008B9CBE /* DaysOrderView.swift in Sources */,
 				71DC31AA2559AD7A00B1F52A /* AddLessonModalForm.swift in Sources */,
 				714624EB2708BD4300F341C7 /* LessonModel+CoreDataProperties.swift in Sources */,
+				715D62922922B35F00C1BB99 /* AppDelegate.swift in Sources */,
+				715D628C290AF82200C1BB99 /* v2tov3Maping.xcmappingmodel in Sources */,
 				71D320952719E894002D1F11 /* DaysMigrationPolicy.swift in Sources */,
 				71434D2A25FBAD2D00EDD6B1 /* Date_extension.swift in Sources */,
 				711A78D924EE655000A41A48 /* SceneDelegate.swift in Sources */,
 				71C2CAB42574E123003D6278 /* Settings.swift in Sources */,
 				711A78DE24EE655000A41A48 /* MainView.swift in Sources */,
 				717EE9A628A0346100D5F80E /* v1tov2Mapping.xcmappingmodel in Sources */,
-				71D3208E2719DE1B002D1F11 /* Days+CoreDataClass.swift in Sources */,
 				71C2CA9E25618BF5003D6278 /* NotificationManager.swift in Sources */,
 				71539B802592075300A56508 /* OnboardingView.swift in Sources */,
 				71733AD025FA0CD600207B5E /* Calendar_extension.swift in Sources */,
@@ -434,18 +469,23 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				715D628A290AF5A300C1BB99 /* v3tov4Mapping.xcmappingmodel in Sources */,
+				715D628D290AF82200C1BB99 /* v2tov3Maping.xcmappingmodel in Sources */,
 				71434D4025FD188800EDD6B1 /* SingleLessonView.swift in Sources */,
 				71733AD325FA0D1C00207B5E /* Calendar_extension.swift in Sources */,
 				714624F42708BF5900F341C7 /* Timetable_3_0 v2.xcdatamodeld in Sources */,
-				71D3208D2719DE19002D1F11 /* Days+CoreDataProperties.swift in Sources */,
+				715D6287290AE50000C1BB99 /* Days+CoreDataProperties.swift in Sources */,
 				717EE9A728A0346100D5F80E /* v1tov2Mapping.xcmappingmodel in Sources */,
 				719FA7342708C291008CFA05 /* Lesson+CoreDataClass.swift in Sources */,
 				719FA7302708C288008CFA05 /* LessonModel+CoreDataClass.swift in Sources */,
+				715D62962922B37400C1BB99 /* UserPlan+CoreDataClass.swift in Sources */,
 				719FA7352708C293008CFA05 /* Lesson+CoreDataProperties.swift in Sources */,
+				715D6290290EB17100C1BB99 /* EnvironmentValue_extension.swift in Sources */,
 				71F3B3CE25F39CE90063978A /* TimetableWidget.swift in Sources */,
+				715D6285290AE50000C1BB99 /* Days+CoreDataClass.swift in Sources */,
 				71CA01A7273AD28C003635E2 /* DaysMigrationPolicy.swift in Sources */,
-				71D3208F2719DE1C002D1F11 /* Days+CoreDataClass.swift in Sources */,
 				719FA7312708C28A008CFA05 /* LessonModel+CoreDataProperties.swift in Sources */,
+				715D62942922B36C00C1BB99 /* UserPlan+CoreDataProperties.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -737,13 +777,15 @@
 		71B31B6A2708BB5D004B20D1 /* Timetable_3_0 v2.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				715240CC2909BD4E00384739 /* Timetable_3_0 v45.xcdatamodel */,
+				71033A0028CDE38800668298 /* Timetable_3_0 v3.xcdatamodel */,
 				717EE99E28A00CD700D5F80E /* Timetable_3_v5.xcdatamodel */,
 				71CA01AC273FEA9A003635E2 /* Timetable_3_0 v 4.xcdatamodel */,
 				71D320892719DD61002D1F11 /* Timetable_3_0 v 3.xcdatamodel */,
 				71B31B6B2708BB5D004B20D1 /* Timetable_3_0.xcdatamodel */,
 				71B31B6C2708BB5D004B20D1 /* Timetable_3_0 v 2.xcdatamodel */,
 			);
-			currentVersion = 71B31B6C2708BB5D004B20D1 /* Timetable_3_0 v 2.xcdatamodel */;
+			currentVersion = 715240CC2909BD4E00384739 /* Timetable_3_0 v45.xcdatamodel */;
 			path = "Timetable_3_0 v2.xcdatamodeld";
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;

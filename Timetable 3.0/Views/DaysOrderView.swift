@@ -7,29 +7,65 @@
 //
 
 import SwiftUI
+import CoreData
 
 struct DaysOrderView: View {
     
     @Environment(\.managedObjectContext) var moc
-    @FetchRequest(entity: Days.entity(), sortDescriptors:[
-        NSSortDescriptor(keyPath: \Days.number, ascending: true),
-        NSSortDescriptor(keyPath:\Days.id, ascending: true )])
-        var days : FetchedResults<Days>
+    @FetchRequest(entity: UserPlan.entity(), sortDescriptors: [NSSortDescriptor(key: "name", ascending: true)], predicate: nil) var users : FetchedResults<UserPlan>
+    @State var selectedUser : UserPlan?
     @Binding var orderScreenActive : Bool
-    
-    @State var data = ["cat", "dog", "fish"]
-    
+        
     var body: some View {
         VStack{
+            Picker(selection: $selectedUser) {
+                ForEach (users) { user in
+                    Text(user.name)
+                }
+            } label: {
+                Text("Modified user")
+            }
+            .onAppear {
+                if !users.isEmpty { selectedUser = users.first }
+            }
+            OrderDayList(editedUser: selectedUser, orderScreenActive: $orderScreenActive)
+        }
+        .navigationViewStyle(.stack)
+    }
+    
+}
+
+
+
+struct OrderDayList: View {
+    
+    @Environment(\.managedObjectContext) var moc
+    
+    @FetchRequest var days: FetchedResults<Days>
+    @Binding var orderScreenActive : Bool
+
+    init(editedUser: UserPlan?, orderScreenActive : Binding<Bool>) {
+        self._orderScreenActive = orderScreenActive
+        if let user = editedUser {
+            let predicate = NSPredicate(format: "%K == %@",
+                                                #keyPath(Days.user), user)
+            self._days = FetchRequest<Days>(sortDescriptors: [NSSortDescriptor(keyPath: \Days.number, ascending: true)], predicate: predicate)
+        } else {
+            self._days = FetchRequest(entity: Days.entity(),sortDescriptors: [],
+                                       predicate: NSPredicate(format: "name == %@", "XZY0m"))
+        }
+    }
+    var body: some View {
+        ZStack {
             HStack {
                 Button {
-                    orderScreenActive = false
+                                        orderScreenActive = false
                 } label: {
                     ZStack {
                         RoundedRectangle(cornerRadius: 10, style: .continuous)
                             .fill(Color.blue)
                         Text("Back").foregroundColor(.black)
-                        .foregroundColor(.white)
+                            .foregroundColor(.white)
                     }
                     .frame(height:50)
                 }.padding(.leading)
@@ -39,40 +75,42 @@ struct DaysOrderView: View {
                         RoundedRectangle(cornerRadius: 10, style: .continuous)
                             .stroke(Color.blue)
                         EditButton()
-                        .foregroundColor(.blue)
+                            .foregroundColor(.blue)
                     }
                     .frame(height:50)
                 }.padding(.trailing)
             }
             .padding(.top, 30)
-        List {
-            ForEach(days, id: \.self) { day in
-                HStack {
-                    Image(systemName: day.isDisplayed ? "checkmark.circle.fill" : "checkmark.circle")
-                        .foregroundColor(.blue)
-                        .font(Font.system(size: 30))
-                        .onTapGesture {
-                            day.isDisplayed.toggle()
-                            do {
-                                try moc.save()
+        }
+        if !days.isEmpty {
+            List {
+                ForEach(days, id: \.self) { day in
+                    HStack {
+                        Image(systemName: day.isDisplayed ? "checkmark.circle.fill" : "checkmark.circle")
+                            .foregroundColor(.blue)
+                            .font(Font.system(size: 30))
+                            .onTapGesture {
+                                day.isDisplayed.toggle()
+                                do {
+                                    try moc.save()
+                                }
+                                catch {
+                                    print(error)
+                                }
                             }
-                            catch {
-                                print(error)
-                            }
-                        }
-                    Text("\(day.name)").font(Font.title).padding()
+                        Text("\(day.name)").font(Font.title).padding()
+                    }
                 }
+                .onMove(perform: onMove)
             }
-            .onMove(perform: onMove)
-
+            
         }
-        }
-            .navigationViewStyle(.stack)
     }
+
     
     private func onMove(source: IndexSet, destination: Int) {
             
-        var revisedItems: [ Days ] = days.map{ $0 }
+        var revisedItems: [ Days ] = days.sorted(by: { $0.number < $1.number })
         
             revisedItems.move(fromOffsets: source, toOffset: destination )
         
@@ -82,9 +120,14 @@ struct DaysOrderView: View {
             {
                     revisedItems[ reverseIndex ].number = Int16( reverseIndex )
             }
-        orderScreenActive = true
+        do {
+            try moc.save()
+        }
+        catch {
+            print(error)
+        }
+//        orderScreenActive = true
         
     }
+    
 }
-
-

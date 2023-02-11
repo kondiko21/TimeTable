@@ -14,6 +14,7 @@ struct EditModeView: View {
     var notificationManager = NotificationManager.shared
     
     @State var isFormSheetPresented = false
+    @EnvironmentObject var userSettings : Settings
     @Environment(\.managedObjectContext) var moc
     @FetchRequest var day: FetchedResults<Days>
     var dayName : String
@@ -21,11 +22,12 @@ struct EditModeView: View {
     var dateFormatter = DateFormatter()
     var title = NSLocalizedString("Edit plan:", comment: "View Title")
     var dayNameLanguage : String
+    @State var changedObject = true
     
     
-    init(dayName: String) {
-        self.dayName = dayName
-        self._day = FetchRequest(entity: Days.entity(), sortDescriptors: [],predicate: NSPredicate(format: "name == %@", dayName))
+    init(editedDay: Days) {
+        self.dayName = "Monday"
+        self._day = FetchRequest(entity: Days.entity(), sortDescriptors: [],predicate: NSPredicate(format: "idNumber == %@", editedDay.idNumber as CVarArg))
         dateFormatter.dateFormat = "HH:mm"
         dayNameLanguage = NSLocalizedString(dayName, comment: "")
     }
@@ -45,8 +47,8 @@ struct EditModeView: View {
                     }.opacity(0)
                 }
                 .listRowInsets(EdgeInsets())
-            }.onDelete(perform: self.delete)
-        }
+            }.onDelete(perform: self.delete).id(UUID(uuidString: "\(changedObject)"))
+        }.id(userSettings.modifiedLesson)
         .sheet(isPresented: $isFormSheetPresented) {
             AddLessonModalForm(showModal: $isFormSheetPresented, selectedDay: day.first!).environment(\.managedObjectContext, self.moc)
         }
@@ -86,4 +88,3 @@ struct EditModeView: View {
         }
     }
 }
-
