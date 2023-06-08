@@ -18,18 +18,33 @@ struct DaysOrderView: View {
         
     var body: some View {
         VStack{
-            Picker(selection: $selectedUser) {
-                ForEach (users) { user in
-                    Text(user.name)
+            HStack {
+                if selectedUser != nil {
+                    Text(selectedUser!.name).font(.largeTitle).bold()
+                        .accessibilityAddTraits(.isHeader)
+                } else {
+                    Text("Days order").font(.largeTitle).bold()
+                        .accessibilityAddTraits(.isHeader)
                 }
-            } label: {
-                Text("Modified user")
+                Menu {
+                    ForEach (users) { user in
+                        Button {
+                            print("Changed user")
+                            selectedUser = user
+                        } label: {
+                            Text(user.name)
+                        }
+                    }
+                } label: {
+                    Image(systemName: "chevron.right")
+                }
+            }
+                
             }
             .onAppear {
                 if !users.isEmpty { selectedUser = users.first }
             }
             OrderDayList(editedUser: selectedUser, orderScreenActive: $orderScreenActive)
-        }
         .navigationViewStyle(.stack)
     }
     

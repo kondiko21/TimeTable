@@ -67,33 +67,28 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                 let monday = Days(context: context)
                 monday.name = "Monday"
                 monday.id = 0
+                monday.idNumber = UUID()
                 monday.number = 0
                 let tuesday = Days(context: context)
                 tuesday.name = "Tuesday"
                 tuesday.id = 1
+                tuesday.idNumber = UUID()
                 tuesday.number = 1
                 let wednesday = Days(context: context)
                 wednesday.name = "Wednesday"
                 wednesday.id = 2
+                wednesday.idNumber = UUID()
                 wednesday.number = 2
                 let thursday = Days(context: context)
                 thursday.name = "Thursday"
                 thursday.id = 3
+                thursday.idNumber = UUID()
                 thursday.number = 3
                 let friday = Days(context: context)
                 friday.name = "Friday"
                 friday.id = 4
+                friday.idNumber = UUID()
                 friday.number = 4
-//                let saturday = Days(context: context)
-//                saturday.name = "Saturday"
-//                saturday.id = 5
-//                saturday.number = 5
-//                saturday.isDisplayed = false
-//                let sunday = Days(context: context)
-//                sunday.name = "Sunday"
-//                sunday.id = 6
-//                sunday.number = 6
-//                sunday.isDisplayed = false
 
                 do {
                     try context.save()
@@ -111,11 +106,13 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                 let saturday = Days(context: context)
                 saturday.name = "Saturday"
                 saturday.id = 5
+                saturday.idNumber = UUID()
                 saturday.number = 5
                 saturday.isDisplayed = false
                 let sunday = Days(context: context)
                 sunday.name = "Sunday"
                 sunday.id = 6
+                sunday.idNumber = UUID()
                 sunday.number = 6
                 sunday.isDisplayed = false
 

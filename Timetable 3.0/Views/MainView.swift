@@ -24,14 +24,8 @@ struct MainView: View {
     @State var newUserName = ""
     @State var selectedUser: UserPlan?
     let versionController = VersionController.shared
+    let firstUser = UserDefaults.standard.bool(forKey: "addedFirstUser")
     
-    init() {
-        //        var predicate = NSPredicate(format: "name = %@", selectedUser.name )
-        //        togglerRefresh.toggle()
-        //        UITableView.appearance().tableFooterView = UIView()
-        //        UITableView.appearance().separatorStyle = .none
-        //        _selectedUser = State(initialValue: UserPlan())
-    }
     
     var body: some View {
         ZStack {
@@ -45,10 +39,8 @@ struct MainView: View {
                 }
                 .navigationBarTitleDisplayMode(.inline)
                 .onChange(of: showNewUserView) { newValue in
-                    if showNewUserView == false {
-                        let firstUser = UserDefaults.standard.bool(forKey: "addedFirstUser")
+                    if showNewUserView == false && newUserName != "" {
                         if !firstUser {
-                            UserDefaults.standard.set(true, forKey: "addedFirstUser")
                             let user = UserPlan(context: moc)
                             user.name = newUserName
                             user.id = UUID()
@@ -61,6 +53,7 @@ struct MainView: View {
                             catch {
                                 print(error)
                             }
+                            UserDefaults.standard.set(true, forKey: "addedFirstUser")
                             selectedUser = user
                         } else {
                             let user = UserPlan(context: moc)
@@ -107,16 +100,19 @@ struct MainView: View {
                     }
                 })
             }
-            if showNewUserView {
-                if versionController.firstLaunchOfThisVersion() {
-                    TextFieldPopUpView(headerText: "Welcome in new version!", messageText: "Hi! We prepared new version of app that allows you to add multiple timetables. Becouse of that we would like you to ask you to type name of your current plan. ", buttonText: "Name timetable", textFieldValue: $newUserName, isPresented: $showNewUserView)
+            if  showNewUserView {
+                if versionController.firstLaunchOfThisVersion() || !firstUser {
+                    TextFieldPopUpView(headerText: "Name your plan", messageText: "Hi! Please name your timetable. This will help you manage your plan.", buttonText: "Set the plan", textFieldValue: $newUserName, isPresented: $showNewUserView)
                 } else {
                     TextFieldPopUpView(headerText: "Add new plan", messageText: "Type name of the plan.", buttonText: "Add plan", textFieldValue: $newUserName, isPresented: $showNewUserView)
                 }
             }
         }.onAppear {
-            if versionController.firstLaunchOfThisVersion() {
+            if !firstUser {
                 showNewUserView = true
+            }
+            
+            if versionController.firstLaunchOfThisVersion() {
                 DispatchQueue.main.asyncAfter(deadline: .now() + 10) {
                     versionController.updateVersion()
                 }
@@ -348,42 +344,49 @@ func addWeekdaysfor(user: UserPlan, context: NSManagedObjectContext) {
     monday.name = "Monday"
     monday.id = 0
     monday.number = 0
+    monday.idNumber = UUID()
     monday.isDisplayed = true
     monday.user = user
     let tuesday = Days(context: context)
     tuesday.name = "Tuesday"
     tuesday.id = 1
     tuesday.number = 1
+    tuesday.idNumber = UUID()
     tuesday.isDisplayed = true
     tuesday.user = user
     let wednesday = Days(context: context)
     wednesday.name = "Wednesday"
     wednesday.id = 2
     wednesday.number = 2
+    wednesday.idNumber = UUID()
     wednesday.isDisplayed = true
     wednesday.user = user
     let thursday = Days(context: context)
     thursday.name = "Thursday"
     thursday.id = 3
     thursday.number = 3
+    thursday.idNumber = UUID()
     thursday.isDisplayed = true
     thursday.user = user
     let friday = Days(context: context)
     friday.name = "Friday"
     friday.id = 4
     friday.number = 4
+    friday.idNumber = UUID()
     friday.isDisplayed = true
     friday.user = user
     let saturday = Days(context: context)
     saturday.name = "Saturday"
     saturday.id = 5
     saturday.number = 5
+    saturday.idNumber = UUID()
     saturday.isDisplayed = false
     saturday.user = user
     let sunday = Days(context: context)
     sunday.name = "Sunday"
     sunday.id = 6
     sunday.number = 6
+    sunday.idNumber = UUID()
     sunday.isDisplayed = false
     sunday.user = user
     

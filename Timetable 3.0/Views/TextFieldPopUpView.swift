@@ -31,7 +31,7 @@ struct TextFieldPopUpView: View {
                 ZStack {
                     Color(UIColor.systemBackground)
                     VStack {
-                        Text(headerText).font(.title2).bold().foregroundColor(Color(UIColor(red: 0.27, green: 0.35, blue: 0.75, alpha: 1.00)))
+                        Text(headerText).font(.title).bold().foregroundColor(Color(UIColor(red: 0.27, green: 0.35, blue: 0.75, alpha: 1.00)))
                         Text(messageText).font(.body).padding(.top).multilineTextAlignment(.leading)
                             .padding(5)
                         TextField("Name", text: $textFieldValue)    .textFieldStyle(.roundedBorder)
@@ -39,6 +39,9 @@ struct TextFieldPopUpView: View {
                             .padding(.top, 10)
                         Button {
                             isPresented = false
+                            DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
+                                textFieldValue = ""
+                            }
                         } label: {
                             ZStack {
                                 Color((UIColor(red: 0.27, green: 0.35, blue: 0.75, alpha: 1.00)))
@@ -53,7 +56,7 @@ struct TextFieldPopUpView: View {
                     .padding(5)
                 }
                 .cornerRadius(8.0)
-                .padding([.top, .bottom], geometry.size.height/5)
+                .padding([.top, .bottom], geometry.size.height/4)
                 .padding([.leading, .trailing], 30)
                 .shadow(color: Color(UIColor.systemBackground).opacity(0.5), radius: 5.0, x: 4.0, y: 3.5)
             }

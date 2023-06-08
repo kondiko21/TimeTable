@@ -19,10 +19,12 @@ let title1 = NSLocalizedString("onboard_title1", comment: "")
 let title2 = NSLocalizedString("onboard_title2", comment: "")
 let title3 = NSLocalizedString("onboard_title3", comment: "")
 let title4 = NSLocalizedString("onboard_title4", comment: "")
+let title5 = NSLocalizedString("onboard_title5", comment: "")
 let message1 = NSLocalizedString("onboard_message1", comment: "")
 let message2 = NSLocalizedString("onboard_message2", comment: "")
 let message3 = NSLocalizedString("onboard_message3", comment: "")
 let message4 = NSLocalizedString("onboard_message4", comment: "")
+let message5 = NSLocalizedString("onboard_message5", comment: "")
 
 struct OnboardingView: View {
     @State var selectedTab = 0
