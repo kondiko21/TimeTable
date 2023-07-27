@@ -38,40 +38,8 @@ struct MainView: View {
                     }
                 }
                 .navigationBarTitleDisplayMode(.inline)
-                .onChange(of: showNewUserView) { newValue in
-                    if showNewUserView == false && newUserName != "" {
-                        if !firstUser {
-                            let user = UserPlan(context: moc)
-                            user.name = newUserName
-                            user.id = UUID()
-                            user.notification = true
-                            for day in daysFetch {
-                                user.addToWeekdays(day)
-                            }
-                            do {
-                                try moc.save()
-                            }
-                            catch {
-                                print(error)
-                            }
-                            UserDefaults.standard.set(true, forKey: "addedFirstUser")
-                            selectedUser = user
-                        } else {
-                            let user = UserPlan(context: moc)
-                            user.name = newUserName
-                            user.id = UUID()
-                            user.notification = true
-                            do {
-                                try moc.save()
-                            }
-                            catch {
-                                print(error)
-                            }
-                            addWeekdaysfor(user: user, context: moc)
-                        }
-                        
-                    }
-                }.toolbar(content: {
+                
+                    .toolbar(content: {
                     ToolbarItem(placement: .navigationBarLeading) {
                         HStack {
                             if selectedUser != nil {
@@ -104,9 +72,45 @@ struct MainView: View {
             }
             if  showNewUserView {
                 if versionController.firstLaunchOfThisVersion() || !firstUser {
-                    TextFieldPopUpView(headerText: "Name your plan", messageText: "Please name your timetable. This will help you manage your plan.", buttonText: "Set the plan", textFieldValue: $newUserName, isPresented: $showNewUserView)
+                    TextFieldPopUpView(headerText: "Name your plan", messageText: "Please name your timetable. This will help you manage your plan.", buttonText: "Set the plan", isPresented: $showNewUserView)
+                    { name in
+                        if name != "" {
+                            let user = UserPlan(context: moc)
+                            user.name = name
+                            user.id = UUID()
+                            user.notification = true
+                            for day in daysFetch {
+                                user.addToWeekdays(day)
+                            }
+                            do {
+                                try moc.save()
+                            }
+                            catch {
+                                print(error)
+                            }
+                            UserDefaults.standard.set(true, forKey: "addedFirstUser")
+                            selectedUser = user
+                            showNewUserView = false
+                        }
+                    }
                 } else {
-                    TextFieldPopUpView(headerText: "Add new plan", messageText: "Type name of the plan.", buttonText: "Add plan", textFieldValue: $newUserName, isPresented: $showNewUserView)
+                    TextFieldPopUpView(headerText: "Add new plan", messageText: "Type name of the plan.", buttonText: "Add plan", isPresented: $showNewUserView)
+                    { name in
+                        if name != "" {
+                            let user = UserPlan(context: moc)
+                            user.name = name
+                            user.id = UUID()
+                            user.notification = true
+                            do {
+                                try moc.save()
+                            }
+                            catch {
+                                print(error)
+                            }
+                            addWeekdaysfor(user: user, context: moc)
+                            showNewUserView = false
+                        }
+                    }
                 }
             }
         }.onAppear {
