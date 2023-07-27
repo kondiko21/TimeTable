@@ -19,6 +19,7 @@ extension UserPlan {
 
     @NSManaged public var id: UUID
     @NSManaged public var name: String
+    @NSManaged public var notification: Bool
     @NSManaged public var weekdays: NSSet?
 
     public var daysArray: [Days] {

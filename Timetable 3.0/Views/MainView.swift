@@ -44,6 +44,7 @@ struct MainView: View {
                             let user = UserPlan(context: moc)
                             user.name = newUserName
                             user.id = UUID()
+                            user.notification = true
                             for day in daysFetch {
                                 user.addToWeekdays(day)
                             }
@@ -59,6 +60,7 @@ struct MainView: View {
                             let user = UserPlan(context: moc)
                             user.name = newUserName
                             user.id = UUID()
+                            user.notification = true
                             do {
                                 try moc.save()
                             }
@@ -102,7 +104,7 @@ struct MainView: View {
             }
             if  showNewUserView {
                 if versionController.firstLaunchOfThisVersion() || !firstUser {
-                    TextFieldPopUpView(headerText: "Name your plan", messageText: "Hi! Please name your timetable. This will help you manage your plan.", buttonText: "Set the plan", textFieldValue: $newUserName, isPresented: $showNewUserView)
+                    TextFieldPopUpView(headerText: "Name your plan", messageText: "Please name your timetable. This will help you manage your plan.", buttonText: "Set the plan", textFieldValue: $newUserName, isPresented: $showNewUserView)
                 } else {
                     TextFieldPopUpView(headerText: "Add new plan", messageText: "Type name of the plan.", buttonText: "Add plan", textFieldValue: $newUserName, isPresented: $showNewUserView)
                 }
@@ -275,47 +277,26 @@ struct LessonPlanElement: View {
                         
                         Text(lesson.lessonModel.teacher)
                             .font(Font.system(size: 15, weight: .light))
+                            .padding(.top, 2)
                     }
                     .padding(.leading, 20)
-                    .padding(.top, 10)
+                    .padding(.top, 12)
                     Spacer()
                     if lesson.room != "" {
                         Text("\(roomTitle) \(lesson.room)")
                             .padding(.trailing, 20)
-                            .padding(.top, 10)
+                            .padding(.top, 12)
                             .font(Font.system(size: 15, weight: .light))
                     }
                 }
                 Spacer()
                 HStack(alignment: .bottom){
+                    Spacer()
                     Text("\(dateFormatter.string(from: lesson.startHour)) - \(dateFormatter.string(from: lesson.endHour))")
                         .padding(.top, 10)
-                        .padding(.bottom, 10)
-                        .padding(.leading, 20)
-                        .font(Font.system(size: 15, weight: .light))
-                    
-                    Spacer()
-                    if currentLesson {
-                        Text("current_lesson_widget")
-                            .font(Font.system(size: 20, weight: .semibold,  design: .rounded))
-                            .foregroundColor(Color(UIColor(red: 1.00, green: 0.00, blue: 0.00, alpha: 1.00)))
-                            .opacity(circleOpacity)
-                            .animation(Animation.easeInOut(duration: 1.5).repeatForever())
-                            .padding(.top, 10)
-                            .padding(.bottom, 10)
-                        
-                        Circle()
-                            .frame(width: 25, height: 25)
-                            .foregroundColor(Color(UIColor(red: 1.00, green: 0.00, blue: 0.00, alpha: 1.00)))
-                            .padding(.top, 10)
-                            .padding(.bottom, 10)
-                            .padding(.trailing, 10)
-                            .opacity(circleOpacity)
-                            .animation(Animation.easeInOut(duration: 1.5).repeatForever())
-                            .onAppear {
-                                circleOpacity = 0.5
-                            }
-                    }
+                        .padding(.bottom, 12)
+                        .padding(.trailing, 20)
+                        .font(Font.system(size: 15, weight: .semibold))
                 }
             }
         }.padding(.leading, 10)

@@ -56,7 +56,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         description.setOption(true as NSNumber, forKey: NSPersistentHistoryTrackingKey)
         container.persistentStoreDescriptions = [description]
 
-        
+        //FUNCTION($entityPolicy, "idNumberWithId:" , $source.id)
         //FUNCTION($entityPolicy, "isDisplayedWithId:" , $source.id)
         container.loadPersistentStores(completionHandler: { (storeDescription, error) in
             if let error = error as NSError? {

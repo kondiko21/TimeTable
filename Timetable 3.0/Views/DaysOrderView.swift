@@ -20,8 +20,10 @@ struct DaysOrderView: View {
         VStack{
             HStack {
                 if selectedUser != nil {
-                    Text(selectedUser!.name).font(.largeTitle).bold()
-                        .accessibilityAddTraits(.isHeader)
+                    Text("Plan: \(selectedUser!.name)").font(.largeTitle).bold()
+                        //.accessibilityAddTraits(.isHeader)
+                        .padding(.top, 10)
+                        .padding(.leading)
                 } else {
                     Text("Days order").font(.largeTitle).bold()
                         .accessibilityAddTraits(.isHeader)
@@ -38,6 +40,7 @@ struct DaysOrderView: View {
                 } label: {
                     Image(systemName: "chevron.right")
                 }
+                Spacer()
             }
                 
             }
@@ -74,7 +77,7 @@ struct OrderDayList: View {
         ZStack {
             HStack {
                 Button {
-                                        orderScreenActive = false
+                    orderScreenActive = false
                 } label: {
                     ZStack {
                         RoundedRectangle(cornerRadius: 10, style: .continuous)
@@ -95,7 +98,7 @@ struct OrderDayList: View {
                     .frame(height:50)
                 }.padding(.trailing)
             }
-            .padding(.top, 30)
+            .padding(.top, 10)
         }
         if !days.isEmpty {
             List {
@@ -103,7 +106,7 @@ struct OrderDayList: View {
                     HStack {
                         Image(systemName: day.isDisplayed ? "checkmark.circle.fill" : "checkmark.circle")
                             .foregroundColor(.blue)
-                            .font(Font.system(size: 30))
+                            .font(Font.system(size: 25))
                             .onTapGesture {
                                 day.isDisplayed.toggle()
                                 do {
@@ -113,7 +116,7 @@ struct OrderDayList: View {
                                     print(error)
                                 }
                             }
-                        Text("\(day.name)").font(Font.title).padding()
+                        Text("\(day.name)").font(Font.subheadline).padding()
                     }
                 }
                 .onMove(perform: onMove)
