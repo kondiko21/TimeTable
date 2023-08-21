@@ -14,34 +14,43 @@ import CloudKit
 struct Provider: TimelineProvider {
     
     let currentWeekDay = Calendar.current.component(.weekday, from: Date())
-//    let currentWeekDay = 1
     let moc : NSManagedObjectContext
-    var day : [Days] = []
+    @AppStorage("defaultPlanId", store: UserDefaults(suiteName: "group.com.kondiko.Timetable")) var defaultPlanId: String = ""
+    var users : [UserPlan] = []
+    var currentDay : Days = Days()
+    
     init() {
         moc =  persistentContainer.viewContext
-        let predicate = NSPredicate(format: "name == %@", Calendar.current.getNameOfWeekDayOfNumber(currentWeekDay))
-        let request = NSFetchRequest<Days>(entityName: "Days")
-        request.predicate = predicate
+        let request = NSFetchRequest<UserPlan>(entityName: "UserPlan")
+        if defaultPlanId != "" {
+            let predicate = NSPredicate(format: "id == %@", defaultPlanId)
+            request.predicate = predicate
+        }
         do {
-            day  = try moc.fetch(request)
+            users  = try moc.fetch(request)
         } catch {
             print(error)
         }
-        //print("REQUEST \(day[0].lessonArray)")
+        for day in users[0].daysArray {
+            if day.name == Calendar.current.getNameOfWeekDayOfNumber(currentWeekDay) {
+                currentDay = day
+                break
+            }
+        }
     }
 
     func placeholder(in context: Context) -> SimpleEntry {
-        let color = UIColor.StringFromUIColor(color: UIColor.systemBlue)
+        let color = UIColor.StringFromUIColor(color: .blue)
        print("Placeholder")
-       let entry = SimpleEntry(date: Date(), endHour: Date(), color: color, name: "placeholder", room: "1")
+       let entry = SimpleEntry(date: Date(),startHour: Date(), endHour: Date(), color: color, name: "placeholder", room: "1")
        return entry
     }
     
     func getSnapshot(in context: Context, completion: @escaping (SimpleEntry) -> ()) {
         
-         let color = UIColor.StringFromUIColor(color: UIColor.systemBlue)
+        let color = UIColor.StringFromUIColor(color: .blue)
         
-        let entry = SimpleEntry(date: Date(), endHour: Date(), color: color, name: "Math", room: "1")
+        let entry = SimpleEntry(date: Date(),startHour: Date(), endHour: Date(), color: color, name: "Math", room: "1")
         
         completion(entry)
         }
@@ -52,28 +61,28 @@ struct Provider: TimelineProvider {
             let reloadDay = Calendar.current.date(byAdding: .day, value: 1, to: startDay)!
             var entries: [SimpleEntry] = []
         
-        if day[0].isDisplayed {
+        if currentDay.isDisplayed {
                 
 //                entries.append(beforeEntry)
-                for lesson in day[0].lessonArray {
+                for lesson in currentDay.lessonArray {
                     let hour =  Calendar.current.component(.hour, from: lesson.startHour)
                     let minute =  Calendar.current.component(.minute, from: lesson.startHour)
                     let entryDate = Calendar.current.date(bySettingHour: hour, minute: minute, second: 0, of: Date())!
-                    let entry = SimpleEntry(date: entryDate, endHour: lesson.endHour, color: lesson.lessonModel.color, name: lesson.lessonModel.name, room: lesson.room)
+                    let entry = SimpleEntry(date: entryDate,startHour: lesson.startHour, endHour: lesson.endHour, color: lesson.lessonModel.color, name: lesson.lessonModel.name, room: lesson.room)
                         entries.append(entry)
                 }
-                if day[0].lessonArray.count != 0 {
+                if currentDay.lessonArray.count != 0 {
                     
-                    let lastLesson = day[0].lessonArray.last
+                    let lastLesson = currentDay.lessonArray.last
                     let lastHour =  Calendar.current.component(.hour, from: lastLesson!.endHour)
                     let lastMinute =  Calendar.current.component(.minute, from: lastLesson!.endHour)
                     let lastEntryDate = Calendar.current.date(bySettingHour: lastHour, minute: lastMinute, second: 0, of: Date())!
-                    let endEntry = SimpleEntry(date: lastEntryDate, endHour: Date(), color: "red", name: "placeholder", room: "room")
+                    let endEntry = SimpleEntry(date: lastEntryDate,startHour: Date(), endHour: Date(), color: "red", name: "placeholder", room: "room")
                     entries.append(endEntry)
                     
                 }
             } else {
-                let entry = SimpleEntry(date: startDay, endHour: Date(), color: "color", name: "placeholder", room: "room")
+                let entry = SimpleEntry(date: startDay,startHour: Date(), endHour: Date(), color: "color", name: "placeholder", room: "room")
                     entries.append(entry)
             }
             let timeline = Timeline(entries: entries, policy: .after(reloadDay))
@@ -85,16 +94,27 @@ struct AllLessonsProvider: TimelineProvider {
     
     let currentWeekDay = Calendar.current.component(.weekday, from: Date())
     let moc : NSManagedObjectContext
-    var day : [Days] = []
+    @AppStorage("defaultPlanId", store: UserDefaults(suiteName: "group.com.kondiko.Timetable")) var defaultPlanId: String = ""
+    var users : [UserPlan] = []
+    var currentDay : Days = Days()
+    
     init() {
         moc =  persistentContainer.viewContext
-        let predicate = NSPredicate(format: "name == %@", Calendar.current.getNameOfWeekDayOfNumber(currentWeekDay))
-        let request = NSFetchRequest<Days>(entityName: "Days")
-        request.predicate = predicate
+        let request = NSFetchRequest<UserPlan>(entityName: "UserPlan")
+        if defaultPlanId != "" {
+            let predicate = NSPredicate(format: "id == %@", defaultPlanId)
+            request.predicate = predicate
+        }
         do {
-            day = try moc.fetch(request)
+            users  = try moc.fetch(request)
         } catch {
             print(error)
+        }
+        for day in users[0].daysArray {
+            if day.name == Calendar.current.getNameOfWeekDayOfNumber(currentWeekDay) {
+                currentDay = day
+                break
+            }
         }
     }
 
@@ -115,8 +135,8 @@ struct AllLessonsProvider: TimelineProvider {
             let startDay = Calendar.current.startOfDay(for: Date())
             let reloadDay = Calendar.current.date(byAdding: .day, value: 1, to: startDay)!
         
-            if day[0].isDisplayed {
-                let entity = LessonsDayEntry(date: Date() ,lessons: day[0].lessonArray)
+            if currentDay.isDisplayed {
+                let entity = LessonsDayEntry(date: Date() ,lessons: currentDay.lessonArray)
                 entries.append(entity)
             } else { 
                 let entity = LessonsDayEntry(date: Date() ,lessons: [])
@@ -133,16 +153,27 @@ struct MediumLessonsProvider: TimelineProvider {
     let currentWeekDay = Calendar.current.component(.weekday, from: Date())
 //    let currentWeekDay = 1
     let moc : NSManagedObjectContext
-    var day : [Days] = []
+    @AppStorage("defaultPlanId", store: UserDefaults(suiteName: "group.com.kondiko.Timetable")) var defaultPlanId: String = ""
+    var users : [UserPlan] = []
+    var currentDay : Days = Days()
+    
     init() {
         moc =  persistentContainer.viewContext
-        let predicate = NSPredicate(format: "name == %@", Calendar.current.getNameOfWeekDayOfNumber(currentWeekDay))
-        let request = NSFetchRequest<Days>(entityName: "Days")
-        request.predicate = predicate
+        let request = NSFetchRequest<UserPlan>(entityName: "UserPlan")
+        if defaultPlanId != "" {
+            let predicate = NSPredicate(format: "id == %@", defaultPlanId)
+            request.predicate = predicate
+        }
         do {
-            day = try moc.fetch(request)
+            users  = try moc.fetch(request)
         } catch {
             print(error)
+        }
+        for day in users[0].daysArray {
+            if day.name == Calendar.current.getNameOfWeekDayOfNumber(currentWeekDay) {
+                currentDay = day
+                break
+            }
         }
     }
 
@@ -167,43 +198,35 @@ struct MediumLessonsProvider: TimelineProvider {
             let startDay = Calendar.current.startOfDay(for: Date())
             let reloadDay = Calendar.current.date(byAdding: .day, value: 1, to: startDay)!
         
-        if day[0].isDisplayed {
+        if currentDay.isDisplayed {
                 
-                let lessonsCount = day[0].lessonArray.count
+                let lessonsCount = currentDay.lessonArray.count
                 
                 if lessonsCount > 3 {
                     
-                    //Add entry before first lesson
-
-//                    print(startWidgetTime)
-//                    print("END WIDGET")
-//                    let firstLessons = [day[0].lessonArray[0], day[0].lessonArray[1]]
-//                    let entry = MediumLessonsEntry(date: startWidgetTime, endHour: Date(), color: "system" , name: "before_placeholder", room: "placeholder", lessons: firstLessons)
-//                    entries.append(entry)
-                    
                     for lessonId in (0 ..< lessonsCount-2) {
-                        let lesson = day[0].lessonArray[lessonId]
+                        let lesson = currentDay.lessonArray[lessonId]
                         let hour =  Calendar.current.component(.hour, from: lesson.startHour)
                         let minute =  Calendar.current.component(.minute, from: lesson.startHour)
                         let entryDate = Calendar.current.date(bySettingHour: hour, minute: minute, second: 0, of: Date())!
                         let nextLessons : [Lesson] = [
-                            day[0].lessonArray[lessonId+1],
-                            day[0].lessonArray[lessonId+2]
+                            currentDay.lessonArray[lessonId+1],
+                            currentDay.lessonArray[lessonId+2]
                         ]
                         let entry = MediumLessonsEntry(date: entryDate, endHour: lesson.endHour, color: lesson.lessonModel.color , name: lesson.lessonModel.name, room: lesson.room, lessons: nextLessons)
                         entries.append(entry)
                     }
                 }
                 if lessonsCount > 2 {
-                    let preLastlesson = day[0].lessonArray[lessonsCount - 2]
+                    let preLastlesson = currentDay.lessonArray[lessonsCount - 2]
                     let preLastHour =  Calendar.current.component(.hour, from: preLastlesson.startHour)
                     let preLastMinute =  Calendar.current.component(.minute, from: preLastlesson.startHour)
                     let preLastEntryDate = Calendar.current.date(bySettingHour: preLastHour, minute: preLastMinute, second: 0, of: Date())!
-                    let preLastEntry = MediumLessonsEntry(date: preLastEntryDate, endHour: preLastlesson.endHour, color: preLastlesson.lessonModel.color , name: preLastlesson.lessonModel.name, room: preLastlesson.room, lessons: [day[0].lessonArray[lessonsCount - 1]])
+                    let preLastEntry = MediumLessonsEntry(date: preLastEntryDate, endHour: preLastlesson.endHour, color: preLastlesson.lessonModel.color , name: preLastlesson.lessonModel.name, room: preLastlesson.room, lessons: [currentDay.lessonArray[lessonsCount - 1]])
                         entries.append(preLastEntry)
                 }
                 if lessonsCount > 1 {
-                    let lastlesson = day[0].lessonArray[lessonsCount - 1]
+                    let lastlesson = currentDay.lessonArray[lessonsCount - 1]
                     let lastHour =  Calendar.current.component(.hour, from: lastlesson.startHour)
                     let lastMinute =  Calendar.current.component(.minute, from: lastlesson.startHour)
                     let lastEntryDate = Calendar.current.date(bySettingHour: lastHour, minute: lastMinute, second: 0, of: Date())!
@@ -211,7 +234,7 @@ struct MediumLessonsProvider: TimelineProvider {
                     entries.append(lastEntry)
                 }
                 if lessonsCount != 0 {
-                    let lastLesson = day[0].lessonArray.last
+                    let lastLesson = currentDay.lessonArray.last
                     let lastHour =  Calendar.current.component(.hour, from: lastLesson!.endHour)
                     let lastMinute =  Calendar.current.component(.minute, from: lastLesson!.endHour)
                     print(lastHour)
@@ -232,6 +255,7 @@ struct MediumLessonsProvider: TimelineProvider {
 
 struct SimpleEntry: TimelineEntry {
     let date: Date
+    let startHour : Date
     let endHour : Date
     let color : String
     let name : String
@@ -312,6 +336,9 @@ struct NextLessonsView : View {
     var lessons : [Lesson] = []
     var hours : [UUID : String] = [:]
     var hour = ""
+    
+    let nextLessonString = NSLocalizedString("lesson_next_widget", comment: "")
+    let noLessonWidgetText = NSLocalizedString("no_lessons_widget", comment: "")
 
     init(lessons : [Lesson]) {
         
@@ -327,19 +354,23 @@ struct NextLessonsView : View {
     }
     
     var body: some View {
-        HStack {
-            Text("Kolejne lekcje:")
-            ForEach(lessons, id: \.self) { lesson in
-                ZStack {
-                    RoundedCorners(color: Color(UIColor.UIColorFromString(string: lesson.lessonModel.color)).opacity(1.0), tl: 10, bl: 10).frame(width: 15)
-                    HStack(alignment: .center) {
-                        Text(lesson.lessonModel.name)
-                            .font(.system(.body, design: .rounded))
-                            .bold()
-                        Text(hours[lesson.id]!)
+        if !lessons.isEmpty {
+            HStack {
+                Text(nextLessonString)
+                ForEach(lessons, id: \.self) { lesson in
+                    ZStack {
+                        RoundedCorners(color: Color(UIColor.UIColorFromString(string: lesson.lessonModel.color)).opacity(1.0), tl: 10, bl: 10).frame(width: 15)
+                        HStack(alignment: .center) {
+                            Text(lesson.lessonModel.name)
+                                .font(.system(.body, design: .rounded))
+                                .bold()
+                            Text(hours[lesson.id]!)
+                        }
                     }
                 }
             }
+        } else {
+            Text(noLessonWidgetText)
         }
     }
 }
@@ -359,6 +390,26 @@ struct TimetableWidgetEntryView : View {
     }
     var body: some View {
         SingleLessonView(color: entry.color, name: entry.name, hour: hour, room: entry.room)
+    }
+}
+
+struct TimetableSimpleComplicationEntryView : View {
+    var entry: Provider.Entry
+    
+    var endHour : String = ""
+    var startHour : String = ""
+    
+    init(entry : Provider.Entry) {
+        
+        let formatter = DateFormatter()
+        formatter.dateFormat = "HH:mm"
+        endHour = formatter.string(from: entry.endHour)
+        startHour = formatter.string(from: entry.startHour)
+        
+        self.entry = entry
+    }
+    var body: some View {
+        SingleLessonComplicationView(color: entry.color, name: entry.name,startHour: startHour, endHour: endHour, room: entry.room)
     }
 }
 
@@ -399,7 +450,7 @@ struct TimetableAllLessonsView : View {
                                     .bold()
                                 Spacer()
                                 Text(lessonHours[lesson.id]!)
-                            }.padding()
+                            }.padding([.leading, .trailing])
                         }
                     }
                     .frame(height:geo.size.height/8)
@@ -422,6 +473,7 @@ struct MyWidgetBundle: WidgetBundle {
         TimetableCurrentLesson()
         TimetableNextLessons()
         TimetableMediumLessons()
+        TimetableCurrentLessonComplication()
     }
 }
 
@@ -437,6 +489,7 @@ struct TimetableCurrentLesson: Widget {
         .supportedFamilies([.systemSmall])
     }
 }
+
 struct TimetableNextLessons: Widget {
     let kind: String = "TimetableLessonsWidget"
 
@@ -463,22 +516,28 @@ struct TimetableMediumLessons: Widget {
     }
 }
 
-public extension UIColor {
+struct TimetableCurrentLessonComplication: Widget {
+    let kind: String = "Widget"
+    
+    private var supportedFamilies: [WidgetFamily] {
+            if #available(iOSApplicationExtension 16.0, *) {
+                return [
+                    .accessoryRectangular,
+                    .accessoryInline
+                ]
+            } else {
+                return []
+            }
+        }
 
-    class func StringFromUIColor(color: UIColor) -> String {
-        let components = color.cgColor.components
-        return "[\(components![0]), \(components![1]), \(components![2]), \(components![3])]"
+    var body: some WidgetConfiguration {
+        StaticConfiguration(kind: kind, provider: Provider()) { entry in
+            TimetableSimpleComplicationEntryView(entry: entry)
+        }
+        .configurationDisplayName("Lesson Widget")
+        .description("Current lesson right on your screen.")
+        .supportedFamilies(supportedFamilies)
     }
-    
-    class func UIColorFromString(string: String) -> UIColor {
-        let componentsString = string.replacingOccurrences(of: "[", with: "").replacingOccurrences(of: "]", with: "")
-        let components = componentsString.split(separator: ",")
-        return UIColor(red: CGFloat((components[0] as NSString).floatValue),
-                     green: CGFloat((components[1] as NSString).floatValue),
-                      blue: CGFloat((components[2] as NSString).floatValue),
-                     alpha: CGFloat((components[3] as NSString).floatValue))
-    }
-    
 }
 
 var persistentContainer: NSPersistentCloudKitContainer = {
@@ -501,7 +560,7 @@ var persistentContainer: NSPersistentCloudKitContainer = {
         }
     })
     
-    container.viewContext.automaticallyMergesChangesFromParent = false
+    container.viewContext.automaticallyMergesChangesFromParent = true
     container.viewContext.mergePolicy = NSMergeByPropertyStoreTrumpMergePolicy
     return container
 }()

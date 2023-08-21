@@ -15,17 +15,28 @@ final class NotificationManager {
     static let shared = NotificationManager()
     var beforeLessonNotificationsEnabled = UserDefaults.standard.object(forKey: "before_lesson_notification") as? Bool ?? true
     var startLessonNotificationsEnabled = UserDefaults.standard.object(forKey: "start_lesson_notification") as? Bool ?? false
+    var defaultPlanId = UserDefaults(suiteName: "group.com.kondiko.Timetable")?.object(forKey: "defaultPlanId") as? String ?? ""
     
     fileprivate  var appDelegate: AppDelegate = {
         UIApplication.shared.delegate as! AppDelegate
     }()
     var moc : NSManagedObjectContext
-    let fetchRequest: NSFetchRequest<Days> = Days.fetchRequest()
+    let fetchRequest: NSFetchRequest<UserPlan> = UserPlan.fetchRequest()
+    let fetchRequestAll: NSFetchRequest<Days> = Days.fetchRequest()
     var days : [Days] = []
+    var allDays : [Days] = []
     private init() {
-            moc = appDelegate.persistentContainer.viewContext
+        if defaultPlanId != "" {
+            let predicate = NSPredicate(format: "id == %@", defaultPlanId)
+            fetchRequest.predicate = predicate
+        }
+        moc = appDelegate.persistentContainer.viewContext
         do {
-            days = try moc.fetch(fetchRequest)
+            let users = try moc.fetch(fetchRequest)
+            allDays = try moc.fetch(fetchRequestAll)
+            if !users.isEmpty {
+                days = users[0].daysArray
+            }
         } catch {
             print("Error")
         }
@@ -36,6 +47,20 @@ final class NotificationManager {
                     print("Notifications not permitted")
                 }
             }
+    }
+    
+    func fetchUsers() {
+        let predicate = NSPredicate(format: "id == %@", defaultPlanId)
+        moc = appDelegate.persistentContainer.viewContext
+        fetchRequest.predicate = predicate
+        do {
+            let users = try moc.fetch(fetchRequest)
+            if !users.isEmpty {
+                days = users[0].daysArray
+            }
+        } catch {
+            print("Error")
+        }
     }
     
     var notifications = [Notification]()
@@ -69,11 +94,11 @@ final class NotificationManager {
                     let notification1 = NSLocalizedString("Your next lesson is", comment: "")
                     let notification2 = NSLocalizedString("and starts", comment: "")
                     let notification3 = NSLocalizedString("in room", comment: "")
-                    let notification4 = NSLocalizedString("Next lesson", comment: "")
+                    let notification4 = NSLocalizedString("Timetable: ", comment: "")
 
                     let content = UNMutableNotificationContent()
                     content.sound = UNNotificationSound.default
-                    content.title = notification4
+                    content.title = notification4+lessons[i].day.user.name
                     if lessons[i+1].room != "" {
                         content.body = "\(notification1) \(lessons[i+1].lessonModel.name) \(notification2) \(dateFormatter.string(from: lessons[i+1].startHour)) \(notification3) \(lessons[i+1].room)."
                     } else {
@@ -113,6 +138,21 @@ final class NotificationManager {
         }
     }
     
+    func removeAllNotification() {
+        removeAllNotificationsWithSign("B")
+        removeAllNotificationsWithSign("S")
+    }
+    
+    func updateAllNotifications() {
+        removeAllNotification()
+        defaultPlanId = UserDefaults(suiteName: "group.com.kondiko.Timetable")?.object(forKey: "defaultPlanId") as! String
+        fetchUsers()
+        print("XDDDDD")
+        print(days[0].user.name)
+        updateAllStartLessonNotifications()
+        updateAllBeforeLessonNotifications()
+    }
+    
     
     public func updateStartLessonNotificationsFor(day: Days) {
         if startLessonNotificationsEnabled {
@@ -126,17 +166,19 @@ final class NotificationManager {
                     dateFormatter.dateFormat = "HH:mm"
                     var dateComponent = DateComponents()
                     let calendar = Calendar.current
+                    print("NOT")
+                    print(lesson.lessonModel.name)
                     
                     dateComponent.weekday = getNumberOfWeekDayOfName(lesson.day.name)
                     dateComponent.hour = calendar.component(.hour, from: lesson.startHour )
                     dateComponent.minute = calendar.component(.minute, from: lesson.startHour )
                     
                     let notification2 = NSLocalizedString("is about to start.", comment: "")
-                    let notification1 = NSLocalizedString("Lesson start", comment: "")
+                    let notification1 = NSLocalizedString("Timetable: ", comment: "")
                     
                     let content = UNMutableNotificationContent()
                     content.sound = UNNotificationSound.default
-                    content.title = notification1
+                    content.title = notification1+lesson.day.user.name
                     content.body = "\(lesson.lessonModel.name) \(notification2)"
                     
                     let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponent, repeats: true)
@@ -151,7 +193,7 @@ final class NotificationManager {
     }
     
     func removeAllNotificationsWithSign(_ sign : String) {
-        for day in days {
+        for day in allDays {
             removeNotificationWithSign(sign, day)
         }
     }

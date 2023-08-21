@@ -11,17 +11,23 @@ import SwiftUI
 import CoreData
 import WidgetKit
 import ClockKit
+import StoreKit
 
 @available(iOS 14.0, *)
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
-
+    
     var window: UIWindow?
     var wasMigrated : Bool = false
-    var addedWeekend : Bool = false
+    @ObservedObject var storeManager = StoreManager()
     @ObservedObject var settings = Settings()
+    let versionController = VersionController.shared
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
+        
+        storeManager.getProducts(productIDs: ["com.kondiko.Timetable.plus"])
+        SKPaymentQueue.default().add(storeManager)
+        
         UserDefaults.standard.set(false, forKey: "_UIConstraintBasedLayoutLogUnsatisfiable")
-              // Use this method to optionally configure and attach the UIWindow `window` to the provided UIWindowScene `scene`.
+        // Use this method to optionally configure and attach the UIWindow `window` to the provided UIWindowScene `scene`.
         // If using a storyboard, the `window` property will automatically be initialized and attached to the scene.
         // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
         // Get the managed object context from the shared persistent container.
@@ -29,9 +35,12 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // Create the SwiftUI view and set the context as the value for the managedObjectContext environment keyPath.
         // Add `@Environment(\.managedObjectContext)` in the views that will need the context.
         let contentView = MainView().environment(\.managedObjectContext, context)
+            .environmentObject(storeManager)
         let onboardView = OnboardingView().environment(\.managedObjectContext, context)
-        let hasLaunchedBefore = UserDefaults.standard.bool(forKey: "hasLaunchedBefore")
+            .environmentObject(storeManager)
 
+        let hasLaunchedBefore = UserDefaults.standard.bool(forKey: "hasLaunchedBefore")
+        
         // Use a UIHostingController as window root view controller.
         if let windowScene = scene as? UIWindowScene {
             let window = UIWindow(windowScene: windowScene)
@@ -47,54 +56,60 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                 UserDefaults.standard.set(true, forKey: "hasLaunchedBefore")
                 window.rootViewController = UIHostingController(rootView: onboardView)
             } else {
-                window.rootViewController = UIHostingController(rootView: contentView.environmentObject(Settings()))
+                window.rootViewController = UIHostingController(rootView: contentView.environmentObject(settings))
             }
             
             let existingVersion = UserDefaults.standard.object(forKey: "CurrentVersionNumber") as? String
             let appVersionNumber = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as! String
-
-            if existingVersion != appVersionNumber {
-                print("existingVersion = \(String(describing: existingVersion))")
+            
+            print("existingVersion = \(String(describing: existingVersion))")
+            if existingVersion?.versionCompare("1.1.2") == .orderedAscending {
                 UserDefaults.standard.set(appVersionNumber, forKey: "CurrentVersionNumber")
-
                 addWeekends()
-                
             }
-
+            UserDefaults.standard.set(appVersionNumber, forKey: "CurrentVersionNumber")
+            
             self.window = window
             if !hasLaunchedBefore {
-
-                let monday = Days(context: context)
-                monday.name = "Monday"
-                monday.id = 0
-                monday.idNumber = UUID()
-                monday.number = 0
-                let tuesday = Days(context: context)
-                tuesday.name = "Tuesday"
-                tuesday.id = 1
-                tuesday.idNumber = UUID()
-                tuesday.number = 1
-                let wednesday = Days(context: context)
-                wednesday.name = "Wednesday"
-                wednesday.id = 2
-                wednesday.idNumber = UUID()
-                wednesday.number = 2
-                let thursday = Days(context: context)
-                thursday.name = "Thursday"
-                thursday.id = 3
-                thursday.idNumber = UUID()
-                thursday.number = 3
-                let friday = Days(context: context)
-                friday.name = "Friday"
-                friday.id = 4
-                friday.idNumber = UUID()
-                friday.number = 4
-
-                do {
-                    try context.save()
-                } catch {
-                    print(error)
-            }
+                versionController.checkPreloadingStatus { isPreloadingCompleted in
+                    if isPreloadingCompleted {
+                        return
+                    } else {
+                        let monday = Days(context: context)
+                        monday.name = "Monday"
+                        monday.id = 0
+                        monday.idNumber = UUID()
+                        monday.number = 0
+                        let tuesday = Days(context: context)
+                        tuesday.name = "Tuesday"
+                        tuesday.id = 1
+                        tuesday.idNumber = UUID()
+                        tuesday.number = 1
+                        let wednesday = Days(context: context)
+                        wednesday.name = "Wednesday"
+                        wednesday.id = 2
+                        wednesday.idNumber = UUID()
+                        wednesday.number = 2
+                        let thursday = Days(context: context)
+                        thursday.name = "Thursday"
+                        thursday.id = 3
+                        thursday.idNumber = UUID()
+                        thursday.number = 3
+                        let friday = Days(context: context)
+                        friday.name = "Friday"
+                        friday.id = 4
+                        friday.idNumber = UUID()
+                        friday.number = 4
+                        if existingVersion == nil {
+                            addWeekends()
+                        }
+                        print("NOTE: Added days")
+                        do {
+                            try context.save()
+                        } catch {
+                            print(error)
+                        }
+                    }}
            }
 
             window.makeKeyAndVisible()
@@ -102,7 +117,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         
         func addWeekends() {
-            if !addedWeekend {
                 let saturday = Days(context: context)
                 saturday.name = "Saturday"
                 saturday.id = 5
@@ -122,11 +136,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                     print(error)
                 }
             }
-        }
-        
-        func updateDays() {
-                
-        }
+
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {

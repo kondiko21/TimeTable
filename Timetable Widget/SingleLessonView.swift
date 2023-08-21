@@ -16,7 +16,7 @@ struct SingleLessonView: View {
     var room : String
     let currentWidgetText = NSLocalizedString("current_lesson_widget", comment: "")
     let endWidgetText = NSLocalizedString("lesson_end_widget", comment: "")
-    let roomWidgetText = NSLocalizedString("lesson_room_widget", comment: "")
+    let roomWidgetText = NSLocalizedString("Room", comment: "")
     let noLessonWidgetText = NSLocalizedString("no_lessons_widget", comment: "")
     let noLessonYetWidgetText = NSLocalizedString("no_lessons_yet_widget", comment: "")
 

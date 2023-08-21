@@ -8,6 +8,7 @@
 
 import SwiftUI
 import WidgetKit
+import StoreKit
 
 struct EditModeView: View {
     
@@ -17,19 +18,19 @@ struct EditModeView: View {
     @EnvironmentObject var userSettings : Settings
     @Environment(\.managedObjectContext) var moc
     @FetchRequest var day: FetchedResults<Days>
-    var dayName : String
+    @State var dayName : String
     @State var isEditPresented = false
     var dateFormatter = DateFormatter()
     var title = NSLocalizedString("Edit plan:", comment: "View Title")
-    var dayNameLanguage : String
+    @State var dayNameLanguage : String
     @State var changedObject = true
     
     
     init(editedDay: Days) {
-        self.dayName = "Monday"
+        self._dayName = State(initialValue: "Monday")
         self._day = FetchRequest(entity: Days.entity(), sortDescriptors: [],predicate: NSPredicate(format: "idNumber == %@", editedDay.idNumber as CVarArg))
         dateFormatter.dateFormat = "HH:mm"
-        dayNameLanguage = NSLocalizedString(dayName, comment: "")
+        self._dayNameLanguage = State(initialValue: "Monday")
     }
     
     
@@ -60,6 +61,10 @@ struct EditModeView: View {
         }, label: {
             Image(systemName: "plus.circle")
         }))
+        .onAppear {
+            dayName = day.first?.name ?? "<day name>"
+            dayNameLanguage = NSLocalizedString(dayName, comment: "")
+        }
     }
     
     func delete(at offsets: IndexSet) {

@@ -18,9 +18,11 @@ struct SettingsView: View {
         NSLocalizedString("Light", comment: ""),
         NSLocalizedString("Automatically", comment: "")
     ]
-    @State private var colorSchemeSelected = 0
+    @AppStorage("com.kondiko.Timetable.plus") var premiumUser : Bool = false
     @ObservedObject var userSettings = Settings()
+    @State var colorSchemeSelected = 0
     @State var orderScreenActive  = false
+    @State var isBuyPremiumPresented: Bool = false
     
     var body: some View {
         Form {
@@ -81,9 +83,34 @@ struct SettingsView: View {
                 } label: {
                     Text("Days order")
                 }
-
-
+                if !premiumUser {
+                    Button {
+                        isBuyPremiumPresented = true
+                    } label: {
+                        Text("Plans management")
+                    }.sheet(isPresented: $isBuyPremiumPresented) {
+                        BuyPremiumView(presentationMode: $isBuyPremiumPresented)
+                    }
+                } else {
+                    NavigationLink {
+                        EditPlansView()
+                    } label: {
+                        Button {
+                        } label: {
+                            Text("Plans management")
+                            
+                        }
+                    }
+                }
             }
+            
+            Section {
+                Button {
+                    StoreManager().restoreProducts()
+                   } label: {
+                       Text("Restore Premium")
+                   }
+               }
             
             Section {
                 HStack {
@@ -97,11 +124,5 @@ struct SettingsView: View {
                 DaysOrderView(orderScreenActive: $orderScreenActive)
             }
         }
-    }
-}
-
-struct SettingsView_Previews: PreviewProvider {
-    static var previews: some View {
-        SettingsView()
     }
 }

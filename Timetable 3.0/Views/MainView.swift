@@ -8,6 +8,7 @@
 
 import SwiftUI
 import CoreData
+import CloudKit
 
 @available(iOS 14.0, *)
 struct MainView: View {
@@ -21,10 +22,12 @@ struct MainView: View {
     @State var usersList : [UserPlan] = []
     @State var days : [Days] = []
     @State var showNewUserView = false
+    @State var isPremiumPresented = false
     @State var newUserName = ""
     @State var selectedUser: UserPlan?
+    @State var isLoading : Bool = false
     let versionController = VersionController.shared
-    let firstUser = UserDefaults.standard.bool(forKey: "addedFirstUser")
+    @State var addedFirstUser = UserDefaults.standard.bool(forKey: "addedFirstUser")
     
     
     var body: some View {
@@ -50,7 +53,7 @@ struct MainView: View {
                                     .accessibilityAddTraits(.isHeader)
                             }
                             Menu {
-                                UsersMenuView(users: users.map({ user in
+                                UsersMenuView(premiumPresented: $isPremiumPresented, users: users.map({ user in
                                     return user
                                 }), showNewUserToggle: $showNewUserView, selectedUser: $selectedUser)
                                 
@@ -69,10 +72,13 @@ struct MainView: View {
                         NavigationLink(destination: EmptyView()) { EmptyView()}.opacity(0)
                     }
                 })
-            }
+                    .sheet(isPresented: $isPremiumPresented) {
+                        BuyPremiumView(presentationMode: $isPremiumPresented)
+                    }
+            }.navigationViewStyle(.stack)
             if  showNewUserView {
-                if versionController.firstLaunchOfThisVersion() || !firstUser {
-                    TextFieldPopUpView(headerText: "Name your plan", messageText: "Please name your timetable. This will help you manage your plan.", buttonText: "Set the plan", isPresented: $showNewUserView)
+                if versionController.firstLaunchOfThisVersion() || !addedFirstUser {
+                    TextFieldPopUpView(headerText: "Name your plan", messageText: "Please name your timetable. This will help you manage your plan.", buttonText: "Set the plan", isClosable: false, isPresented: $showNewUserView)
                     { name in
                         if name != "" {
                             let user = UserPlan(context: moc)
@@ -89,12 +95,15 @@ struct MainView: View {
                                 print(error)
                             }
                             UserDefaults.standard.set(true, forKey: "addedFirstUser")
+                            if let userDefaults = UserDefaults(suiteName: "group.com.kondiko.Timetable") {
+                                userDefaults.setValue(user.id.uuidString, forKey: "defaultPlanId")
+                            }
                             selectedUser = user
                             showNewUserView = false
                         }
                     }
-                } else {
-                    TextFieldPopUpView(headerText: "Add new plan", messageText: "Type name of the plan.", buttonText: "Add plan", isPresented: $showNewUserView)
+                } else if addedFirstUser {
+                    TextFieldPopUpView(headerText: "Add new plan", messageText: "Type name of the plan.", buttonText: "Add plan", isClosable: true, isPresented: $showNewUserView)
                     { name in
                         if name != "" {
                             let user = UserPlan(context: moc)
@@ -109,13 +118,35 @@ struct MainView: View {
                             }
                             addWeekdaysfor(user: user, context: moc)
                             showNewUserView = false
+                            if let userDefaults = UserDefaults(suiteName: "group.com.kondiko.Timetable") {
+                                userDefaults.setValue(user.id.uuidString, forKey: "defaultPlanId")
+                            }
                         }
                     }
                 }
             }
+            if isLoading { LoadingView() }
         }.onAppear {
-            if !firstUser {
-                showNewUserView = true
+                ReviewHandler.requestReview()
+                print("Disappear")
+            if !usersList.isEmpty {
+                UserDefaults.standard.set(true, forKey: "addedFirstUser")
+                addedFirstUser = true
+                showNewUserView = false
+            }
+            if !addedFirstUser {
+                isLoading = true
+                versionController.checkPreloadingStatus { isPreloadingCompleted in
+                    if isPreloadingCompleted {
+                        isLoading = false
+                        return
+                    } else {
+                        isLoading = false
+                        print("NOTE: Displaying popup")
+                        showNewUserView = true
+                        versionController.noteFirstSync()
+                    }
+                }
             }
             
             if versionController.firstLaunchOfThisVersion() {
@@ -123,7 +154,18 @@ struct MainView: View {
                     versionController.updateVersion()
                 }
             }
-            if !users.isEmpty { selectedUser = users[0] }
+            if !users.isEmpty {
+                if let userDefaults = UserDefaults(suiteName: "group.com.kondiko.Timetable") {
+                    let value = userDefaults.string(forKey: "defaultPlanId")
+                    for user in users {
+                        if user.id.uuidString == value {
+                            selectedUser = user
+                            break
+                        }
+                        selectedUser = users[0]
+                    }
+                }
+            }
         }
     }
 }
@@ -133,12 +175,15 @@ struct UsersMenuView: View {
     var users : [UserPlan]
     @Binding var showNewUserView : Bool
     @Binding var selectedUser : UserPlan?
+    @Binding var isBuyPremiumPresented: Bool
+    @AppStorage("com.kondiko.Timetable.plus") var premiumUser : Bool = false
+    @EnvironmentObject var storeManager : StoreManager
     
-    
-    init(users: [UserPlan], showNewUserToggle: Binding<Bool>, selectedUser: Binding<UserPlan?>) {
+    init(premiumPresented: Binding<Bool>, users: [UserPlan], showNewUserToggle: Binding<Bool>, selectedUser: Binding<UserPlan?>) {
         self.users = users
         self._showNewUserView = showNewUserToggle
         self._selectedUser = selectedUser
+        self._isBuyPremiumPresented = premiumPresented
     }
     
     var body: some View  {
@@ -150,14 +195,20 @@ struct UsersMenuView: View {
                 Text(user.name)
             }
         }
-        Button {
-            showNewUserView = true
-        } label: {
-            Text("Add new plan")
+        if premiumUser {
+            Button {
+                showNewUserView = true
+            } label: {
+                Text("Add new plan")
+            }
+        } else {
+            Button {
+                isBuyPremiumPresented = true
+            } label: {
+                Text("Add new plan")
+            }
         }
-        
     }
-    
 }
 
 func getNumberOfWeekDayOfName(_ name : String) -> Int {
@@ -184,8 +235,8 @@ func getNumberOfWeekDayOfName(_ name : String) -> Int {
         return 8
     }
     return 0
-    
 }
+
 struct RoundedCorners: View {
     var color: Color = .black
     var tl: CGFloat = 0.0 // top-left radius parameter
@@ -260,19 +311,11 @@ struct LessonPlanElement: View {
     
     var body: some View {
         ZStack{
-            if currentLesson == true {
                 HStack(spacing: 0){
                     RoundedCorners(color: Color(UIColor.UIColorFromString(string: lesson.lessonModel.color)).opacity(1.0), tl: 10, bl: 10).frame(width: 15)
                     RoundedCorners(color: Color(UIColor.UIColorFromString(string: lesson.lessonModel.color)).opacity(0.3), tr: 10, br: 10)
                 }.frame(height: 110)
-                // .border(Color(UIColor(red: 1.00, green: 0.00, blue: 0.00, alpha: 1.00)), width: 2)
-            } else {
-                HStack(spacing: 0){
-                    RoundedCorners(color: Color(UIColor.UIColorFromString(string: lesson.lessonModel.color)).opacity(1.0), tl: 10, bl: 10).frame(width: 15)
-                    RoundedCorners(color: Color(UIColor.UIColorFromString(string: lesson.lessonModel.color)).opacity(0.3), tr: 10, br: 10)
-                }.frame(height: 110)
-                
-            }
+            
             VStack{
                 HStack(alignment: .top){
                     VStack(alignment: .leading) {
@@ -296,17 +339,22 @@ struct LessonPlanElement: View {
                 Spacer()
                 HStack(alignment: .bottom){
                     Spacer()
+                    Image(systemName: "clock.fill")
+                        .font(Font.system(size: 15, weight: .semibold))
+                        .foregroundColor(Color(UIColor.UIColorFromString(string: lesson.lessonModel.color)))
+                        .padding(.trailing, -5)
                     Text("\(dateFormatter.string(from: lesson.startHour)) - \(dateFormatter.string(from: lesson.endHour))")
-                        .padding(.top, 10)
-                        .padding(.bottom, 12)
-                        .padding(.trailing, 20)
                         .font(Font.system(size: 15, weight: .semibold))
                 }
+                .padding(.top, 10)
+                .padding(.bottom, 12)
+                .padding(.trailing, 20)
             }
-        }.padding(.leading, 10)
-            .padding(.trailing, 10)
-            .padding(.bottom, 10)
-            .cornerRadius(5)
+        }
+        .padding(.leading, 10)
+        .padding(.trailing, 10)
+        .padding(.bottom, 10)
+        .cornerRadius(5)
         
     }
 }
@@ -422,9 +470,22 @@ struct DayList: View {
                             .id(getNumberOfWeekDayOfName(day.name))
                         }
                         .padding(.top, 10)
-                        ForEach(day.lessonArray, id: \.self) { lesson in
-                            LessonPlanElement(lesson: lesson, current: dateNow)
+                            ForEach(day.lessonArray, id: \.self) { lesson in
+                                LessonPlanElement(lesson: lesson, current: dateNow)
+                            }
+                        if day.lessonArray.isEmpty {
+                            ZStack {
+                                HStack(spacing: 0){
+                                    RoundedCorners(color: Color.gray.opacity(1.0), tl: 10, bl: 10).frame(width: 15)
+                                    RoundedCorners(color: Color.gray.opacity(0.3), tr: 10, br: 10)
+                                }.frame(height: 110)
+                                Text("DAY OFF")
+                                    .cornerRadius(1)
+                                    .font(.system(.largeTitle, design: .rounded).weight(.semibold))
+                                    .foregroundColor(.gray)
+                            }.padding(10)
                         }
+                        Divider()
                     }
                     .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0))
                 }
@@ -432,3 +493,4 @@ struct DayList: View {
         }
     }
 }
+

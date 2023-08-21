@@ -9,6 +9,7 @@
 import UIKit
 import CoreData
 import CloudKit
+import StoreKit
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -16,7 +17,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
+        
         return true
     }
 
@@ -52,8 +53,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         container.viewContext.automaticallyMergesChangesFromParent = true
         description.shouldMigrateStoreAutomatically = true
         description.shouldInferMappingModelAutomatically = false
-        description.cloudKitContainerOptions = nil
+        description.cloudKitContainerOptions = NSPersistentCloudKitContainerOptions(containerIdentifier: "iCloud.com.kondiko.timetable.stable")
         description.setOption(true as NSNumber, forKey: NSPersistentHistoryTrackingKey)
+        description.setOption(true as NSNumber, forKey: NSPersistentStoreRemoteChangeNotificationPostOptionKey)
+
         container.persistentStoreDescriptions = [description]
 
         //FUNCTION($entityPolicy, "idNumberWithId:" , $source.id)

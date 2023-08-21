@@ -21,7 +21,6 @@ struct DaysOrderView: View {
             HStack {
                 if selectedUser != nil {
                     Text("Plan: \(selectedUser!.name)").font(.largeTitle).bold()
-                        //.accessibilityAddTraits(.isHeader)
                         .padding(.top, 10)
                         .padding(.leading)
                 } else {

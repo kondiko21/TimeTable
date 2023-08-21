@@ -5,14 +5,6 @@ class Settings: ObservableObject {
     
     
     var notificationManager = NotificationManager.shared
-
-    @Published var lessonLength: Int {
-        didSet {
-            UserDefaults.standard.set(lessonLength, forKey: "lesson_length")
-            print("XZX")
-
-        }
-    }
     
     @Published var notificationIntervalLength: Int {
         didSet {
@@ -46,6 +38,14 @@ class Settings: ObservableObject {
             } else {
                 notificationManager.removeAllNotificationsWithSign("S")
             }
+        }
+    }
+    
+    @Published var lessonLength: Int {
+        didSet {
+            UserDefaults.standard.set(lessonLength, forKey: "lesson_length")
+            print("XZX")
+
         }
     }
     

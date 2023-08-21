@@ -20,6 +20,7 @@ struct AddLessonModalForm: View {
     @State var room = ""
     @State var id : UUID = UUID()
     @Environment(\.managedObjectContext) var moc
+    @AppStorage("completedRequiredActions") var completedRequiredActions: Int = 0
     @State var modelLesson: LessonModel = LessonModel()
     @State var createdLesson: Lesson = Lesson()
     @State var startHour: Date = Date()
@@ -90,7 +91,7 @@ struct AddLessonModalForm: View {
                         }
                         HStack {
                             Text("End lesson")
-                            DatePicker("End lessonxxxx", selection: $endHour, displayedComponents: .hourAndMinute)
+                            DatePicker("End lesson", selection: $endHour, displayedComponents: .hourAndMinute)
                                 .onChange(of: endHour) { (newValue) in
                                     startHour = endHour.addingTimeInterval(-TimeInterval(lessonTime))
                                 }
@@ -209,6 +210,7 @@ struct AddLessonModalForm: View {
         if correctData {
             do {
                 try self.moc.save()
+                completedRequiredActions += 1
                 showModal.toggle()
             } catch {
                 print(error)
@@ -242,24 +244,3 @@ func checkTimeAvailability(_ start : Date, _ end : Date, _ day : Days, _ editedL
     }
     return intersectingLesson
 }
-
-
-
-public extension UIColor {
-    
-    class func StringFromUIColor(color: UIColor) -> String {
-        let components = color.cgColor.components
-        return "[\(components![0]), \(components![1]), \(components![2]), \(components![3])]"
-    }
-    
-    class func UIColorFromString(string: String) -> UIColor {
-        let componentsString = string.replacingOccurrences(of: "[", with: "").replacingOccurrences(of: "]", with: "")
-        let components = componentsString.split(separator: ",")
-        return UIColor(red: CGFloat((components[0] as NSString).floatValue),
-                       green: CGFloat((components[1] as NSString).floatValue),
-                       blue: CGFloat((components[2] as NSString).floatValue),
-                       alpha: CGFloat((components[3] as NSString).floatValue))
-    }
-    
-}
-

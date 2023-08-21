@@ -10,7 +10,7 @@
 import Foundation
 import CoreData
 
-
+@objc(Days)
 public class Days: NSManagedObject {
 
 }

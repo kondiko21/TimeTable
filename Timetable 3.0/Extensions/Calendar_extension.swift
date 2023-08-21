@@ -34,7 +34,7 @@ extension Calendar {
             return 7
         }
         return 0
- 
+        
     }
     
     func getNameOfWeekDayOfNumber(_ number : Int) -> String {
@@ -62,6 +62,34 @@ extension Calendar {
             return "Saturday"
         }
         return "Wrong data"
- 
+        
+    }
+    
+    
+    func getAppNumberOfWeekdayFromWeekday(_ number : Int) -> Int {
+        
+        if number == 1 {
+            return 6
+        }
+        if number == 2 {
+            return 0
+        }
+        if number == 3 {
+            return 1
+        }
+        if number == 4 {
+            return 2
+        }
+        if number == 5 {
+            return 3
+        }
+        if number == 6 {
+            return 4
+        }
+        if number == 7 {
+            return 5
+        }
+        return 0
+        
     }
 }

@@ -8,6 +8,33 @@
 
 /* Begin PBXBuildFile section */
 		71033A0228D0F53500668298 /* TextFieldPopUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71033A0128D0F53500668298 /* TextFieldPopUpView.swift */; };
+		710ED99A2A83FB1C0003F104 /* ReviewHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 710ED9992A83FB1C0003F104 /* ReviewHandler.swift */; };
+		710ED99C2A8543EB0003F104 /* StoreManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 710ED99B2A8543EB0003F104 /* StoreManager.swift */; };
+		710ED99E2A8547020003F104 /* BuyPremiumView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 710ED99D2A8547020003F104 /* BuyPremiumView.swift */; };
+		710ED9A02A8551AA0003F104 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 710ED99F2A8551AA0003F104 /* StoreKit.framework */; };
+		710ED9AB2A8B7A0E0003F104 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 71F3B3C825F39CE90063978A /* WidgetKit.framework */; };
+		710ED9AC2A8B7A0E0003F104 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 71F3B3CA25F39CE90063978A /* SwiftUI.framework */; };
+		710ED9AF2A8B7A0E0003F104 /* Timetable_Widget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 710ED9AE2A8B7A0E0003F104 /* Timetable_Widget.swift */; };
+		710ED9B22A8B7A0F0003F104 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 710ED9B12A8B7A0F0003F104 /* Assets.xcassets */; };
+		710ED9B82A8B7A0F0003F104 /* Timetable WatchWidgetExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 710ED9AA2A8B7A0E0003F104 /* Timetable WatchWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		710ED9BD2A8B7A440003F104 /* SingleLessonComplicationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 710ED9A12A894BF30003F104 /* SingleLessonComplicationView.swift */; };
+		710ED9C42A8D34480003F104 /* Days+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 715D6282290AE50000C1BB99 /* Days+CoreDataClass.swift */; };
+		710ED9C52A8D34480003F104 /* Lesson+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71B31B712708BC64004B20D1 /* Lesson+CoreDataClass.swift */; };
+		710ED9C62A8D34480003F104 /* Days+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 715D6283290AE50000C1BB99 /* Days+CoreDataProperties.swift */; };
+		710ED9C72A8D34480003F104 /* UserPlan+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71FCC14D28D63CBB00F94FCA /* UserPlan+CoreDataProperties.swift */; };
+		710ED9C82A8D34480003F104 /* Lesson+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71B31B722708BC64004B20D1 /* Lesson+CoreDataProperties.swift */; };
+		710ED9C92A8D34480003F104 /* LessonModel+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 714624E92708BD4300F341C7 /* LessonModel+CoreDataProperties.swift */; };
+		710ED9CA2A8D34480003F104 /* UserPlan+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71FCC14C28D63CBB00F94FCA /* UserPlan+CoreDataClass.swift */; };
+		710ED9CB2A8D34480003F104 /* LessonModel+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 714624E82708BD4300F341C7 /* LessonModel+CoreDataClass.swift */; };
+		710ED9CC2A8D34580003F104 /* Timetable_3_0 v2.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 71B31B6A2708BB5D004B20D1 /* Timetable_3_0 v2.xcdatamodeld */; };
+		710ED9CD2A8D34750003F104 /* String_extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71A1CB532A7433C4006D6635 /* String_extension.swift */; };
+		710ED9CE2A8D34750003F104 /* Calendar_extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71733ACF25FA0CD600207B5E /* Calendar_extension.swift */; };
+		710ED9CF2A8D34750003F104 /* Date_extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71434D2925FBAD2D00EDD6B1 /* Date_extension.swift */; };
+		710ED9D02A8D34750003F104 /* EnvironmentValue_extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 715D628E290EB17100C1BB99 /* EnvironmentValue_extension.swift */; };
+		710ED9D12A8D34750003F104 /* UIColor_extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71A1CB882A7FA2BF006D6635 /* UIColor_extension.swift */; };
+		710ED9D32A8D39750003F104 /* SingleLessonComplicationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 710ED9D22A8D39750003F104 /* SingleLessonComplicationView.swift */; };
+		710ED9D42A8D39750003F104 /* SingleLessonComplicationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 710ED9D22A8D39750003F104 /* SingleLessonComplicationView.swift */; };
+		710ED9D52A8D39750003F104 /* SingleLessonComplicationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 710ED9D22A8D39750003F104 /* SingleLessonComplicationView.swift */; };
 		71168E57270B5C71008B9CBE /* DaysOrderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71168E56270B5C71008B9CBE /* DaysOrderView.swift */; };
 		711A78D924EE655000A41A48 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 711A78D824EE655000A41A48 /* SceneDelegate.swift */; };
 		711A78DE24EE655000A41A48 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 711A78DD24EE655000A41A48 /* MainView.swift */; };
@@ -15,6 +42,9 @@
 		711A78E324EE655100A41A48 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 711A78E224EE655100A41A48 /* Preview Assets.xcassets */; };
 		711A78E624EE655100A41A48 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 711A78E424EE655100A41A48 /* LaunchScreen.storyboard */; };
 		711A78F024F2809100A41A48 /* EditModeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 711A78EF24F2809100A41A48 /* EditModeView.swift */; };
+		71318F092A7FAA8D004A0B83 /* VersionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71FCC13E28D3857F00F94FCA /* VersionController.swift */; };
+		71318F122A7FB6D6004A0B83 /* WatchConnection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71318F0F2A7FB322004A0B83 /* WatchConnection.swift */; };
+		71318F132A7FB6D9004A0B83 /* WatchConnectionPhone.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71318F0D2A7FB2DE004A0B83 /* WatchConnectionPhone.swift */; };
 		71434D2A25FBAD2D00EDD6B1 /* Date_extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71434D2925FBAD2D00EDD6B1 /* Date_extension.swift */; };
 		71434D3D25FD17D000EDD6B1 /* SingleLessonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71434D3C25FD17D000EDD6B1 /* SingleLessonView.swift */; };
 		71434D4025FD188800EDD6B1 /* SingleLessonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71434D3C25FD17D000EDD6B1 /* SingleLessonView.swift */; };
@@ -34,8 +64,11 @@
 		715D62942922B36C00C1BB99 /* UserPlan+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71FCC14D28D63CBB00F94FCA /* UserPlan+CoreDataProperties.swift */; };
 		715D62952922B37300C1BB99 /* UserPlan+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71FCC14C28D63CBB00F94FCA /* UserPlan+CoreDataClass.swift */; };
 		715D62962922B37400C1BB99 /* UserPlan+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71FCC14C28D63CBB00F94FCA /* UserPlan+CoreDataClass.swift */; };
+		716C52122A93BAE0002E9B48 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 71C2CAAC2563EFAD003D6278 /* Localizable.strings */; };
+		716C52132A93BAE1002E9B48 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 71C2CAAC2563EFAD003D6278 /* Localizable.strings */; };
 		71733AD025FA0CD600207B5E /* Calendar_extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71733ACF25FA0CD600207B5E /* Calendar_extension.swift */; };
 		71733AD325FA0D1C00207B5E /* Calendar_extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71733ACF25FA0CD600207B5E /* Calendar_extension.swift */; };
+		7178C8AB2A8002AD00FFABC1 /* Timetable_3_0 v2.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 71B31B6A2708BB5D004B20D1 /* Timetable_3_0 v2.xcdatamodeld */; };
 		717EE9A628A0346100D5F80E /* v1tov2Mapping.xcmappingmodel in Sources */ = {isa = PBXBuildFile; fileRef = 717EE9A528A0346100D5F80E /* v1tov2Mapping.xcmappingmodel */; };
 		717EE9A728A0346100D5F80E /* v1tov2Mapping.xcmappingmodel in Sources */ = {isa = PBXBuildFile; fileRef = 717EE9A528A0346100D5F80E /* v1tov2Mapping.xcmappingmodel */; };
 		719FA7302708C288008CFA05 /* LessonModel+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 714624E82708BD4300F341C7 /* LessonModel+CoreDataClass.swift */; };
@@ -43,6 +76,30 @@
 		719FA7342708C291008CFA05 /* Lesson+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71B31B712708BC64004B20D1 /* Lesson+CoreDataClass.swift */; };
 		719FA7352708C293008CFA05 /* Lesson+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71B31B722708BC64004B20D1 /* Lesson+CoreDataProperties.swift */; };
 		71A1CB522A325575006D6635 /* v2tov45Mapping.xcmappingmodel in Sources */ = {isa = PBXBuildFile; fileRef = 71A1CB512A325575006D6635 /* v2tov45Mapping.xcmappingmodel */; };
+		71A1CB542A7433C4006D6635 /* String_extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71A1CB532A7433C4006D6635 /* String_extension.swift */; };
+		71A1CB562A7809E3006D6635 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71A1CB552A7809E3006D6635 /* LoadingView.swift */; };
+		71A1CB582A78E702006D6635 /* EditPlansView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71A1CB572A78E702006D6635 /* EditPlansView.swift */; };
+		71A1CB602A7FA07C006D6635 /* TimeTable_WatchApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71A1CB5F2A7FA07C006D6635 /* TimeTable_WatchApp.swift */; };
+		71A1CB622A7FA07C006D6635 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71A1CB612A7FA07C006D6635 /* MainView.swift */; };
+		71A1CB642A7FA07D006D6635 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 71A1CB632A7FA07D006D6635 /* Assets.xcassets */; };
+		71A1CB6A2A7FA07D006D6635 /* TimeTable.Watch Watch App.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 71A1CB5D2A7FA07C006D6635 /* TimeTable.Watch Watch App.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		71A1CB6F2A7FA0C6006D6635 /* Days+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 715D6282290AE50000C1BB99 /* Days+CoreDataClass.swift */; };
+		71A1CB702A7FA0C9006D6635 /* Days+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 715D6283290AE50000C1BB99 /* Days+CoreDataProperties.swift */; };
+		71A1CB772A7FA0D2006D6635 /* Lesson+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71B31B722708BC64004B20D1 /* Lesson+CoreDataProperties.swift */; };
+		71A1CB782A7FA0D2006D6635 /* LessonModel+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 714624E82708BD4300F341C7 /* LessonModel+CoreDataClass.swift */; };
+		71A1CB792A7FA0D2006D6635 /* UserPlan+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71FCC14D28D63CBB00F94FCA /* UserPlan+CoreDataProperties.swift */; };
+		71A1CB7A2A7FA0D2006D6635 /* UserPlan+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71FCC14C28D63CBB00F94FCA /* UserPlan+CoreDataClass.swift */; };
+		71A1CB7B2A7FA0D2006D6635 /* LessonModel+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 714624E92708BD4300F341C7 /* LessonModel+CoreDataProperties.swift */; };
+		71A1CB7C2A7FA0D2006D6635 /* Lesson+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71B31B712708BC64004B20D1 /* Lesson+CoreDataClass.swift */; };
+		71A1CB822A7FA1B1006D6635 /* String_extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71A1CB532A7433C4006D6635 /* String_extension.swift */; };
+		71A1CB832A7FA1B1006D6635 /* Date_extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71434D2925FBAD2D00EDD6B1 /* Date_extension.swift */; };
+		71A1CB842A7FA1B2006D6635 /* String_extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71A1CB532A7433C4006D6635 /* String_extension.swift */; };
+		71A1CB852A7FA1B2006D6635 /* Calendar_extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71733ACF25FA0CD600207B5E /* Calendar_extension.swift */; };
+		71A1CB862A7FA1B2006D6635 /* Date_extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71434D2925FBAD2D00EDD6B1 /* Date_extension.swift */; };
+		71A1CB872A7FA1B2006D6635 /* EnvironmentValue_extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 715D628E290EB17100C1BB99 /* EnvironmentValue_extension.swift */; };
+		71A1CB892A7FA2BF006D6635 /* UIColor_extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71A1CB882A7FA2BF006D6635 /* UIColor_extension.swift */; };
+		71A1CB8A2A7FA2BF006D6635 /* UIColor_extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71A1CB882A7FA2BF006D6635 /* UIColor_extension.swift */; };
+		71A1CB8B2A7FA2BF006D6635 /* UIColor_extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71A1CB882A7FA2BF006D6635 /* UIColor_extension.swift */; };
 		71B31B6927076D40004B20D1 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 71C2CAAC2563EFAD003D6278 /* Localizable.strings */; };
 		71B31B732708BCCE004B20D1 /* Lesson+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71B31B712708BC64004B20D1 /* Lesson+CoreDataClass.swift */; };
 		71B31B752708BCCE004B20D1 /* Lesson+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71B31B722708BC64004B20D1 /* Lesson+CoreDataProperties.swift */; };
@@ -66,6 +123,20 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		710ED9B62A8B7A0F0003F104 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 711A78CB24EE655000A41A48 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 710ED9A92A8B7A0E0003F104;
+			remoteInfo = "Timetable WidgetExtension";
+		};
+		71A1CB682A7FA07D006D6635 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 711A78CB24EE655000A41A48 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 71A1CB5C2A7FA07C006D6635;
+			remoteInfo = "TimeTable.Watch Watch App";
+		};
 		71F3B3D225F39CEC0063978A /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 711A78CB24EE655000A41A48 /* Project object */;
@@ -76,12 +147,24 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
+		710ED9BC2A8B7A0F0003F104 /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				710ED9B82A8B7A0F0003F104 /* Timetable WatchWidgetExtension.appex in Embed Foundation Extensions */,
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		71C4EAB2255D536D00277DCC /* Embed Watch Content */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "$(CONTENTS_FOLDER_PATH)/Watch";
 			dstSubfolderSpec = 16;
 			files = (
+				71A1CB6A2A7FA07D006D6635 /* TimeTable.Watch Watch App.app in Embed Watch Content */,
 			);
 			name = "Embed Watch Content";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -102,6 +185,17 @@
 /* Begin PBXFileReference section */
 		71033A0028CDE38800668298 /* Timetable_3_0 v3.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Timetable_3_0 v3.xcdatamodel"; sourceTree = "<group>"; };
 		71033A0128D0F53500668298 /* TextFieldPopUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldPopUpView.swift; sourceTree = "<group>"; };
+		710ED9992A83FB1C0003F104 /* ReviewHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewHandler.swift; sourceTree = "<group>"; };
+		710ED99B2A8543EB0003F104 /* StoreManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreManager.swift; sourceTree = "<group>"; };
+		710ED99D2A8547020003F104 /* BuyPremiumView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuyPremiumView.swift; sourceTree = "<group>"; };
+		710ED99F2A8551AA0003F104 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
+		710ED9A12A894BF30003F104 /* SingleLessonComplicationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleLessonComplicationView.swift; sourceTree = "<group>"; };
+		710ED9AA2A8B7A0E0003F104 /* Timetable WatchWidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Timetable WatchWidgetExtension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
+		710ED9AE2A8B7A0E0003F104 /* Timetable_Widget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Timetable_Widget.swift; sourceTree = "<group>"; };
+		710ED9B12A8B7A0F0003F104 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		710ED9B32A8B7A0F0003F104 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		710ED9C32A8B7A850003F104 /* Timetable WatchWidgetExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Timetable WatchWidgetExtension.entitlements"; sourceTree = "<group>"; };
+		710ED9D22A8D39750003F104 /* SingleLessonComplicationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleLessonComplicationView.swift; sourceTree = "<group>"; };
 		71168E56270B5C71008B9CBE /* DaysOrderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DaysOrderView.swift; sourceTree = "<group>"; };
 		711A78D324EE655000A41A48 /* Timetable 3.0.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Timetable 3.0.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		711A78D624EE655000A41A48 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -112,6 +206,9 @@
 		711A78E524EE655100A41A48 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		711A78E724EE655100A41A48 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		711A78EF24F2809100A41A48 /* EditModeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditModeView.swift; sourceTree = "<group>"; };
+		71318F0D2A7FB2DE004A0B83 /* WatchConnectionPhone.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchConnectionPhone.swift; sourceTree = "<group>"; };
+		71318F0F2A7FB322004A0B83 /* WatchConnection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchConnection.swift; sourceTree = "<group>"; };
+		71318F142A7FBB35004A0B83 /* TimeTable-Watch-Watch-App-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "TimeTable-Watch-Watch-App-Info.plist"; sourceTree = SOURCE_ROOT; };
 		71434D2925FBAD2D00EDD6B1 /* Date_extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Date_extension.swift; sourceTree = "<group>"; };
 		71434D3C25FD17D000EDD6B1 /* SingleLessonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleLessonView.swift; sourceTree = "<group>"; };
 		714624E82708BD4300F341C7 /* LessonModel+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LessonModel+CoreDataClass.swift"; sourceTree = "<group>"; };
@@ -121,12 +218,22 @@
 		715D6282290AE50000C1BB99 /* Days+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "Days+CoreDataClass.swift"; path = "../../Days+CoreDataClass.swift"; sourceTree = "<group>"; };
 		715D6283290AE50000C1BB99 /* Days+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Days+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		715D628E290EB17100C1BB99 /* EnvironmentValue_extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnvironmentValue_extension.swift; sourceTree = "<group>"; };
+		716C52112A8E8A3C002E9B48 /* TimeTable.Watch Watch App.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "TimeTable.Watch Watch App.entitlements"; sourceTree = "<group>"; };
 		71733AAF25F95B1000207B5E /* Timetable 3.0.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Timetable 3.0.entitlements"; sourceTree = "<group>"; };
 		71733ABA25F960F500207B5E /* TimetableWidgetExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = TimetableWidgetExtension.entitlements; sourceTree = "<group>"; };
 		71733ACF25FA0CD600207B5E /* Calendar_extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Calendar_extension.swift; sourceTree = "<group>"; };
 		717EE99E28A00CD700D5F80E /* Timetable_3_v5.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Timetable_3_v5.xcdatamodel; sourceTree = "<group>"; };
 		717EE9A528A0346100D5F80E /* v1tov2Mapping.xcmappingmodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcmappingmodel; path = v1tov2Mapping.xcmappingmodel; sourceTree = "<group>"; };
 		71A1CB512A325575006D6635 /* v2tov45Mapping.xcmappingmodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcmappingmodel; path = v2tov45Mapping.xcmappingmodel; sourceTree = "<group>"; };
+		71A1CB532A7433C4006D6635 /* String_extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String_extension.swift; sourceTree = "<group>"; };
+		71A1CB552A7809E3006D6635 /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
+		71A1CB572A78E702006D6635 /* EditPlansView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditPlansView.swift; sourceTree = "<group>"; };
+		71A1CB5D2A7FA07C006D6635 /* TimeTable.Watch Watch App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "TimeTable.Watch Watch App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		71A1CB5F2A7FA07C006D6635 /* TimeTable_WatchApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeTable_WatchApp.swift; sourceTree = "<group>"; };
+		71A1CB612A7FA07C006D6635 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
+		71A1CB632A7FA07D006D6635 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		71A1CB6E2A7FA097006D6635 /* TimeTable.Watch Watch App.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "TimeTable.Watch Watch App.entitlements"; sourceTree = "<group>"; };
+		71A1CB882A7FA2BF006D6635 /* UIColor_extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColor_extension.swift; sourceTree = "<group>"; };
 		71B31B6B2708BB5D004B20D1 /* Timetable_3_0.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Timetable_3_0.xcdatamodel; sourceTree = "<group>"; };
 		71B31B6C2708BB5D004B20D1 /* Timetable_3_0 v 2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Timetable_3_0 v 2.xcdatamodel"; sourceTree = "<group>"; };
 		71B31B712708BC64004B20D1 /* Lesson+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Lesson+CoreDataClass.swift"; sourceTree = "<group>"; };
@@ -158,11 +265,28 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		710ED9A72A8B7A0E0003F104 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				710ED9AC2A8B7A0E0003F104 /* SwiftUI.framework in Frameworks */,
+				710ED9AB2A8B7A0E0003F104 /* WidgetKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		711A78D024EE655000A41A48 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				71CA01AB273EFB2B003635E2 /* CloudKit.framework in Frameworks */,
+				710ED9A02A8551AA0003F104 /* StoreKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		71A1CB5A2A7FA07C006D6635 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -180,13 +304,29 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		710ED9AD2A8B7A0E0003F104 /* Timetable Watch Widget  */ = {
+			isa = PBXGroup;
+			children = (
+				710ED9AE2A8B7A0E0003F104 /* Timetable_Widget.swift */,
+				710ED9A12A894BF30003F104 /* SingleLessonComplicationView.swift */,
+				710ED9B12A8B7A0F0003F104 /* Assets.xcassets */,
+				710ED9B32A8B7A0F0003F104 /* Info.plist */,
+			);
+			path = "Timetable Watch Widget ";
+			sourceTree = "<group>";
+		};
 		711A78CA24EE655000A41A48 = {
 			isa = PBXGroup;
 			children = (
+				716C52112A8E8A3C002E9B48 /* TimeTable.Watch Watch App.entitlements */,
+				710ED9C32A8B7A850003F104 /* Timetable WatchWidgetExtension.entitlements */,
 				71733ABA25F960F500207B5E /* TimetableWidgetExtension.entitlements */,
 				711A78D524EE655000A41A48 /* Timetable 3.0 */,
+				71318F0C2A7FB2AD004A0B83 /* WatchConnectivity */,
+				71A1CB5E2A7FA07C006D6635 /* Timetable Watch  */,
 				71C4EA8A255D536900277DCC /* TimeTable */,
-				71F3B3CC25F39CE90063978A /* TimetableWidget */,
+				71F3B3CC25F39CE90063978A /* Timetable Widget */,
+				710ED9AD2A8B7A0E0003F104 /* Timetable Watch Widget  */,
 				71F3B3C725F39CE90063978A /* Frameworks */,
 				711A78D424EE655000A41A48 /* Products */,
 			);
@@ -197,6 +337,8 @@
 			children = (
 				711A78D324EE655000A41A48 /* Timetable 3.0.app */,
 				71F3B3C625F39CE90063978A /* Timetable 3.0WidgetExtension.appex */,
+				71A1CB5D2A7FA07C006D6635 /* TimeTable.Watch Watch App.app */,
+				710ED9AA2A8B7A0E0003F104 /* Timetable WatchWidgetExtension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -224,14 +366,37 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
+		71318F0C2A7FB2AD004A0B83 /* WatchConnectivity */ = {
+			isa = PBXGroup;
+			children = (
+				71318F0D2A7FB2DE004A0B83 /* WatchConnectionPhone.swift */,
+				71318F0F2A7FB322004A0B83 /* WatchConnection.swift */,
+			);
+			path = WatchConnectivity;
+			sourceTree = "<group>";
+		};
 		71733ACE25FA0CBD00207B5E /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
 				71733ACF25FA0CD600207B5E /* Calendar_extension.swift */,
 				71434D2925FBAD2D00EDD6B1 /* Date_extension.swift */,
+				71A1CB532A7433C4006D6635 /* String_extension.swift */,
 				715D628E290EB17100C1BB99 /* EnvironmentValue_extension.swift */,
+				71A1CB882A7FA2BF006D6635 /* UIColor_extension.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		71A1CB5E2A7FA07C006D6635 /* Timetable Watch  */ = {
+			isa = PBXGroup;
+			children = (
+				71A1CB6E2A7FA097006D6635 /* TimeTable.Watch Watch App.entitlements */,
+				71318F142A7FBB35004A0B83 /* TimeTable-Watch-Watch-App-Info.plist */,
+				71A1CB5F2A7FA07C006D6635 /* TimeTable_WatchApp.swift */,
+				71A1CB612A7FA07C006D6635 /* MainView.swift */,
+				71A1CB632A7FA07D006D6635 /* Assets.xcassets */,
+			);
+			path = "Timetable Watch ";
 			sourceTree = "<group>";
 		};
 		71C2CAA32563EEBA003D6278 /* Languages */ = {
@@ -271,12 +436,15 @@
 			children = (
 				71539B7F2592075300A56508 /* OnboardingView.swift */,
 				711A78DD24EE655000A41A48 /* MainView.swift */,
+				710ED99D2A8547020003F104 /* BuyPremiumView.swift */,
 				711A78EF24F2809100A41A48 /* EditModeView.swift */,
 				71DC31AD255AA1C800B1F52A /* EditLessonView.swift */,
 				71DC31A92559AD7A00B1F52A /* AddLessonModalForm.swift */,
 				71C2CAB0256D2F03003D6278 /* SettingsView.swift */,
 				71168E56270B5C71008B9CBE /* DaysOrderView.swift */,
 				71033A0128D0F53500668298 /* TextFieldPopUpView.swift */,
+				71A1CB552A7809E3006D6635 /* LoadingView.swift */,
+				71A1CB572A78E702006D6635 /* EditPlansView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -285,7 +453,9 @@
 			isa = PBXGroup;
 			children = (
 				71C2CAB32574E123003D6278 /* Settings.swift */,
+				710ED9992A83FB1C0003F104 /* ReviewHandler.swift */,
 				71C2CA9D25618BF5003D6278 /* NotificationManager.swift */,
+				710ED99B2A8543EB0003F104 /* StoreManager.swift */,
 				71FCC13E28D3857F00F94FCA /* VersionController.swift */,
 				71D320942719E894002D1F11 /* DaysMigrationPolicy.swift */,
 				711A78D824EE655000A41A48 /* SceneDelegate.swift */,
@@ -302,6 +472,7 @@
 		71F3B3C725F39CE90063978A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				710ED99F2A8551AA0003F104 /* StoreKit.framework */,
 				71CA01B127404C21003635E2 /* NetworkExtension.framework */,
 				71CA01AA273EFB2B003635E2 /* CloudKit.framework */,
 				71F3B3C825F39CE90063978A /* WidgetKit.framework */,
@@ -310,20 +481,38 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		71F3B3CC25F39CE90063978A /* TimetableWidget */ = {
+		71F3B3CC25F39CE90063978A /* Timetable Widget */ = {
 			isa = PBXGroup;
 			children = (
 				71F3B3CD25F39CE90063978A /* TimetableWidget.swift */,
 				71434D3C25FD17D000EDD6B1 /* SingleLessonView.swift */,
+				710ED9D22A8D39750003F104 /* SingleLessonComplicationView.swift */,
 				71F3B3CF25F39CEC0063978A /* Assets.xcassets */,
 				71F3B3D125F39CEC0063978A /* Info.plist */,
 			);
-			path = TimetableWidget;
+			path = "Timetable Widget";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		710ED9A92A8B7A0E0003F104 /* Timetable WatchWidgetExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 710ED9B92A8B7A0F0003F104 /* Build configuration list for PBXNativeTarget "Timetable WatchWidgetExtension" */;
+			buildPhases = (
+				710ED9A62A8B7A0E0003F104 /* Sources */,
+				710ED9A72A8B7A0E0003F104 /* Frameworks */,
+				710ED9A82A8B7A0E0003F104 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Timetable WatchWidgetExtension";
+			productName = "Timetable WidgetExtension";
+			productReference = 710ED9AA2A8B7A0E0003F104 /* Timetable WatchWidgetExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 		711A78D224EE655000A41A48 /* Timetable 3.0 */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 711A78EA24EE655100A41A48 /* Build configuration list for PBXNativeTarget "Timetable 3.0" */;
@@ -338,10 +527,30 @@
 			);
 			dependencies = (
 				71F3B3D325F39CEC0063978A /* PBXTargetDependency */,
+				71A1CB692A7FA07D006D6635 /* PBXTargetDependency */,
 			);
 			name = "Timetable 3.0";
 			productName = "Timetable 3.0";
 			productReference = 711A78D324EE655000A41A48 /* Timetable 3.0.app */;
+			productType = "com.apple.product-type.application";
+		};
+		71A1CB5C2A7FA07C006D6635 /* TimeTable.Watch Watch App */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 71A1CB6B2A7FA07D006D6635 /* Build configuration list for PBXNativeTarget "TimeTable.Watch Watch App" */;
+			buildPhases = (
+				71A1CB592A7FA07C006D6635 /* Sources */,
+				71A1CB5A2A7FA07C006D6635 /* Frameworks */,
+				71A1CB5B2A7FA07C006D6635 /* Resources */,
+				710ED9BC2A8B7A0F0003F104 /* Embed Foundation Extensions */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				710ED9B72A8B7A0F0003F104 /* PBXTargetDependency */,
+			);
+			name = "TimeTable.Watch Watch App";
+			productName = "TimeTable.Watch Watch App";
+			productReference = 71A1CB5D2A7FA07C006D6635 /* TimeTable.Watch Watch App.app */;
 			productType = "com.apple.product-type.application";
 		};
 		71F3B3C525F39CE90063978A /* Timetable 3.0WidgetExtension */ = {
@@ -368,12 +577,18 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = YES;
-				LastSwiftUpdateCheck = 1240;
+				LastSwiftUpdateCheck = 1430;
 				LastUpgradeCheck = 1430;
 				ORGANIZATIONNAME = Konrad;
 				TargetAttributes = {
+					710ED9A92A8B7A0E0003F104 = {
+						CreatedOnToolsVersion = 14.3.1;
+					};
 					711A78D224EE655000A41A48 = {
 						CreatedOnToolsVersion = 11.5;
+					};
+					71A1CB5C2A7FA07C006D6635 = {
+						CreatedOnToolsVersion = 14.3.1;
 					};
 					71F3B3C525F39CE90063978A = {
 						CreatedOnToolsVersion = 12.4;
@@ -395,12 +610,23 @@
 			projectRoot = "";
 			targets = (
 				711A78D224EE655000A41A48 /* Timetable 3.0 */,
+				71A1CB5C2A7FA07C006D6635 /* TimeTable.Watch Watch App */,
 				71F3B3C525F39CE90063978A /* Timetable 3.0WidgetExtension */,
+				710ED9A92A8B7A0E0003F104 /* Timetable WatchWidgetExtension */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		710ED9A82A8B7A0E0003F104 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				710ED9B22A8B7A0F0003F104 /* Assets.xcassets in Resources */,
+				716C52132A93BAE1002E9B48 /* Localizable.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		711A78D124EE655000A41A48 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -409,6 +635,15 @@
 				71C2CAAA2563EFAD003D6278 /* Localizable.strings in Resources */,
 				711A78E324EE655100A41A48 /* Preview Assets.xcassets in Resources */,
 				711A78E024EE655100A41A48 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		71A1CB5B2A7FA07C006D6635 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				71A1CB642A7FA07D006D6635 /* Assets.xcassets in Resources */,
+				716C52122A93BAE0002E9B48 /* Localizable.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -424,6 +659,29 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		710ED9A62A8B7A0E0003F104 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				710ED9C42A8D34480003F104 /* Days+CoreDataClass.swift in Sources */,
+				710ED9BD2A8B7A440003F104 /* SingleLessonComplicationView.swift in Sources */,
+				710ED9CB2A8D34480003F104 /* LessonModel+CoreDataClass.swift in Sources */,
+				710ED9CC2A8D34580003F104 /* Timetable_3_0 v2.xcdatamodeld in Sources */,
+				710ED9CD2A8D34750003F104 /* String_extension.swift in Sources */,
+				710ED9CE2A8D34750003F104 /* Calendar_extension.swift in Sources */,
+				710ED9AF2A8B7A0E0003F104 /* Timetable_Widget.swift in Sources */,
+				710ED9CF2A8D34750003F104 /* Date_extension.swift in Sources */,
+				710ED9C82A8D34480003F104 /* Lesson+CoreDataProperties.swift in Sources */,
+				710ED9C52A8D34480003F104 /* Lesson+CoreDataClass.swift in Sources */,
+				710ED9CA2A8D34480003F104 /* UserPlan+CoreDataClass.swift in Sources */,
+				710ED9D12A8D34750003F104 /* UIColor_extension.swift in Sources */,
+				710ED9C72A8D34480003F104 /* UserPlan+CoreDataProperties.swift in Sources */,
+				710ED9C92A8D34480003F104 /* LessonModel+CoreDataProperties.swift in Sources */,
+				710ED9C62A8D34480003F104 /* Days+CoreDataProperties.swift in Sources */,
+				710ED9D02A8D34750003F104 /* EnvironmentValue_extension.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		711A78CF24EE655000A41A48 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -438,16 +696,20 @@
 				714624EC2708BD8F00F341C7 /* Timetable_3_0 v2.xcdatamodeld in Sources */,
 				715D6284290AE50000C1BB99 /* Days+CoreDataClass.swift in Sources */,
 				71FCC13F28D3857F00F94FCA /* VersionController.swift in Sources */,
+				71318F132A7FB6D9004A0B83 /* WatchConnectionPhone.swift in Sources */,
 				71DC31AE255AA1C800B1F52A /* EditLessonView.swift in Sources */,
 				715D62932922B36B00C1BB99 /* UserPlan+CoreDataProperties.swift in Sources */,
 				71B31B732708BCCE004B20D1 /* Lesson+CoreDataClass.swift in Sources */,
+				71A1CB582A78E702006D6635 /* EditPlansView.swift in Sources */,
 				715D6286290AE50000C1BB99 /* Days+CoreDataProperties.swift in Sources */,
 				715D628F290EB17100C1BB99 /* EnvironmentValue_extension.swift in Sources */,
 				715D62952922B37300C1BB99 /* UserPlan+CoreDataClass.swift in Sources */,
+				71A1CB542A7433C4006D6635 /* String_extension.swift in Sources */,
 				71168E57270B5C71008B9CBE /* DaysOrderView.swift in Sources */,
 				71DC31AA2559AD7A00B1F52A /* AddLessonModalForm.swift in Sources */,
 				714624EB2708BD4300F341C7 /* LessonModel+CoreDataProperties.swift in Sources */,
 				715D62922922B35F00C1BB99 /* AppDelegate.swift in Sources */,
+				710ED99A2A83FB1C0003F104 /* ReviewHandler.swift in Sources */,
 				71D320952719E894002D1F11 /* DaysMigrationPolicy.swift in Sources */,
 				71434D2A25FBAD2D00EDD6B1 /* Date_extension.swift in Sources */,
 				711A78D924EE655000A41A48 /* SceneDelegate.swift in Sources */,
@@ -455,8 +717,39 @@
 				711A78DE24EE655000A41A48 /* MainView.swift in Sources */,
 				717EE9A628A0346100D5F80E /* v1tov2Mapping.xcmappingmodel in Sources */,
 				71C2CA9E25618BF5003D6278 /* NotificationManager.swift in Sources */,
+				71A1CB892A7FA2BF006D6635 /* UIColor_extension.swift in Sources */,
+				710ED99E2A8547020003F104 /* BuyPremiumView.swift in Sources */,
 				71539B802592075300A56508 /* OnboardingView.swift in Sources */,
+				710ED99C2A8543EB0003F104 /* StoreManager.swift in Sources */,
+				71A1CB562A7809E3006D6635 /* LoadingView.swift in Sources */,
+				710ED9D32A8D39750003F104 /* SingleLessonComplicationView.swift in Sources */,
 				71733AD025FA0CD600207B5E /* Calendar_extension.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		71A1CB592A7FA07C006D6635 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				71A1CB792A7FA0D2006D6635 /* UserPlan+CoreDataProperties.swift in Sources */,
+				71A1CB702A7FA0C9006D6635 /* Days+CoreDataProperties.swift in Sources */,
+				71A1CB622A7FA07C006D6635 /* MainView.swift in Sources */,
+				71A1CB842A7FA1B2006D6635 /* String_extension.swift in Sources */,
+				71A1CB852A7FA1B2006D6635 /* Calendar_extension.swift in Sources */,
+				71A1CB772A7FA0D2006D6635 /* Lesson+CoreDataProperties.swift in Sources */,
+				71A1CB862A7FA1B2006D6635 /* Date_extension.swift in Sources */,
+				710ED9D42A8D39750003F104 /* SingleLessonComplicationView.swift in Sources */,
+				71A1CB782A7FA0D2006D6635 /* LessonModel+CoreDataClass.swift in Sources */,
+				71A1CB7C2A7FA0D2006D6635 /* Lesson+CoreDataClass.swift in Sources */,
+				71A1CB7A2A7FA0D2006D6635 /* UserPlan+CoreDataClass.swift in Sources */,
+				71A1CB8B2A7FA2BF006D6635 /* UIColor_extension.swift in Sources */,
+				71A1CB602A7FA07C006D6635 /* TimeTable_WatchApp.swift in Sources */,
+				71318F092A7FAA8D004A0B83 /* VersionController.swift in Sources */,
+				71A1CB6F2A7FA0C6006D6635 /* Days+CoreDataClass.swift in Sources */,
+				71A1CB7B2A7FA0D2006D6635 /* LessonModel+CoreDataProperties.swift in Sources */,
+				71318F122A7FB6D6004A0B83 /* WatchConnection.swift in Sources */,
+				71A1CB872A7FA1B2006D6635 /* EnvironmentValue_extension.swift in Sources */,
+				7178C8AB2A8002AD00FFABC1 /* Timetable_3_0 v2.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -468,16 +761,20 @@
 				71733AD325FA0D1C00207B5E /* Calendar_extension.swift in Sources */,
 				714624F42708BF5900F341C7 /* Timetable_3_0 v2.xcdatamodeld in Sources */,
 				715D6287290AE50000C1BB99 /* Days+CoreDataProperties.swift in Sources */,
+				71A1CB822A7FA1B1006D6635 /* String_extension.swift in Sources */,
+				71A1CB8A2A7FA2BF006D6635 /* UIColor_extension.swift in Sources */,
 				717EE9A728A0346100D5F80E /* v1tov2Mapping.xcmappingmodel in Sources */,
 				719FA7342708C291008CFA05 /* Lesson+CoreDataClass.swift in Sources */,
 				719FA7302708C288008CFA05 /* LessonModel+CoreDataClass.swift in Sources */,
 				715D62962922B37400C1BB99 /* UserPlan+CoreDataClass.swift in Sources */,
 				719FA7352708C293008CFA05 /* Lesson+CoreDataProperties.swift in Sources */,
 				715D6290290EB17100C1BB99 /* EnvironmentValue_extension.swift in Sources */,
+				71A1CB832A7FA1B1006D6635 /* Date_extension.swift in Sources */,
 				71F3B3CE25F39CE90063978A /* TimetableWidget.swift in Sources */,
 				715D6285290AE50000C1BB99 /* Days+CoreDataClass.swift in Sources */,
 				71CA01A7273AD28C003635E2 /* DaysMigrationPolicy.swift in Sources */,
 				719FA7312708C28A008CFA05 /* LessonModel+CoreDataProperties.swift in Sources */,
+				710ED9D52A8D39750003F104 /* SingleLessonComplicationView.swift in Sources */,
 				715D62942922B36C00C1BB99 /* UserPlan+CoreDataProperties.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -485,6 +782,16 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		710ED9B72A8B7A0F0003F104 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 710ED9A92A8B7A0E0003F104 /* Timetable WatchWidgetExtension */;
+			targetProxy = 710ED9B62A8B7A0F0003F104 /* PBXContainerItemProxy */;
+		};
+		71A1CB692A7FA07D006D6635 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 71A1CB5C2A7FA07C006D6635 /* TimeTable.Watch Watch App */;
+			targetProxy = 71A1CB682A7FA07D006D6635 /* PBXContainerItemProxy */;
+		};
 		71F3B3D325F39CEC0063978A /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 71F3B3C525F39CE90063978A /* Timetable 3.0WidgetExtension */;
@@ -514,6 +821,70 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		710ED9BA2A8B7A0F0003F104 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CODE_SIGN_ENTITLEMENTS = "Timetable WatchWidgetExtension.entitlements";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = G323CMNMM3;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Timetable Widget/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "Timetable Widget";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "Copyright © 2023 Konrad. All rights reserved.";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+					"@executable_path/../../../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.kondiko.Timetable.watchkitapp.Timetable-Widget";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 9.4;
+			};
+			name = Debug;
+		};
+		710ED9BB2A8B7A0F0003F104 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CODE_SIGN_ENTITLEMENTS = "Timetable WatchWidgetExtension.entitlements";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = G323CMNMM3;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Timetable Widget/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "Timetable Widget";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "Copyright © 2023 Konrad. All rights reserved.";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+					"@executable_path/../../../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.kondiko.Timetable.watchkitapp.Timetable-Widget";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 9.4;
+			};
+			name = Release;
+		};
 		711A78E824EE655100A41A48 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -683,6 +1054,78 @@
 			};
 			name = Release;
 		};
+		71A1CB6C2A7FA07D006D6635 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CODE_SIGN_ENTITLEMENTS = "TimeTable.Watch Watch App.entitlements";
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "";
+				DEVELOPMENT_TEAM = G323CMNMM3;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "TimeTable-Watch-Watch-App-Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = TimeTable;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = com.kondiko.Timetable;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.kondiko.Timetable.watchkitapp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 9.4;
+			};
+			name = Debug;
+		};
+		71A1CB6D2A7FA07D006D6635 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CODE_SIGN_ENTITLEMENTS = "TimeTable.Watch Watch App.entitlements";
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "";
+				DEVELOPMENT_TEAM = G323CMNMM3;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "TimeTable-Watch-Watch-App-Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = TimeTable;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = com.kondiko.Timetable;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.kondiko.Timetable.watchkitapp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 9.4;
+			};
+			name = Release;
+		};
 		71F3B3D625F39CEC0063978A /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -692,7 +1135,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 3.1;
 				DEVELOPMENT_TEAM = G323CMNMM3;
-				INFOPLIST_FILE = TimetableWidget/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/Timetable Widget/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.5;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -717,7 +1160,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 3.1;
 				DEVELOPMENT_TEAM = G323CMNMM3;
-				INFOPLIST_FILE = TimetableWidget/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/Timetable Widget/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.5;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -737,6 +1180,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		710ED9B92A8B7A0F0003F104 /* Build configuration list for PBXNativeTarget "Timetable WatchWidgetExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				710ED9BA2A8B7A0F0003F104 /* Debug */,
+				710ED9BB2A8B7A0F0003F104 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		711A78CE24EE655000A41A48 /* Build configuration list for PBXProject "Timetable 3.0" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -751,6 +1203,15 @@
 			buildConfigurations = (
 				711A78EB24EE655100A41A48 /* Debug */,
 				711A78EC24EE655100A41A48 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		71A1CB6B2A7FA07D006D6635 /* Build configuration list for PBXNativeTarget "TimeTable.Watch Watch App" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				71A1CB6C2A7FA07D006D6635 /* Debug */,
+				71A1CB6D2A7FA07D006D6635 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

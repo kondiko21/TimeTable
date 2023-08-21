@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import CloudKit
 
 final class VersionController {
     
@@ -33,6 +34,30 @@ final class VersionController {
     func isOlderThan(version: String) -> Bool {
         return true
         
+    }
+    
+    func noteFirstSync() {
+        let recordID = CKRecord.ID(recordName: "preloadingComplete")
+        let record = CKRecord(recordType: "preloadingComplete", recordID: recordID)
+        CKContainer(identifier: "iCloud.com.kondiko.timetable.stable").privateCloudDatabase.save(record) { record, error in
+            if let error = error {
+                    print(error)
+                    return
+            }
+            print("First iCloud sync has been made")
+        }
+    }
+    
+    func checkPreloadingStatus(completion: @escaping (Bool) -> Void) {
+        let recordID = CKRecord.ID(recordName: "preloadingComplete")
+        CKContainer(identifier: "iCloud.com.kondiko.timetable.stable").privateCloudDatabase.fetch(withRecordID: recordID) { record, error in
+            if record == nil {
+                // The 'preloadingComplete' record exists, so preloading has been completed.
+                completion(false)
+            } else {
+                completion(true)
+            }
+        }
     }
     
 }
