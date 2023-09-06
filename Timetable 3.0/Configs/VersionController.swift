@@ -59,5 +59,22 @@ final class VersionController {
             }
         }
     }
-    
+    public func checkRemoteData(completion: @escaping (Bool) -> ()) {
+        let db = CKContainer(identifier: "iCloud.com.kondiko.timetable.stable").privateCloudDatabase
+        let predicate = NSPredicate(format: "CD_entityName = 'Days'")
+        let query = CKQuery(recordType: .init("CD_Days"), predicate: predicate)
+        db.perform(query, inZoneWith: nil) { result, error in
+            if error == nil {
+                if let records = result, !records.isEmpty {
+                    completion(true)
+                } else {
+                    print("XXXX")
+                    completion(false)
+                }
+            } else {
+                print(error as Any)
+                completion(false)
+            }
+        }
+    }
 }

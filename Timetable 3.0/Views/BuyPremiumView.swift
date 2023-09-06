@@ -13,6 +13,7 @@ struct BuyPremiumView: View {
     @EnvironmentObject var storeManager : StoreManager
     @Binding var presentationMode : Bool
     @AppStorage("com.kondiko.Timetable.plus") var premiumUser : Bool = false
+    let buyForText = NSLocalizedString("Buy for", comment: "buy for")
 
     var body: some View {
         GeometryReader {georeader in
@@ -39,7 +40,7 @@ struct BuyPremiumView: View {
                     ZStack {
                         RoundedRectangle(cornerRadius: 6)
                             .foregroundColor(Color(UIColor(red: 0.27, green: 0.35, blue: 0.75, alpha: 1.00)))
-                        Text("Buy for \(cost)").bold().padding().foregroundColor(Color.black)
+                        Text(buyForText + " \(cost)").bold().padding().foregroundColor(Color.black)
                     }
                     .frame(height: 50)
                     .padding()

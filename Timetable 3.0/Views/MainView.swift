@@ -15,10 +15,16 @@ struct MainView: View {
     
     @Environment (\.colorScheme) var colorScheme:ColorScheme
     @Environment(\.managedObjectContext) var moc
+    @ObservedObject var networkMonitor: NetworkMonitor = NetworkMonitor()
     
     @FetchRequest(entity: UserPlan.entity(), sortDescriptors: [NSSortDescriptor(key: "name", ascending: true)], predicate: nil) var users : FetchedResults<UserPlan>
     @FetchRequest(entity: Days.entity(), sortDescriptors: [NSSortDescriptor(key: "number", ascending: true)]) var daysFetch : FetchedResults<Days>
     let title = NSLocalizedString("Lesson plan", comment: "Title")
+    let namePlanMessage = NSLocalizedString("name_plan_message", comment: "message")
+    let namePlanTitle = NSLocalizedString("name_plan_title", comment: "title")
+    let newPlanMessage = NSLocalizedString("new_plan_message", comment: "message")
+    let newPlanTitle = NSLocalizedString("new_plan_title", comment: "title")
+    let setNameButton = NSLocalizedString("set_name_button", comment: "button")
     @State var usersList : [UserPlan] = []
     @State var days : [Days] = []
     @State var showNewUserView = false
@@ -27,6 +33,7 @@ struct MainView: View {
     @State var selectedUser: UserPlan?
     @State var isLoading : Bool = false
     let versionController = VersionController.shared
+    let connectionManager = WatchConnectionPhone()
     @State var addedFirstUser = UserDefaults.standard.bool(forKey: "addedFirstUser")
     
     
@@ -78,7 +85,7 @@ struct MainView: View {
             }.navigationViewStyle(.stack)
             if  showNewUserView {
                 if versionController.firstLaunchOfThisVersion() || !addedFirstUser {
-                    TextFieldPopUpView(headerText: "Name your plan", messageText: "Please name your timetable. This will help you manage your plan.", buttonText: "Set the plan", isClosable: false, isPresented: $showNewUserView)
+                    TextFieldPopUpView(headerText: namePlanTitle, messageText: namePlanMessage, buttonText: setNameButton, isClosable: false, isPresented: $showNewUserView)
                     { name in
                         if name != "" {
                             let user = UserPlan(context: moc)
@@ -103,7 +110,7 @@ struct MainView: View {
                         }
                     }
                 } else if addedFirstUser {
-                    TextFieldPopUpView(headerText: "Add new plan", messageText: "Type name of the plan.", buttonText: "Add plan", isClosable: true, isPresented: $showNewUserView)
+                    TextFieldPopUpView(headerText: newPlanTitle, messageText: newPlanMessage, buttonText: setNameButton, isClosable: true, isPresented: $showNewUserView)
                     { name in
                         if name != "" {
                             let user = UserPlan(context: moc)
@@ -127,8 +134,11 @@ struct MainView: View {
             }
             if isLoading { LoadingView() }
         }.onAppear {
-                ReviewHandler.requestReview()
-                print("Disappear")
+            if let userDefaults = UserDefaults(suiteName: "group.com.kondiko.Timetable") {
+                let value = userDefaults.string(forKey: "defaultPlanId")
+                connectionManager.updateDefaultId(id: value ?? "")
+            }
+            ReviewHandler.requestReview()
             if !usersList.isEmpty {
                 UserDefaults.standard.set(true, forKey: "addedFirstUser")
                 addedFirstUser = true
@@ -136,16 +146,17 @@ struct MainView: View {
             }
             if !addedFirstUser {
                 isLoading = true
-                versionController.checkPreloadingStatus { isPreloadingCompleted in
-                    if isPreloadingCompleted {
-                        isLoading = false
-                        return
-                    } else {
-                        isLoading = false
-                        print("NOTE: Displaying popup")
-                        showNewUserView = true
-                        versionController.noteFirstSync()
-                    }
+                if networkMonitor.isConnected {
+                    versionController.checkRemoteData{ isPreloadingCompleted in
+                                            if isPreloadingCompleted {
+                                                isLoading = false
+                                                return
+                                            } else {
+                                                isLoading = false
+                                                showNewUserView = true
+                                                versionController.noteFirstSync()
+                                            }
+                                        }
                 }
             }
             
@@ -166,7 +177,8 @@ struct MainView: View {
                     }
                 }
             }
-        }
+        }.navigationBarHidden(true)
+            .navigationBarBackButtonHidden(true)
     }
 }
 
@@ -458,7 +470,7 @@ struct DayList: View {
                                     .padding(.leading, 12)
                                     .foregroundColor(Color(UIColor.systemGray))
                                 Spacer()
-                                NavigationLink(destination: EditModeView(editedDay: day)) {
+                                NavigationLink(destination: NavigationLazyView(EditModeView(editedDay: day))) {
                                     Image(systemName: "square.and.pencil").resizable()
                                         .font(Font.title.weight(.semibold))
                                         .frame(width: 15, height: 15, alignment: .center)
@@ -494,3 +506,12 @@ struct DayList: View {
     }
 }
 
+struct NavigationLazyView<Content: View>: View {
+    let build: () -> Content
+    init(_ build: @autoclosure @escaping () -> Content) {
+        self.build = build
+    }
+    var body: Content {
+        build()
+    }
+}

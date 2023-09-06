@@ -24,7 +24,7 @@ struct MainView: View {
     var body: some View {
         if users.isEmpty {
             VStack(alignment: .center) {
-                Text("Run your app first and select main user in Settings > Plans management")
+                Text("Please, run iPhone app to sync the data")
             }
         } else {
             ScrollViewReader { value in

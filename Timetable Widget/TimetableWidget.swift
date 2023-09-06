@@ -31,10 +31,12 @@ struct Provider: TimelineProvider {
         } catch {
             print(error)
         }
-        for day in users[0].daysArray {
-            if day.name == Calendar.current.getNameOfWeekDayOfNumber(currentWeekDay) {
-                currentDay = day
-                break
+        if !users.isEmpty {
+            for day in users[0].daysArray {
+                if day.name == Calendar.current.getNameOfWeekDayOfNumber(currentWeekDay) {
+                    currentDay = day
+                    break
+                }
             }
         }
     }
@@ -110,10 +112,12 @@ struct AllLessonsProvider: TimelineProvider {
         } catch {
             print(error)
         }
-        for day in users[0].daysArray {
-            if day.name == Calendar.current.getNameOfWeekDayOfNumber(currentWeekDay) {
-                currentDay = day
-                break
+        if !users.isEmpty {
+            for day in users[0].daysArray {
+                if day.name == Calendar.current.getNameOfWeekDayOfNumber(currentWeekDay) {
+                    currentDay = day
+                    break
+                }
             }
         }
     }
@@ -151,7 +155,6 @@ struct MediumLessonsProvider: TimelineProvider {
     
 
     let currentWeekDay = Calendar.current.component(.weekday, from: Date())
-//    let currentWeekDay = 1
     let moc : NSManagedObjectContext
     @AppStorage("defaultPlanId", store: UserDefaults(suiteName: "group.com.kondiko.Timetable")) var defaultPlanId: String = ""
     var users : [UserPlan] = []
@@ -169,10 +172,13 @@ struct MediumLessonsProvider: TimelineProvider {
         } catch {
             print(error)
         }
-        for day in users[0].daysArray {
-            if day.name == Calendar.current.getNameOfWeekDayOfNumber(currentWeekDay) {
-                currentDay = day
-                break
+        if !users.isEmpty {
+            for day in users[0].daysArray {
+                if day.name == Calendar.current.getNameOfWeekDayOfNumber(currentWeekDay) {
+                    currentDay = day
+                    print(currentDay.lessonArray.count)
+                    break
+                }
             }
         }
     }
@@ -197,12 +203,10 @@ struct MediumLessonsProvider: TimelineProvider {
             var entries: [MediumLessonsEntry] = []
             let startDay = Calendar.current.startOfDay(for: Date())
             let reloadDay = Calendar.current.date(byAdding: .day, value: 1, to: startDay)!
-        
         if currentDay.isDisplayed {
-                
                 let lessonsCount = currentDay.lessonArray.count
                 
-                if lessonsCount > 3 {
+                if lessonsCount >= 3 {
                     
                     for lessonId in (0 ..< lessonsCount-2) {
                         let lesson = currentDay.lessonArray[lessonId]
@@ -215,6 +219,8 @@ struct MediumLessonsProvider: TimelineProvider {
                         ]
                         let entry = MediumLessonsEntry(date: entryDate, endHour: lesson.endHour, color: lesson.lessonModel.color , name: lesson.lessonModel.name, room: lesson.room, lessons: nextLessons)
                         entries.append(entry)
+                        print("X")
+
                     }
                 }
                 if lessonsCount > 2 {
@@ -224,6 +230,8 @@ struct MediumLessonsProvider: TimelineProvider {
                     let preLastEntryDate = Calendar.current.date(bySettingHour: preLastHour, minute: preLastMinute, second: 0, of: Date())!
                     let preLastEntry = MediumLessonsEntry(date: preLastEntryDate, endHour: preLastlesson.endHour, color: preLastlesson.lessonModel.color , name: preLastlesson.lessonModel.name, room: preLastlesson.room, lessons: [currentDay.lessonArray[lessonsCount - 1]])
                         entries.append(preLastEntry)
+                    print("X")
+
                 }
                 if lessonsCount > 1 {
                     let lastlesson = currentDay.lessonArray[lessonsCount - 1]
@@ -232,6 +240,7 @@ struct MediumLessonsProvider: TimelineProvider {
                     let lastEntryDate = Calendar.current.date(bySettingHour: lastHour, minute: lastMinute, second: 0, of: Date())!
                     let lastEntry = MediumLessonsEntry(date: lastEntryDate, endHour: lastlesson.endHour, color: lastlesson.lessonModel.color , name: lastlesson.lessonModel.name, room: lastlesson.room, lessons: [])
                     entries.append(lastEntry)
+                    print("X")
                 }
                 if lessonsCount != 0 {
                     let lastLesson = currentDay.lessonArray.last
@@ -292,7 +301,9 @@ struct TimetableMediumLessonsView : View {
         hour = formatter.string(from: entry.endHour)
         
         self.entry = entry
-        print("Entry name: \(entry.name)")
+        print("Entry name: \(entry.name)  \(entry.date)")
+        if entry.lessons != [] {
+            print(entry.lessons[0].lessonModel.name)}
     }
     
     var body: some View {
@@ -333,8 +344,8 @@ struct TimetableMediumLessonsView : View {
 
 struct NextLessonsView : View {
     
-    var lessons : [Lesson] = []
-    var hours : [UUID : String] = [:]
+    @State var lessons : [Lesson]
+    @State var hours : [UUID : String]
     var hour = ""
     
     let nextLessonString = NSLocalizedString("lesson_next_widget", comment: "")
@@ -342,33 +353,37 @@ struct NextLessonsView : View {
 
     init(lessons : [Lesson]) {
         
+        self._lessons = State(initialValue: lessons)
         let formatter = DateFormatter()
         formatter.dateFormat = "HH:mm"
+        var hoursText : [UUID:String] = [:]
         for lesson in lessons {
             hour += formatter.string(from: lesson.startHour)
             hour += " - "
             hour += formatter.string(from: lesson.endHour)
-            hours[lesson.id] = hour
+            hoursText[lesson.id] = hour
             hour = ""
         }
+        self._hours = State(initialValue: hoursText)
     }
     
     var body: some View {
         if !lessons.isEmpty {
-            HStack {
-                Text(nextLessonString)
+            VStack(alignment: .leading) {
+                HStack { Text(nextLessonString) }
                 ForEach(lessons, id: \.self) { lesson in
                     ZStack {
-                        RoundedCorners(color: Color(UIColor.UIColorFromString(string: lesson.lessonModel.color)).opacity(1.0), tl: 10, bl: 10).frame(width: 15)
-                        HStack(alignment: .center) {
+                        RoundedCorners(color: Color(UIColor.UIColorFromString(string: lesson.lessonModel.color)).opacity(1.0), tl: 10, tr: 10, bl: 10, br:10)
+//                            .padding([.leading, .trailing, .bottom], 5)
+                        VStack(alignment: .center) {
                             Text(lesson.lessonModel.name)
                                 .font(.system(.body, design: .rounded))
                                 .bold()
-                            Text(hours[lesson.id]!)
+                            Text(hours[lesson.id] ?? "")
                         }
                     }
                 }
-            }
+            }.padding(8)
         } else {
             Text(noLessonWidgetText)
         }
@@ -548,6 +563,7 @@ var persistentContainer: NSPersistentCloudKitContainer = {
     
     description.shouldMigrateStoreAutomatically = true
     description.shouldInferMappingModelAutomatically = true
+    description.cloudKitContainerOptions = NSPersistentCloudKitContainerOptions(containerIdentifier: "iCloud.com.kondiko.timetable.stable")
     container.persistentStoreDescriptions = [description]
     description.setOption(true as NSNumber, forKey: NSPersistentHistoryTrackingKey)
     description.cloudKitContainerOptions = nil

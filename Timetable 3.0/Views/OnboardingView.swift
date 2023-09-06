@@ -109,11 +109,12 @@ struct OnboardingView: View {
                     }
                 }
                 .tabViewStyle(PageTabViewStyle())
-                .navigationBarHidden(true)
                 
             }
-        }
+        }.navigationBarHidden(true)
+            .navigationBarBackButtonHidden(true)
     }
+
 }
 
 struct OnboardingView_Previews: PreviewProvider {

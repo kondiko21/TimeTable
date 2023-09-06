@@ -31,10 +31,12 @@ struct Provider: TimelineProvider {
         } catch {
             print(error)
         }
-        for day in users[0].daysArray {
-            if day.name == Calendar.current.getNameOfWeekDayOfNumber(currentWeekDay) {
-                currentDay = day
-                break
+        if !users.isEmpty {
+            for day in users[0].daysArray {
+                if day.name == Calendar.current.getNameOfWeekDayOfNumber(currentWeekDay) {
+                    currentDay = day
+                    break
+                }
             }
         }
     }
