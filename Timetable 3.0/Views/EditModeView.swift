@@ -15,7 +15,7 @@ struct EditModeView: View {
     var notificationManager = NotificationManager.shared
     
     @State var isFormSheetPresented = false
-    @ObservedObject var userSettings = Settings()
+    @EnvironmentObject var userSettings : Settings
     @Environment(\.managedObjectContext) var moc
     @FetchRequest var day: FetchedResults<Days>
     @State var dayName : String

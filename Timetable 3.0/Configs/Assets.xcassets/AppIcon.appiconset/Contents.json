@@ -67,13 +67,13 @@
       "size" : "60x60"
     },
     {
-      "filename" : "Icon-App-20x20@1x.png",
+      "filename" : "20.png",
       "idiom" : "ipad",
       "scale" : "1x",
       "size" : "20x20"
     },
     {
-      "filename" : "40-1.png",
+      "filename" : "40.png",
       "idiom" : "ipad",
       "scale" : "2x",
       "size" : "20x20"
@@ -109,11 +109,13 @@
       "size" : "76x76"
     },
     {
+      "filename" : "152.png",
       "idiom" : "ipad",
       "scale" : "2x",
       "size" : "76x76"
     },
     {
+      "filename" : "167.png",
       "idiom" : "ipad",
       "scale" : "2x",
       "size" : "83.5x83.5"

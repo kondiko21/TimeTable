@@ -32,15 +32,15 @@ struct SettingsView: View {
                     Spacer()
                     Picker(selection: $userSettings.selectedColorScheme, label:
                             Text("Color mode"), content: {
-                                ForEach( 0 ..< states.count, id: \.self) {
-                                    Text(self.states[$0])
-                                        .padding()
-                                }
-                            })
-                        .pickerStyle(MenuPickerStyle())
-                        .frame(width: 140, height: 30)
-                        .clipped()
-                        .labelsHidden()
+                        ForEach( 0 ..< states.count, id: \.self) {
+                            Text(self.states[$0])
+                                .padding()
+                        }
+                    })
+                    .pickerStyle(MenuPickerStyle())
+                    .frame(width: 140, height: 30)
+                    .clipped()
+                    .labelsHidden()
                 }
                 
             }
@@ -107,21 +107,28 @@ struct SettingsView: View {
             Section {
                 Button {
                     StoreManager().restoreProducts()
-                   } label: {
-                       Text("Restore Premium")
-                   }
-               }
-            
-            Section {
-                HStack {
-                    Text("Version")
-                    Spacer()
-                    Text("\(appVersion!)  |  build \(appBuildVersion!)")
+                } label: {
+                    Text("Restore Premium")
                 }
             }
-            .navigationBarTitle("Settings", displayMode: .automatic)
-            .sheet(isPresented: $orderScreenActive) {
-                DaysOrderView(orderScreenActive: $orderScreenActive)
+            Section {
+//                Button {
+//                    userSettings.resetAppData()
+//                } label: {
+//                    Text("Reset")
+//                }
+                
+                Section {
+                    HStack {
+                        Text("Version")
+                        Spacer()
+                        Text("\(appVersion!)  |  build \(appBuildVersion!)")
+                    }
+                }
+                .navigationBarTitle("Settings", displayMode: .automatic)
+                .sheet(isPresented: $orderScreenActive) {
+                    DaysOrderView(orderScreenActive: $orderScreenActive)
+                }
             }
         }
     }
